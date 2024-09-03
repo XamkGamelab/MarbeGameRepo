@@ -1,43 +1,79 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class walker : MonoBehaviour
 {
-    [SerializeField] private float upChance, sideChance, downChance;
-    void Start()
-    {
-
-    }
+    public float upChance, sideChance, downChance;
+    public float deathChance = 100f;
+    public int minMoves;
+    
+    private Vector3Int intPos;
+    [SerializeField] private float moveDelay;
+    private float curDelay;
 
     // Update is called once per frame
     void Update()
     {
+        intPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
         
-        startFiller.filler.eraseTile(transform.position);
-        Move();
+        if (moveDelay > curDelay)
+        {
+            curDelay += Time.deltaTime;
+        }
+        else
+        {
+            curDelay = 0;
+            Move();
+        }
     }
 
     private void Move()
     {
-        int rng = Random.Range(0, 3); //0 up 1 left 2 right 3 down
-        int actualRng = Random.Range(0, 100);
+        startFiller.filler.eraseTile(transform.position);
+        
+        int rng = Random.Range(0, 4); //0 up 1 left 2 right 3 down
+        int actualRng = Random.Range(1, 101);
 
         if (rng == 0 && actualRng <= upChance)
         {
-            transform.position += new Vector3(0, 1, 0);
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, 2, 0)))
+            {
+                transform.position += new Vector3(0, 1, 0);
+                minMoves--;
+            }
         }
         else if (rng == 1 && actualRng <= sideChance)
         {
-            transform.position += new Vector3(-1, 0, 0);
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(-2, 0, 0)))
+            {
+                transform.position += new Vector3(-1, 0, 0);
+                minMoves--;
+            }
         }
         else if (rng == 2 && actualRng <= sideChance)
         {
-            transform.position += new Vector3(1, 0, 0);
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(2, 0, 0)))
+            {
+                transform.position += new Vector3(1, 0, 0);
+                minMoves--;
+            }
         }
-        else if (rng == 0 && actualRng <= downChance)
+        else if (rng == 3 && actualRng <= downChance)
         {
-            transform.position += new Vector3(0, -1, 0);
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, -2, 0)))
+            {
+                transform.position += new Vector3(0, -1, 0);
+                minMoves--;
+            }
+        }
+
+        float deathRng = Random.Range(1, 101);
+        if (minMoves <= 0 && deathRng <= deathChance)
+        {
+            Destroy(gameObject);
         }
     }
 }
