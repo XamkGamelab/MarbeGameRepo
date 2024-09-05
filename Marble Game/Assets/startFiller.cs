@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,8 +6,10 @@ using UnityEngine.Tilemaps;
 public class startFiller : MonoBehaviour
 {
     public int sizeH, sizeV;
-    private Tilemap map;
-    public Tile tile;
+    [SerializeField] private int vertOffset;
+    [SerializeField] private Tilemap wallMap;
+    [SerializeField] private Tilemap floorMap;
+    public Tile wallTile, floorTile;
     public static startFiller filler {get; private set;}
 
     public int walkerCount;
@@ -30,9 +30,37 @@ public class startFiller : MonoBehaviour
 
     private void Start()
     {
-        map = GetComponent<Tilemap>();
         fillCanvas();
-        
+        engageWalkers();
+    }
+
+    private void Update()
+    {
+        //Debug commands
+        if (Input.GetKeyDown(KeyCode.F)) //Adds floor
+        {
+            floorCanvas();
+        }
+        if (Input.GetKeyDown(KeyCode.R)) //Regenerates
+        {
+            deleteMap();
+            fillCanvas();
+            engageWalkers();
+        }
+    }
+
+    //Fills the entire canvas with walls, generating top left and bottom right corners first
+    public void fillCanvas()
+    {
+        wallMap.CompressBounds();
+        wallMap.SetTile(new Vector3Int(Mathf.CeilToInt(sizeH/2),sizeV-vertOffset,0), wallTile);
+        wallMap.SetTile(new Vector3Int(-Mathf.FloorToInt(sizeH/2),-vertOffset,0), wallTile);
+        //wallMap.BoxFill(new Vector3Int(0,0,0), tile, 0, -2, 5, 10);
+        wallMap.FloodFill(new Vector3Int(0,0,0), wallTile);
+    }
+
+    private void engageWalkers()
+    {
         //Creates walkers to erode walls
         for (int i = 0; i < walkerCount; i++)
         {
@@ -46,41 +74,56 @@ public class startFiller : MonoBehaviour
         }
     }
     
-    //Fills the entire canvas with walls, generating top left and bottom right corners first
-    public void fillCanvas()
+    //Generates floor where there arent any walls
+    public void floorCanvas()
     {
-        map.CompressBounds();
-        map.SetTile(new Vector3Int(Mathf.CeilToInt(sizeH/2),sizeV-5,0), tile);
-        map.SetTile(new Vector3Int(-Mathf.FloorToInt(sizeH/2),-5,0), tile);
-        //map.BoxFill(new Vector3Int(0,0,0), tile, 0, -2, 5, 10);
-        map.FloodFill(new Vector3Int(0,0,0), tile);
+        floorMap.CompressBounds();
+        for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+        {
+            for (int y = -vertOffset+1; y < sizeV-vertOffset+1; y++)
+            {
+                if (!checkIsTile(new Vector3Int(x, y, 0)))
+                {
+                    floorMap.SetTile(new Vector3Int(x, y,0), floorTile);
+                }
+            }
+        }
+        
     }
     
-    //Erases tile automatically converting map position to tilemap position
+    //Erases tile automatically converting wallMap position to tilewallMap position
     public void eraseTile(Vector3 erasePos)
     {
-        Vector3Int cellPosition = map.WorldToCell(erasePos);
-        map.SetTile(new Vector3Int(Mathf.RoundToInt(cellPosition.x), Mathf.RoundToInt(cellPosition.y), 0), null);
+        Vector3Int cellPosition = wallMap.WorldToCell(erasePos);
+        wallMap.SetTile(new Vector3Int(Mathf.RoundToInt(cellPosition.x), Mathf.RoundToInt(cellPosition.y), 0), null);
     }
     
     //Checks if given vector3int has a tile
     public bool checkIsTile(Vector3Int checkPos)
     {
-        if (map.GetTile(checkPos) == null)
+        if (wallMap.GetTile(checkPos) == null)
         {
             return false;
         }
         return true;
     }
     
-    //Checks if given vector3int is within the bounds of the wallmap
+    //Checks if given vector3int is within the bounds of the wallwallMap
     public bool checkBounds(Vector3Int checkPos)
     {
-        if (checkPos.x < sizeH / 2 && checkPos.x > -sizeH / 2 && checkPos.y < sizeV -4 && checkPos.y > -4)
+        if (checkPos.x < sizeH / 2 && checkPos.x > -sizeH / 2 && checkPos.y < sizeV -vertOffset+1 && checkPos.y > -vertOffset+1)
         {
             return true;
         }
         
         return false;
+    }
+    
+    //Destroys all maps
+    public void deleteMap()
+    {
+        wallMap.ClearAllTiles();
+        floorMap.ClearAllTiles();
+        
     }
 }
