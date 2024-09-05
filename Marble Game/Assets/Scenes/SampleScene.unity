@@ -697,7 +697,7 @@ MonoBehaviour:
   floorMap: {fileID: 990365928}
   wallTile: {fileID: 11400000, guid: ab90427d4f7e9eb4b844e3368d9d850c, type: 2}
   floorTile: {fileID: 11400000, guid: 521b5ec71456a814d9169721baee91ac, type: 2}
-  walkerCount: 5
+  walkerCount: 10
   walkerObj: {fileID: 5581616006548335540, guid: eb883e5058764824da33a16d2b0f191b, type: 3}
   walkerPos: {fileID: 1882337934}
   walkerUpChance: 100
@@ -705,6 +705,8 @@ MonoBehaviour:
   walkerDownChance: 30
   walkerDeathChance: 2
   walkerMinMoves: 30
+  remainingWalkers: 0
+  goal: {fileID: 1966799322725988153, guid: 2b38fc3b470b0b44696e2e15ba172a3e, type: 3}
 --- !u!1 &1882337933
 GameObject:
   m_ObjectHideFlags: 0

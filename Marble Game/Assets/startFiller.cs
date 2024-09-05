@@ -2,6 +2,7 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class startFiller : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class startFiller : MonoBehaviour
     [SerializeField] private float walkerDeathChance;
     [SerializeField] private int walkerMinMoves;
 
+    public int remainingWalkers = -1;
+    [SerializeField] private GameObject goal;
+
     private void Awake()
     {
         if (filler == null)
@@ -30,23 +34,39 @@ public class startFiller : MonoBehaviour
 
     private void Start()
     {
-        fillCanvas();
-        engageWalkers();
+        generateMap();
     }
 
     private void Update()
     {
-        //Debug commands
-        if (Input.GetKeyDown(KeyCode.F)) //Adds floor
+        //If no remaining walkers, generate floor and goal
+        if (remainingWalkers == 0)
         {
+            remainingWalkers = -1;
+            placeGoal();
             floorCanvas();
         }
+        
+        //Debug commands
         if (Input.GetKeyDown(KeyCode.R)) //Regenerates
         {
-            deleteMap();
-            fillCanvas();
-            engageWalkers();
+            generateMap();
         }
+    }
+
+    private void generateMap()
+    {
+        //Destroy EndDestroy objects, such as the goal
+        GameObject[] layerObjects = GameObject.FindGameObjectsWithTag("EndDestroy");
+        foreach (GameObject layerObject in layerObjects)
+        {
+            Destroy(layerObject);
+        }
+        
+        //Delete map and regenerate
+        deleteMap();
+        fillCanvas();
+        engageWalkers();
     }
 
     //Fills the entire canvas with walls, generating top left and bottom right corners first
@@ -61,6 +81,7 @@ public class startFiller : MonoBehaviour
 
     private void engageWalkers()
     {
+        remainingWalkers = 0;
         //Creates walkers to erode walls
         for (int i = 0; i < walkerCount; i++)
         {
@@ -71,6 +92,7 @@ public class startFiller : MonoBehaviour
             walkerScript.downChance = walkerDownChance;
             walkerScript.deathChance = walkerDeathChance;
             walkerScript.minMoves = walkerMinMoves;
+            remainingWalkers++;
         }
     }
     
@@ -80,7 +102,7 @@ public class startFiller : MonoBehaviour
         floorMap.CompressBounds();
         for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
         {
-            for (int y = -vertOffset+1; y < sizeV-vertOffset+1; y++)
+            for (int y = -vertOffset+1; y < sizeV-vertOffset; y++)
             {
                 if (!checkIsTile(new Vector3Int(x, y, 0)))
                 {
@@ -88,7 +110,73 @@ public class startFiller : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void placeGoal()
+    {
         
+        //Find highest up available tile
+        int highestAvailable = 0;
+        for (int y = sizeV-vertOffset; y > -vertOffset+1; y--)
+        {
+            for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+            {
+                if (!checkIsTile(new Vector3Int(x, y, 0)))
+                {
+                    highestAvailable = y;
+                    Debug.Log("Found empty tile at Y " + y);
+                    goto FOUND;
+                }
+            }
+        }
+        FOUND:
+        
+        //Randomize a tile between highest tile and the 4 below it
+        int finalY = Random.Range(highestAvailable, highestAvailable - 3);
+        int howManyOptions = 0;
+        Debug.Log(finalY);
+        
+        //Check how many tiles on x in the y layer
+        for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+        {
+            if (!checkIsTile(new Vector3Int(x, finalY, 0)))
+            {
+                howManyOptions++;
+            }
+        }
+        
+        //Randomize which X to use
+        Debug.Log("Options: " + howManyOptions);
+        int finalX = Random.Range(0, howManyOptions);
+        Debug.Log("FinalX: " + finalX);
+        int i = 0;
+        
+        //Go through the x layer again, this time placing the flag at the finalX tile
+        for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+        {
+            if (!checkIsTile(new Vector3Int(x, finalY, 0)))
+            {
+                if (finalX == i)
+                {
+                    Instantiate(goal, new Vector3(x, finalY, 0), quaternion.identity);
+                    eraseTile(new Vector3(x, finalY));
+                    eraseTile(new Vector3(x, finalY+1));
+                    eraseTile(new Vector3(x, finalY-1));
+                    eraseTile(new Vector3(x+1, finalY));
+                    eraseTile(new Vector3(x-1, finalY));
+                    eraseTile(new Vector3(x+1, finalY+1));
+                    eraseTile(new Vector3(x+1, finalY-1));
+                    eraseTile(new Vector3(x-1, finalY+1));
+                    eraseTile(new Vector3(x-1, finalY-1));
+                    return;
+                }
+                else
+                {
+                    i++;
+                }
+                    
+            }
+        }
     }
     
     //Erases tile automatically converting wallMap position to tilewallMap position
@@ -124,6 +212,5 @@ public class startFiller : MonoBehaviour
     {
         wallMap.ClearAllTiles();
         floorMap.ClearAllTiles();
-        
     }
 }

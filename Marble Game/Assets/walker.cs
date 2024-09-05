@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -73,6 +74,7 @@ public class walker : MonoBehaviour
         float deathRng = Random.Range(1, 101);
         if (minMoves <= 0 && deathRng <= deathChance)
         {
+            startFiller.filler.remainingWalkers--;
             Destroy(gameObject);
         }
     }
