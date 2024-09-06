@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3330597663288029359}
   - component: {fileID: 8268635882621521816}
+  - component: {fileID: 7201996395456016950}
   m_Layer: 3
   m_Name: Goal
   m_TagString: EndDestroy
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7201996395456016950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966799322725988153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40412c41ffda53c4fbf79c5d65172dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
