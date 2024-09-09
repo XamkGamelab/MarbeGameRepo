@@ -5,66 +5,116 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Constant Variables")]
-    private const int powerLimit = 5;
+    private const float powerLimit = 2f;
+    private const float lowerLimit = 0.1f;
 
     [Header("Dynamic Variables")]
     private Vector2 touchStart;
     private Vector2 touchEnd;
-    private float pullLength;
+    private float shootStrength;
     private Vector2 shootAngle;
+    private bool trackStartPos = true;
+    private bool trackEndPos = false;
+    private bool trackTime = false;
+    private float timer = 0;
 
     [Header("Engine Variables")]
+    [SerializeField] private InputReader inputReader;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider2d;
 
-    // Start is called before the first frame update
-    void Start()
+    #region standard methods
+
+    private void Awake()
     {
-        
+        //add methods to events called on inputs
+        inputReader.MoveEvent += CalcDirection;
+        inputReader.TouchEvent += HandleTouch;
+        inputReader.TouchCanceledEvent += HandleTouchEnd;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        TouchTracking();
-        Debug.Log(message: $"touchStart = {touchStart}, touchEnd = {touchEnd}");
+        //Debug.Log(message: $"touchStart = {touchStart}, touchEnd = {touchEnd}");
+
+        //timer is run when screen has touch
+        if (trackTime) Timer();
+        else if (!trackTime) timer = 0;
     }
 
-    private void TouchTracking()
-    {
+    #endregion
 
-        foreach(Touch touch in Input.touches)
+    #region other methods
+
+    private void Timer()
+    {
+        //timer increases with time until powerLimit is reached
+        timer += Time.deltaTime;
+        if (timer > powerLimit) timer = powerLimit;
+    }
+
+    //called on touch start
+    private void HandleTouch()
+    {
+        trackTime = true;
+        trackEndPos = true;
+    }
+
+    //called on touch end
+    private void HandleTouchEnd()
+    {
+        ShootBall();
+        trackTime = false;
+        trackStartPos = true;
+    }
+
+    private void CalcDirection(Vector2 dir)
+    {
+        //LOGIC HERE IS BROKEN
+        //LOGIC HERE IS BROKEN
+        //LOGIC HERE IS BROKEN
+        //LOGIC HERE IS BROKEN
+        //most likely cause is saving touchStart or touchEnd or both at wrong time
+
+        //grab touch starting position on touch start
+        if (inputReader.touchActive && trackStartPos)
         {
-            if (touch.fingerId != 0) break;
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                touchStart = Input.touches[0].position;
-            }
-
-            if (touch.phase == TouchPhase.Moved)
-            {
-                touchEnd = Input.touches[0].position;
-            }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                CalcStrength();
-                ShootBall();
-            }
+            touchStart = dir;
+            trackStartPos = false;
         }
+        //grab touch end position on touch end
+        if (!inputReader.touchActive && trackEndPos)
+        {
+            touchEnd = dir;
+            trackEndPos = false;
+        }
+
+        //calc normalized value to get movement direction
+        shootAngle = (touchEnd - touchStart).normalized;
     }
 
-    private void CalcStrength()
+    private float CalcStrength()
     {
-        pullLength = Vector2.Distance(touchStart, touchEnd);
-        if (pullLength > powerLimit) pullLength = 5f;
+        //normalize value to be between 0 and 1
+        float reverseStrength = timer / powerLimit;
 
-        shootAngle = (touchStart - touchEnd).normalized;
+        //return actual strength after corrections
+        return (1 / reverseStrength) - lowerLimit;
     }
 
     private void ShootBall()
     {
-        rb.AddForce(shootAngle * pullLength);
+        //calc force to add by multiplying angle with reversed duration of touch
+        Vector2 forceToAdd = shootAngle * CalcStrength();
+        Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
+
+        //this prevents misinput at start of game
+        if (forceToAdd != null)
+        {
+            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+        }
     }
+
+    #endregion
 }
