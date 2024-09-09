@@ -24,6 +24,16 @@ public class startFiller : MonoBehaviour
     public int remainingWalkers = -1;
     [SerializeField] private GameObject goal;
 
+    [SerializeField] private int minObstacles, maxObstacles, curObstacles;
+    [SerializeField] private float obstacleChance;
+    [SerializeField] private float obstacleChanceBonus;
+    [SerializeField] private GameObject[] easyObstacles;
+    [SerializeField] private float easyChance;
+    [SerializeField] private GameObject[] moderateObstacles;
+    [SerializeField] private float moderateChance;
+    [SerializeField] private GameObject[] hardObstacles;
+    [SerializeField] private float hardChance;
+
     private void Awake()
     {
         if (filler == null)
@@ -45,6 +55,7 @@ public class startFiller : MonoBehaviour
             remainingWalkers = -1;
             placeGoal();
             floorCanvas();
+            placeObstacles();
         }
         
         //Debug commands
@@ -64,6 +75,7 @@ public class startFiller : MonoBehaviour
         }
         
         //Delete map and regenerate
+        curObstacles = 0;
         deleteMap();
         fillCanvas();
         engageWalkers();
@@ -124,7 +136,6 @@ public class startFiller : MonoBehaviour
                 if (!checkIsTile(new Vector3Int(x, y, 0)))
                 {
                     highestAvailable = y;
-                    Debug.Log("Found empty tile at Y " + y);
                     goto FOUND;
                 }
             }
@@ -134,7 +145,6 @@ public class startFiller : MonoBehaviour
         //Randomize a tile between highest tile and the 4 below it
         int finalY = Random.Range(highestAvailable, highestAvailable - 3);
         int howManyOptions = 0;
-        Debug.Log(finalY);
         
         //Check how many tiles on x in the y layer
         for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
@@ -146,9 +156,7 @@ public class startFiller : MonoBehaviour
         }
         
         //Randomize which X to use
-        Debug.Log("Options: " + howManyOptions);
         int finalX = Random.Range(0, howManyOptions);
-        Debug.Log("FinalX: " + finalX);
         int i = 0;
         
         //Go through the x layer again, this time placing the flag at the finalX tile
@@ -178,6 +186,55 @@ public class startFiller : MonoBehaviour
             }
         }
     }
+    
+    
+    
+    //Handles obstacle generations similarly to goal placement
+    public void placeObstacles()
+    {
+        while (curObstacles < minObstacles)
+        {
+            float remainingBonus = obstacleChanceBonus;
+            for (int y = sizeV-vertOffset; y > -vertOffset+1; y--)
+            {
+                for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+                {
+                    if (!checkIsTile(new Vector3Int(x, y, 0)))
+                    {
+                        int genAnythingRng = Random.Range(0, 101);
+                        if (obstacleChance + remainingBonus >= genAnythingRng)
+                        {
+                            int rngTier = Random.Range(0, 3);
+                            float rng = Random.Range(0, 101);
+                            if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
+                            {
+                                int rngEnemy = Random.Range(0, easyObstacles.Length);
+                                Instantiate(easyObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                curObstacles++;
+                            }
+                            if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
+                            {
+                                int rngEnemy = Random.Range(0, moderateObstacles.Length);
+                                Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                curObstacles++;
+                            }
+                            if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
+                            {
+                                int rngEnemy = Random.Range(0, hardObstacles.Length);
+                                Instantiate(hardObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                curObstacles++;
+                            }
+                        }
+                    }
+                }
+
+                remainingBonus *= 0.9f;
+            }
+        }
+    }
+    
+    
+    
     
     //Erases tile automatically converting wallMap position to tilewallMap position
     public void eraseTile(Vector3 erasePos)

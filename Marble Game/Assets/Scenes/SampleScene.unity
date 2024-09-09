@@ -270,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 601107638}
   - component: {fileID: 601107637}
+  - component: {fileID: 601107639}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -307,6 +308,49 @@ Transform:
   - {fileID: 990365926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601107639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601107636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75f9118c903fac459e9e5acd6c888ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeH: 18
+  sizeV: 40
+  vertOffset: 6
+  wallMap: {fileID: 1016651486}
+  floorMap: {fileID: 990365928}
+  wallTile: {fileID: 11400000, guid: ab90427d4f7e9eb4b844e3368d9d850c, type: 2}
+  floorTile: {fileID: 11400000, guid: 521b5ec71456a814d9169721baee91ac, type: 2}
+  walkerCount: 10
+  walkerObj: {fileID: 5581616006548335540, guid: eb883e5058764824da33a16d2b0f191b, type: 3}
+  walkerPos: {fileID: 1882337934}
+  walkerUpChance: 100
+  walkerSideChance: 40
+  walkerDownChance: 30
+  walkerDeathChance: 2
+  walkerMinMoves: 30
+  remainingWalkers: 0
+  goal: {fileID: 1966799322725988153, guid: 2b38fc3b470b0b44696e2e15ba172a3e, type: 3}
+  minObstacles: 5
+  maxObstacles: 20
+  curObstacles: 0
+  obstacleChance: 40
+  obstacleChanceBonus: 60
+  easyObstacles:
+  - {fileID: 1962605190579784793, guid: 03149c0d89a87fc4cbb9d994d206860c, type: 3}
+  easyChance: 60
+  moderateObstacles:
+  - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
+  moderateChance: 20
+  hardObstacles:
+  - {fileID: 1962605190579784793, guid: f6a2f4e60f5246545ad4bfe5998c1cec, type: 3}
+  hardChance: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +506,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -544,7 +588,6 @@ GameObject:
   - component: {fileID: 1016651484}
   - component: {fileID: 1016651486}
   - component: {fileID: 1016651485}
-  - component: {fileID: 1016651487}
   m_Layer: 0
   m_Name: Wallmap
   m_TagString: Untagged
@@ -678,35 +721,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1016651487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016651483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75f9118c903fac459e9e5acd6c888ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sizeH: 18
-  sizeV: 40
-  vertOffset: 6
-  wallMap: {fileID: 1016651486}
-  floorMap: {fileID: 990365928}
-  wallTile: {fileID: 11400000, guid: ab90427d4f7e9eb4b844e3368d9d850c, type: 2}
-  floorTile: {fileID: 11400000, guid: 521b5ec71456a814d9169721baee91ac, type: 2}
-  walkerCount: 10
-  walkerObj: {fileID: 5581616006548335540, guid: eb883e5058764824da33a16d2b0f191b, type: 3}
-  walkerPos: {fileID: 1882337934}
-  walkerUpChance: 100
-  walkerSideChance: 40
-  walkerDownChance: 30
-  walkerDeathChance: 2
-  walkerMinMoves: 30
-  remainingWalkers: 0
-  goal: {fileID: 1966799322725988153, guid: 2b38fc3b470b0b44696e2e15ba172a3e, type: 3}
 --- !u!1 &1824420263
 GameObject:
   m_ObjectHideFlags: 0
