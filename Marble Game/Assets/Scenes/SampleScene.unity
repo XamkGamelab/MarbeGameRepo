@@ -337,17 +337,18 @@ MonoBehaviour:
   walkerMinMoves: 30
   remainingWalkers: 0
   goal: {fileID: 1966799322725988153, guid: 2b38fc3b470b0b44696e2e15ba172a3e, type: 3}
-  minObstacles: 5
+  minObstacles: 10
   maxObstacles: 20
   curObstacles: 0
-  obstacleChance: 40
-  obstacleChanceBonus: 60
+  obstacleChance: 80
+  obstacleMinChance: 2
+  obstacleChanceMultiplier: 0.95
   easyObstacles:
   - {fileID: 1962605190579784793, guid: 03149c0d89a87fc4cbb9d994d206860c, type: 3}
   easyChance: 60
   moderateObstacles:
   - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
-  moderateChance: 20
+  moderateChance: 40
   hardObstacles:
   - {fileID: 1962605190579784793, guid: f6a2f4e60f5246545ad4bfe5998c1cec, type: 3}
   hardChance: 5

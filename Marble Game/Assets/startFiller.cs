@@ -25,8 +25,7 @@ public class startFiller : MonoBehaviour
     [SerializeField] private GameObject goal;
 
     [SerializeField] private int minObstacles, maxObstacles, curObstacles;
-    [SerializeField] private float obstacleChance;
-    [SerializeField] private float obstacleChanceBonus;
+    [SerializeField] private float obstacleChance, obstacleMinChance, obstacleChanceMultiplier;
     [SerializeField] private GameObject[] easyObstacles;
     [SerializeField] private float easyChance;
     [SerializeField] private GameObject[] moderateObstacles;
@@ -194,7 +193,7 @@ public class startFiller : MonoBehaviour
     {
         while (curObstacles < minObstacles)
         {
-            float remainingBonus = obstacleChanceBonus;
+            float remainingChance = obstacleChance;
             for (int y = sizeV-vertOffset; y > -vertOffset+1; y--)
             {
                 for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
@@ -202,33 +201,42 @@ public class startFiller : MonoBehaviour
                     if (!checkIsTile(new Vector3Int(x, y, 0)))
                     {
                         int genAnythingRng = Random.Range(0, 101);
-                        if (obstacleChance + remainingBonus >= genAnythingRng)
+                        if (remainingChance >= genAnythingRng)
                         {
                             int rngTier = Random.Range(0, 3);
                             float rng = Random.Range(0, 101);
                             if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
                             {
                                 int rngEnemy = Random.Range(0, easyObstacles.Length);
-                                Instantiate(easyObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                Instantiate(easyObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
+                                Debug.Log("Easy tile at: " + x +", " + y);
                                 curObstacles++;
                             }
                             if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
                             {
                                 int rngEnemy = Random.Range(0, moderateObstacles.Length);
-                                Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
                                 curObstacles++;
                             }
                             if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
                             {
                                 int rngEnemy = Random.Range(0, hardObstacles.Length);
-                                Instantiate(hardObstacles[rngEnemy], new Vector3(x, y, 0), quaternion.identity);
+                                Instantiate(hardObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
                                 curObstacles++;
+                            }
+                            
+                            
+                            if (remainingChance > obstacleMinChance)
+                            {
+                                remainingChance *= obstacleChanceMultiplier;
+                            }
+                            if (remainingChance < obstacleMinChance)
+                            {
+                                remainingChance = obstacleMinChance;
                             }
                         }
                     }
                 }
-
-                remainingBonus *= 0.9f;
             }
         }
     }
