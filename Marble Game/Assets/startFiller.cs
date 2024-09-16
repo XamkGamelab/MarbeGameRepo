@@ -6,13 +6,21 @@ using Random = UnityEngine.Random;
 
 public class startFiller : MonoBehaviour
 {
+    [Header("DevOnly")]
+    [SerializeField] private bool overWriteGeneration;
+
+    private int playerLevel;
+    [Header("Scale")]
     public int sizeH, sizeV;
     [SerializeField] private int vertOffset;
     [SerializeField] private Tilemap wallMap;
     [SerializeField] private Tilemap floorMap;
+    
+    [Header("Tiles")]
     public Tile wallTile, floorTile;
     public static startFiller filler {get; private set;}
-
+    
+    [Header("Walker Data")]
     public int walkerCount;
     [SerializeField] private GameObject walkerObj;
     [SerializeField] private Transform walkerPos;
@@ -22,8 +30,10 @@ public class startFiller : MonoBehaviour
     [SerializeField] private int walkerMinMoves;
 
     public int remainingWalkers = -1;
+    [Header("Goal")]
     [SerializeField] private GameObject goal;
-
+    
+    [Header("Obstacles")]
     [SerializeField] private int minObstacles, maxObstacles, curObstacles;
     [SerializeField] private float obstacleChance, obstacleMinChance, obstacleChanceMultiplier;
     [SerializeField] private GameObject[] easyObstacles;
@@ -76,9 +86,36 @@ public class startFiller : MonoBehaviour
         //Delete map and regenerate
         curObstacles = 0;
         deleteMap();
+        playerLevel = xpManager.Management.level;
+        if (!overWriteGeneration)
+        {
+            calculateSettings();
+        }
+        
         fillCanvas();
         engageWalkers();
     }
+    
+    
+    private void calculateSettings()
+    {
+        sizeH = 8 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
+        sizeV = 20 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
+        
+        walkerCount = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 2, Mathf.FloorToInt((playerLevel * 1.1f)/2));
+        walkerMinMoves = 20 + playerLevel*2;
+        walkerDeathChance = 1f-Mathf.Clamp(playerLevel*0.005f, 0, 0.5f);
+        walkerSideChance = 20 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 20+Mathf.Clamp(Mathf.FloorToInt(playerLevel*0.2f), 0, 20));
+        walkerDownChance = 5 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 25);
+        
+        
+        minObstacles = Mathf.CeilToInt(playerLevel/4);
+        maxObstacles = Mathf.CeilToInt(playerLevel * 1.5f);
+        easyChance = xpManager.Management.level;
+        moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/3), 0, 75);
+        hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/6), 0, 50);
+    }
+    
 
     //Fills the entire canvas with walls, generating top left and bottom right corners first
     public void fillCanvas()
@@ -204,7 +241,7 @@ public class startFiller : MonoBehaviour
                         if (remainingChance >= genAnythingRng)
                         {
                             int rngTier = Random.Range(0, 3);
-                            float rng = Random.Range(0, 101);
+                            float rng = Random.Range(1, 101);
                             if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
                             {
                                 int rngEnemy = Random.Range(0, easyObstacles.Length);

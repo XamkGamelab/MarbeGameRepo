@@ -45,6 +45,10 @@ public class walker : MonoBehaviour
                 transform.position += new Vector3(0, 1, 0);
                 minMoves--;
             }
+            else
+            {
+                downChance = upChance;
+            }
         }
         else if (rng == 1 && actualRng <= sideChance)
         {
@@ -71,7 +75,7 @@ public class walker : MonoBehaviour
             }
         }
 
-        float deathRng = Random.Range(1, 101);
+        float deathRng = Random.Range(0, 101);
         if (minMoves <= 0 && deathRng <= deathChance)
         {
             startFiller.filler.remainingWalkers--;

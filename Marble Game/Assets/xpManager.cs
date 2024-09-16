@@ -15,6 +15,7 @@ public class xpManager : MonoBehaviour
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text xpText;
+    [SerializeField] private TMP_Text lvlText;
     [SerializeField] private RectTransform xpBar;
 
     [SerializeField] private string[] titles;
@@ -35,6 +36,7 @@ public class xpManager : MonoBehaviour
 
         nextLevelXp = (level + 1) * 100;
         xpText.text = Mathf.RoundToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
+        lvlText.text = level.ToString();
 
         if (curXp >= nextLevelXp)
         {
