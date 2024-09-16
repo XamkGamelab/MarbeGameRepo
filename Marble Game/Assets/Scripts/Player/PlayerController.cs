@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider2d;
+    [SerializeField] private Animator animator;
 
     #region standard methods
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(message: $"touchStart = {touchStart}, touchEnd = {touchEnd}");
+        Vector2 playerSpeed = rb.velocity;
 
         //timer is run when screen has touch
         if (trackTime) Timer();
@@ -60,11 +61,15 @@ public class PlayerController : MonoBehaviour
             trackEndPos = false;
             //trackStartPos = true;
         }
+
         if (shootBall)
         {
             ShootBall();
             shootBall = false;
         }
+
+        animator.speed = playerSpeed.magnitude;
+        rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
     }
 
     #endregion
