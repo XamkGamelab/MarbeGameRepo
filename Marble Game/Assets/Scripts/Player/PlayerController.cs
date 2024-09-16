@@ -69,7 +69,11 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.speed = playerSpeed.magnitude;
-        rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
+
+        if (playerSpeed.magnitude > 0)
+        {
+            rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
+        }
     }
 
     #endregion
@@ -106,6 +110,9 @@ public class PlayerController : MonoBehaviour
     {
         //normalize value to be between 0 and 1
         float reverseStrength = timer / powerLimit;
+
+
+        Debug.Log((1 / reverseStrength) - lowerLimit);
 
         //return actual strength after corrections
         return (1 / reverseStrength) - lowerLimit;
