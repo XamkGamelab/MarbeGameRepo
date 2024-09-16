@@ -86,7 +86,7 @@ public class startFiller : MonoBehaviour
         //Delete map and regenerate
         curObstacles = 0;
         deleteMap();
-        playerLevel = xpManager.Management.level;
+        playerLevel = gameManager.Management.level;
         if (!overWriteGeneration)
         {
             calculateSettings();
@@ -111,7 +111,7 @@ public class startFiller : MonoBehaviour
         
         minObstacles = Mathf.CeilToInt(playerLevel/4);
         maxObstacles = Mathf.CeilToInt(playerLevel * 1.5f);
-        easyChance = xpManager.Management.level;
+        easyChance = gameManager.Management.level;
         moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/3), 0, 75);
         hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/6), 0, 50);
     }

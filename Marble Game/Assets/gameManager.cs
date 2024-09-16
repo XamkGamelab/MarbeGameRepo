@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class xpManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
-    public static xpManager Management {get; private set;}
+    public static gameManager Management {get; private set;}
     public int level;
     public float curXp;
     public float nextLevelXp;
@@ -29,7 +29,7 @@ public class xpManager : MonoBehaviour
 
     private void Update()
     {
-        if (level < titles.Length & level >= 0 && level != null)
+        if (level < titles.Length & level >= 0)
         {
             titleText.text = titles[level];
         }
