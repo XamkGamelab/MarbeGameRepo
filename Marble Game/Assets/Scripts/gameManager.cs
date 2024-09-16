@@ -14,10 +14,6 @@ public class gameManager : MonoBehaviour
     public int level;
     public float curXp;
     public float shards;
-
-    [Header("Tracked Stats")]
-    public int moves;
-    public int timesShoved;
     
     [Header("Public Values")]
     public float nextLevelXp;
@@ -37,7 +33,7 @@ public class gameManager : MonoBehaviour
             Management = this;
         }
     }
-    
+
     private void Update()
     {
         if (level < titles.Length & level >= 0)
@@ -52,7 +48,6 @@ public class gameManager : MonoBehaviour
         if (curXp >= nextLevelXp)
         {
             curXp -= nextLevelXp;
-            shards++;
             level++;
         }
 

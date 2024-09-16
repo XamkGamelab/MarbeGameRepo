@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 143442193}
-  - component: {fileID: 143442192}
+  - component: {fileID: 143442194}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -140,7 +140,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &143442192
+--- !u!4 &143442193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143442191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14840487, y: 5.1598916, z: 1127.6649}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &143442194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,12 +164,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 143442191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e252e04b8ed21448978106f70dfd377, type: 3}
+  m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
   curXp: 0
   shards: 0
+  moves: 0
+  timesShoved: 0
   nextLevelXp: 0
   titleText: {fileID: 299108106}
   xpText: {fileID: 386955224}
@@ -185,21 +202,6 @@ MonoBehaviour:
   - "The Supreme Sphere\u2122"
   - Ethereal Dynamo
   - Biblically Accurate
---- !u!4 &143442193
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143442191}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14840487, y: 5.1598916, z: 1127.6649}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0
