@@ -12,10 +12,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 touchStart;
     private Vector2 touchEnd;
     private float shootStrength;
-    private Vector2 shootAngle;
+    private Vector2 shootAngle = Vector2.zero;
+    private Vector2 currentDir = Vector2.zero;
     private bool trackStartPos = true;
     private bool trackEndPos = false;
     private bool trackTime = false;
+    private bool shootBall = false;
     private float timer = 0;
 
     [Header("Engine Variables")]
@@ -41,6 +43,28 @@ public class PlayerController : MonoBehaviour
         //timer is run when screen has touch
         if (trackTime) Timer();
         else if (!trackTime) timer = 0;
+
+        //grab touch starting position on touch start
+        if (inputReader.touchActive && trackStartPos)
+        {
+            touchStart = currentDir;
+            trackTime = true;
+            trackStartPos = false;
+            //trackEndPos = true;
+        }
+        //grab touch end position on touch end
+        if (!inputReader.touchActive && trackEndPos)
+        {
+            touchEnd = currentDir;
+            trackTime = false;
+            trackEndPos = false;
+            //trackStartPos = true;
+        }
+        if (shootBall)
+        {
+            ShootBall();
+            shootBall = false;
+        }
     }
 
     #endregion
@@ -57,41 +81,20 @@ public class PlayerController : MonoBehaviour
     //called on touch start
     private void HandleTouch()
     {
-        trackTime = true;
-        trackEndPos = true;
+        trackStartPos = true;
     }
 
     //called on touch end
     private void HandleTouchEnd()
     {
-        ShootBall();
-        trackTime = false;
-        trackStartPos = true;
+        trackEndPos = true;
+        shootBall = true;
     }
 
     private void CalcDirection(Vector2 dir)
     {
-        //LOGIC HERE IS BROKEN
-        //LOGIC HERE IS BROKEN
-        //LOGIC HERE IS BROKEN
-        //LOGIC HERE IS BROKEN
-        //most likely cause is saving touchStart or touchEnd or both at wrong time
-
-        //grab touch starting position on touch start
-        if (inputReader.touchActive && trackStartPos)
-        {
-            touchStart = dir;
-            trackStartPos = false;
-        }
-        //grab touch end position on touch end
-        if (!inputReader.touchActive && trackEndPos)
-        {
-            touchEnd = dir;
-            trackEndPos = false;
-        }
-
-        //calc normalized value to get movement direction
-        shootAngle = (touchEnd - touchStart).normalized;
+        //save dir to separate vector to use in FixedUpdate
+        currentDir = dir;
     }
 
     private float CalcStrength()
@@ -105,6 +108,9 @@ public class PlayerController : MonoBehaviour
 
     private void ShootBall()
     {
+        //calc normalized value to get movement direction
+        shootAngle = (touchEnd - touchStart).normalized;
+
         //calc force to add by multiplying angle with reversed duration of touch
         Vector2 forceToAdd = shootAngle * CalcStrength();
         Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
