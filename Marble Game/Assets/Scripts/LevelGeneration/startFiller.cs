@@ -100,22 +100,22 @@ public class startFiller : MonoBehaviour
     
     private void calculateSettings()
     {
-        sizeH = 8 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
-        sizeV = 20 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
+        sizeH = 10 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
+        sizeV = 25 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
         
         walkerCount = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 2, Mathf.FloorToInt((playerLevel * 1.1f)/2));
         walkerMinMoves = 20 + playerLevel; //20 + playerLevel*2;
         walkerDeathChance = 1f-Mathf.Clamp(playerLevel*0.005f, 0, 0.5f);
         walkerSideChance = 20 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 20+Mathf.Clamp(Mathf.FloorToInt(playerLevel*0.2f), 0, 20));
         walkerDownChance = 5 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 25);
-        walkerSpawnChance = Mathf.Clamp(playerLevel * 0.08f, 0, 100);
+        walkerSpawnChance = Mathf.Clamp(playerLevel * 0.5f, 0, 60);
         
         
         minObstacles = Mathf.CeilToInt(playerLevel/4);
         maxObstacles = Mathf.CeilToInt(playerLevel * 1.5f);
         easyChance = gameManager.Management.level;
-        moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/3), 0, 75);
-        hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/6), 0, 50);
+        moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 0, 75);
+        hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/20), 0, 50);
     }
     
 

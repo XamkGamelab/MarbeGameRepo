@@ -51,7 +51,11 @@ public class walker : MonoBehaviour
             }
             else
             {
-                downChance = upChance;
+                if (downChance < upChance)
+                {
+                    downChance = upChance;
+                }
+                upChance /= 2;
             }
         }
         else if (rng == 1 && actualRng <= sideChance)

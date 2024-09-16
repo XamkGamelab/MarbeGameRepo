@@ -100,7 +100,7 @@ MonoBehaviour:
   upChance: 100
   sideChance: 100
   downChance: 100
-  deathChance: 10
+  deathChance: 5
   minMoves: 15
   newWalkerSpawn: 0.1
   newWalker: {fileID: 5581616006548335540}
