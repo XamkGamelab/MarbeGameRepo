@@ -9,15 +9,22 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager Management {get; private set;}
+    
+    [Header("Saved Values")]
     public int level;
     public float curXp;
+    public float shards;
+    
+    [Header("Public Values")]
     public float nextLevelXp;
 
+    [Header("UI Elements")]
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text xpText;
     [SerializeField] private TMP_Text lvlText;
     [SerializeField] private RectTransform xpBar;
-
+    
+    [Header("Funky Titles")]
     [SerializeField] private string[] titles;
     private void Awake()
     {
@@ -34,7 +41,7 @@ public class gameManager : MonoBehaviour
             titleText.text = titles[level];
         }
 
-        nextLevelXp = (level + 1) * 100;
+        nextLevelXp = (level*(level/2) + 1) * 100;
         xpText.text = Mathf.RoundToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
         lvlText.text = level.ToString();
 

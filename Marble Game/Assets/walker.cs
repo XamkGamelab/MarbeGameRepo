@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,6 +11,9 @@ public class walker : MonoBehaviour
     public float upChance, sideChance, downChance;
     public float deathChance = 100f;
     public int minMoves;
+    public float newWalkerSpawn = 0f;
+
+    [SerializeField] private GameObject newWalker;
     
     private Vector3Int intPos;
     [SerializeField] private float moveDelay;
@@ -73,6 +77,13 @@ public class walker : MonoBehaviour
                 transform.position += new Vector3(0, -1, 0);
                 minMoves--;
             }
+        }
+        float newSpawnRng = Random.Range(0, 101);
+        if (newSpawnRng <= newWalkerSpawn)
+        {
+            newWalkerSpawn *= 0.75f;
+            startFiller.filler.remainingWalkers++;
+            GameObject childWalker = Instantiate(newWalker, transform.position, quaternion.identity);
         }
 
         float deathRng = Random.Range(0, 101);

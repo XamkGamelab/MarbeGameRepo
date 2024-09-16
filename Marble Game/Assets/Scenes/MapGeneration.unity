@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   curXp: 0
+  shards: 0
   nextLevelXp: 0
   titleText: {fileID: 299108106}
   xpText: {fileID: 386955224}
@@ -162,13 +163,28 @@ MonoBehaviour:
   titles:
   - Broken Pebble
   - Barely Spherical
+  - Oblong Object
+  - Burnished Boulder
   - Rough Roller
-  - Bumpy Rider
+  - Bumpy Bouncer
+  - Etched Orb
+  - Below Perfection
+  - Spiraling Spark
+  - Polished Pebble
   - Slick Slider
   - Smooth Marble
+  - Glistening Globe
+  - Edgeless Entity
   - Polished Pearl
-  - Biblically Accurate
+  - Crystalline Ball
+  - Bewitching Tumbler
+  - Imperial Gyroscope
   - Perfect Sphere
+  - Beyond Perfection
+  - "The Sphere\u2122"
+  - "The Supreme Sphere\u2122"
+  - Ethereal Dynamo
+  - Biblically Accurate
 --- !u!4 &143442193
 Transform:
   m_ObjectHideFlags: 0
@@ -765,10 +781,12 @@ MonoBehaviour:
   floorTile: {fileID: 11400000, guid: 521b5ec71456a814d9169721baee91ac, type: 2}
   walkerCount: 10
   walkerObj: {fileID: 5581616006548335540, guid: eb883e5058764824da33a16d2b0f191b, type: 3}
+  randomWalker: {fileID: 5581616006548335540, guid: 60258329630540246b6db0d060c56449, type: 3}
   walkerPos: {fileID: 1882337934}
   walkerUpChance: 100
   walkerSideChance: 40
   walkerDownChance: 30
+  walkerSpawnChance: 0
   walkerDeathChance: 2
   walkerMinMoves: 30
   remainingWalkers: 0

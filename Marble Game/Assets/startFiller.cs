@@ -23,9 +23,10 @@ public class startFiller : MonoBehaviour
     [Header("Walker Data")]
     public int walkerCount;
     [SerializeField] private GameObject walkerObj;
+    [SerializeField] private GameObject randomWalker;
     [SerializeField] private Transform walkerPos;
     
-    [SerializeField] private float walkerUpChance, walkerSideChance, walkerDownChance;
+    [SerializeField] private float walkerUpChance, walkerSideChance, walkerDownChance, walkerSpawnChance;
     [SerializeField] private float walkerDeathChance;
     [SerializeField] private int walkerMinMoves;
 
@@ -103,10 +104,11 @@ public class startFiller : MonoBehaviour
         sizeV = 20 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
         
         walkerCount = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 2, Mathf.FloorToInt((playerLevel * 1.1f)/2));
-        walkerMinMoves = 20 + playerLevel*2;
+        walkerMinMoves = 20 + playerLevel; //20 + playerLevel*2;
         walkerDeathChance = 1f-Mathf.Clamp(playerLevel*0.005f, 0, 0.5f);
         walkerSideChance = 20 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 20+Mathf.Clamp(Mathf.FloorToInt(playerLevel*0.2f), 0, 20));
         walkerDownChance = 5 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4), 0, 25);
+        walkerSpawnChance = Mathf.Clamp(playerLevel * 0.08f, 0, 100);
         
         
         minObstacles = Mathf.CeilToInt(playerLevel/4);
@@ -129,7 +131,8 @@ public class startFiller : MonoBehaviour
 
     private void engageWalkers()
     {
-        remainingWalkers = 0;
+        remainingWalkers = 1;
+        Instantiate(randomWalker, walkerPos.position, quaternion.identity);
         //Creates walkers to erode walls
         for (int i = 0; i < walkerCount; i++)
         {
@@ -140,6 +143,7 @@ public class startFiller : MonoBehaviour
             walkerScript.downChance = walkerDownChance;
             walkerScript.deathChance = walkerDeathChance;
             walkerScript.minMoves = walkerMinMoves;
+            walkerScript.newWalkerSpawn = walkerSpawnChance;
             remainingWalkers++;
         }
     }
@@ -246,7 +250,6 @@ public class startFiller : MonoBehaviour
                             {
                                 int rngEnemy = Random.Range(0, easyObstacles.Length);
                                 Instantiate(easyObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                Debug.Log("Easy tile at: " + x +", " + y);
                                 curObstacles++;
                             }
                             if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
