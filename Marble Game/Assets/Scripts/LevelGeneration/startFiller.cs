@@ -9,6 +9,8 @@ public class startFiller : MonoBehaviour
     [Header("DevOnly")]
     [SerializeField] private bool overWriteGeneration;
 
+    private GameObject player;
+
     private int playerLevel;
     [Header("Scale")]
     public int sizeH, sizeV;
@@ -17,7 +19,8 @@ public class startFiller : MonoBehaviour
     [SerializeField] private Tilemap floorMap;
     
     [Header("Tiles")]
-    public Tile wallTile, floorTile;
+
+    public RuleTile wallTile, floorTile;
     public static startFiller filler {get; private set;}
     
     [Header("Walker Data")]
@@ -50,6 +53,7 @@ public class startFiller : MonoBehaviour
         {
             filler = this;
         }
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
@@ -75,8 +79,12 @@ public class startFiller : MonoBehaviour
         }
     }
 
-    private void generateMap()
+    public void generateMap()
     {
+        //Reset player
+        player.transform.position = walkerPos.transform.position;
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+        
         //Destroy EndDestroy objects, such as the goal
         GameObject[] layerObjects = GameObject.FindGameObjectsWithTag("EndDestroy");
         foreach (GameObject layerObject in layerObjects)
@@ -100,8 +108,8 @@ public class startFiller : MonoBehaviour
     
     private void calculateSettings()
     {
-        sizeH = 10 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
-        sizeV = 25 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
+        sizeH = 14 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
+        sizeV = 36 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
         
         walkerCount = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 2, Mathf.FloorToInt((playerLevel * 1.1f)/2));
         walkerMinMoves = 20 + playerLevel; //20 + playerLevel*2;
