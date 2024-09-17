@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+using System.Data;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private float shootStrength;
     private Vector2 shootAngle = Vector2.zero;
     private Vector2 currentDir = Vector2.zero;
+    //vector below is for gizmo usage
+    private Vector2 speedVector = Vector2.zero;
     private bool trackStartPos = true;
     private bool trackEndPos = false;
     private bool trackTime = false;
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         animator.speed = playerSpeed.magnitude;
 
-        if (playerSpeed.magnitude > 0)
+        if (playerSpeed.magnitude > 0.1f)
         {
             rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
         }
@@ -127,11 +131,23 @@ public class PlayerController : MonoBehaviour
         Vector2 forceToAdd = shootAngle * CalcStrength();
         Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
 
+        speedVector = forceToAdd;
+
         //this prevents misinput at start of game
         if (forceToAdd != null)
         {
             rb.AddForce(forceToAdd, ForceMode2D.Impulse);
         }
+    }
+
+    #endregion
+
+    #region gizmos
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(gameObject.transform.position, speedVector);
     }
 
     #endregion
