@@ -5,19 +5,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-<<<<<<< HEAD
-    [SerializeField] private gameManager gameManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-=======
     [Header("Engine Variables")]
     //[SerializeField] private GameManager gameManager;
     private Rigidbody2D rb;
@@ -118,6 +105,5 @@ public class EnemyController : MonoBehaviour
         //reset timer and delay bool
         timer = 0f;
         delayLocationTrack = StartCoroutine(DelayOn());
->>>>>>> origin/dev/veera
     }
 }
