@@ -16,7 +16,7 @@ public class goalManager : MonoBehaviour
         if (other.transform.CompareTag("Player") && !goalActivated)
         {
             goalActivated = true;
-            gameManager.Management.curXp += 100;
+            GameManager.Management.curXp += 100;
             startFiller.filler.generateMap();
         }
     }

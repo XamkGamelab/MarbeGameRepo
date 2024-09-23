@@ -69,7 +69,15 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.speed = playerSpeed.magnitude;
+<<<<<<< HEAD
         rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
+=======
+
+        if (playerSpeed.magnitude > 0.1f)
+        {
+            rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
+        }
+>>>>>>> origin/dev/veera
     }
 
     #endregion

@@ -371,7 +371,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
   rb: {fileID: 1479787188}
+<<<<<<< HEAD
   collider2d: {fileID: 0}
+=======
+  collider2d: {fileID: 1479787187}
+>>>>>>> origin/dev/veera
   animator: {fileID: 1479787190}
 --- !u!95 &1479787190
 Animator:
