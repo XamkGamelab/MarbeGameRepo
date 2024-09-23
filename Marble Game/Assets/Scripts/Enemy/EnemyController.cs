@@ -21,11 +21,14 @@ public class EnemyController : MonoBehaviour
     private float highPower = 25f;
 
     //randomize this based on current level -> smaller value = bigger difficulty
-    private float delayBeforeShoot = 3f;
+    [SerializeField][Range(1.0f, 3.0f)] private float delayBeforeShoot = 3f;
 
+    //if player closer than this to player, enemy starts chasing, adjustable
+    [SerializeField][Range(5.0f, 15.0f)] private float detectDistance = 10f;
 
     //Coroutines
     private Coroutine checkForPlayer;
+    private Coroutine delayLocationTrack;
 
     private void Awake()
     {
@@ -55,10 +58,10 @@ public class EnemyController : MonoBehaviour
         }
 
         //if stopped and bool on, grab location
-        if (rb.velocity.magnitude == 0 && delaying)
+        if (!delaying)
         {
             playerLoc = player.transform.position;
-            delaying = false;
+            delaying = true;
         }
     }
 
@@ -68,11 +71,24 @@ public class EnemyController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            if (Vector2.Distance(gameObject.transform.position, player.transform.position) < delayBeforeShoot)
+            if (Vector2.Distance(gameObject.transform.position, player.transform.position) < detectDistance)
             {
                 seesPlayer = true;
                 timing = true;
                 playerLoc = player.transform.position;
+            }
+        }
+    }
+
+    private IEnumerator DelayOn()
+    {
+        while (rb.velocity.magnitude >= 0.1f)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (rb.velocity.magnitude <= 0.1f)
+            {
+                delaying = false;
             }
         }
     }
@@ -88,6 +104,6 @@ public class EnemyController : MonoBehaviour
 
         //reset timer and delay bool
         timer = 0f;
-        delaying = true;
+        delayLocationTrack = StartCoroutine(DelayOn());
     }
 }
