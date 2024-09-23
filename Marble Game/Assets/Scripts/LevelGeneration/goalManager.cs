@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class goalManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private bool goalActivated = false;
     void Start()
     {
         GameObject.FindGameObjectWithTag("Pointer").GetComponent<goalPointer>().goalPos = gameObject;
@@ -13,8 +13,9 @@ public class goalManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.transform.CompareTag("Player") && !goalActivated)
         {
+            goalActivated = true;
             gameManager.Management.curXp += 100;
             startFiller.filler.generateMap();
         }

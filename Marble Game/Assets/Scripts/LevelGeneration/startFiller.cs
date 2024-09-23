@@ -3,6 +3,9 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
+using TMPro;
+using Unity.VisualScripting;
 
 public class startFiller : MonoBehaviour
 {
@@ -46,6 +49,15 @@ public class startFiller : MonoBehaviour
     [SerializeField] private float moderateChance;
     [SerializeField] private GameObject[] hardObstacles;
     [SerializeField] private float hardChance;
+    
+    [Header("UI")]
+    [SerializeField] private Image fadeToBlack;
+
+    [SerializeField] private GameObject continueButton;
+    [SerializeField] private TMP_Text generationText;
+    [SerializeField] private RectTransform loadBar;
+    [SerializeField] private float fadeTimer;
+    [SerializeField] private bool fadeIn;
 
     private void Awake()
     {
@@ -58,6 +70,9 @@ public class startFiller : MonoBehaviour
 
     private void Start()
     {
+        fadeToBlack.enabled = true;
+        Debug.Log("Disable Button");
+        continueButton.SetActive(false);
         generateMap();
     }
 
@@ -70,6 +85,8 @@ public class startFiller : MonoBehaviour
             placeGoal();
             floorCanvas();
             placeObstacles();
+            //If no walkers, enable button to start level
+            continueButton.SetActive(true);
         }
         
         //Debug commands
@@ -77,9 +94,39 @@ public class startFiller : MonoBehaviour
         {
             generateMap();
         }
+        
+        //Fade to Black
+        if (fadeTimer > 0)
+        {
+            if (fadeIn)
+            {
+                fadeToBlack.color = new Color(0, 0, 0, 1-fadeTimer);
+            }
+            else
+            {
+                fadeToBlack.color = new Color(0, 0, 0, fadeTimer);
+            }
+
+            fadeTimer -= Time.deltaTime;
+        }
+
+        if (fadeTimer <= 0 && fadeIn)
+        {
+            fadeIn = false;
+            generation();
+        }
     }
 
     public void generateMap()
+    {
+        //Fade to black
+        fadeIn = true;
+        generationText.enabled = true;
+        continueButton.SetActive(false);
+        fadeTimer = 1;
+    }
+
+    private void generation()
     {
         //Reset player
         player.transform.position = walkerPos.transform.position;
@@ -318,6 +365,14 @@ public class startFiller : MonoBehaviour
         }
         
         return false;
+    }
+
+    public void clickedContinue()
+    {
+        fadeIn = false;
+        continueButton.SetActive(false);
+        generationText.enabled = false;
+        fadeTimer = 1;
     }
     
     //Destroys all maps
