@@ -49,15 +49,6 @@ public class startFiller : MonoBehaviour
     [SerializeField] private float moderateChance;
     [SerializeField] private GameObject[] hardObstacles;
     [SerializeField] private float hardChance;
-    
-    [Header("UI")]
-    [SerializeField] private Image fadeToBlack;
-
-    [SerializeField] private GameObject continueButton;
-    [SerializeField] private TMP_Text generationText;
-    [SerializeField] private RectTransform loadBar;
-    [SerializeField] private float fadeTimer;
-    [SerializeField] private bool fadeIn;
 
     private void Awake()
     {
@@ -70,10 +61,7 @@ public class startFiller : MonoBehaviour
 
     private void Start()
     {
-        fadeToBlack.enabled = true;
-        Debug.Log("Disable Button");
-        continueButton.SetActive(false);
-        generateMap();
+        loadManager.Management.startTransitionIn();
     }
 
     private void Update()
@@ -85,48 +73,16 @@ public class startFiller : MonoBehaviour
             placeGoal();
             floorCanvas();
             placeObstacles();
-            //If no walkers, enable button to start level
-            continueButton.SetActive(true);
         }
         
         //Debug commands
         if (Input.GetKeyDown(KeyCode.R)) //Regenerates
         {
-            generateMap();
-        }
-        
-        //Fade to Black
-        if (fadeTimer > 0)
-        {
-            if (fadeIn)
-            {
-                fadeToBlack.color = new Color(0, 0, 0, 1-fadeTimer);
-            }
-            else
-            {
-                fadeToBlack.color = new Color(0, 0, 0, fadeTimer);
-            }
-
-            fadeTimer -= Time.deltaTime;
-        }
-
-        if (fadeTimer <= 0 && fadeIn)
-        {
-            fadeIn = false;
-            generation();
+            loadManager.Management.startTransitionIn();
         }
     }
 
-    public void generateMap()
-    {
-        //Fade to black
-        fadeIn = true;
-        generationText.enabled = true;
-        continueButton.SetActive(false);
-        fadeTimer = 1;
-    }
-
-    private void generation()
+    public void mapGeneration()
     {
         //Reset player
         player.transform.position = walkerPos.transform.position;
@@ -365,14 +321,6 @@ public class startFiller : MonoBehaviour
         }
         
         return false;
-    }
-
-    public void clickedContinue()
-    {
-        fadeIn = false;
-        continueButton.SetActive(false);
-        generationText.enabled = false;
-        fadeTimer = 1;
     }
     
     //Destroys all maps

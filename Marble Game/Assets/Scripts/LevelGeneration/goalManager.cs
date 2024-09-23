@@ -17,7 +17,7 @@ public class goalManager : MonoBehaviour
         {
             goalActivated = true;
             GameManager.Management.curXp += 100;
-            startFiller.filler.generateMap();
+            loadManager.Management.startTransitionIn();
         }
     }
 }
