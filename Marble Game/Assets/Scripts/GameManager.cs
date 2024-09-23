@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager Management {get; private set;}
+    public static GameManager Management {get; private set;}
     
     [Header("Saved Values")]
     public int level;
