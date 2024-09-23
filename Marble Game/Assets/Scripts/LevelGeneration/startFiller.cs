@@ -16,8 +16,11 @@ public class startFiller : MonoBehaviour
 
     private int playerLevel;
     [Header("Scale")]
+    
     public int sizeH, sizeV;
     [SerializeField] private int vertOffset;
+
+    public int walkerBounds;
     [SerializeField] private Tilemap wallMap;
     [SerializeField] private Tilemap floorMap;
     
@@ -71,8 +74,8 @@ public class startFiller : MonoBehaviour
         {
             remainingWalkers = -1;
             placeGoal();
-            floorCanvas();
             placeObstacles();
+            floorCanvas();
         }
         
         //Debug commands
@@ -111,8 +114,8 @@ public class startFiller : MonoBehaviour
     
     private void calculateSettings()
     {
-        sizeH = 14 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
-        sizeV = 36 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
+        sizeH = 34 + Mathf.FloorToInt((playerLevel * 0.4f))*2;
+        sizeV = 56 + Mathf.FloorToInt((playerLevel * 0.6f))*2;
         
         walkerCount = Mathf.Clamp(Mathf.FloorToInt(playerLevel/10), 2, Mathf.FloorToInt((playerLevel * 1.1f)/2));
         walkerMinMoves = 20 + playerLevel; //20 + playerLevel*2;

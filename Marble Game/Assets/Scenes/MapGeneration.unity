@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
+  level: 50
   curXp: 0
   shards: 0
   nextLevelXp: 0
@@ -217,7 +217,6 @@ MonoBehaviour:
   loadingUI: {fileID: 1016579794}
   continueButton: {fileID: 1370859580}
   generationText: {fileID: 1718973059}
-  loadBar: {fileID: 0}
   totalDelay: 1
   isTransitioning: 0
 --- !u!1 &145876456
@@ -1000,8 +999,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overWriteGeneration: 0
   sizeH: 18
-  sizeV: 40
-  vertOffset: 8
+  sizeV: 50
+  vertOffset: 18
+  walkerBounds: 10
   wallMap: {fileID: 1016651486}
   floorMap: {fileID: 990365928}
   wallTile: {fileID: 11400000, guid: c5cea304a656d5c4cb9690d06ab5bee9, type: 2}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   obstacleMinChance: 2
   obstacleChanceMultiplier: 0.95
   easyObstacles:
-  - {fileID: 1962605190579784793, guid: 03149c0d89a87fc4cbb9d994d206860c, type: 3}
+  - {fileID: 6868091383258313848, guid: 77305ad4a9a6dbb4d8074820bcfa9b4c, type: 3}
   easyChance: 60
   moderateObstacles:
   - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
@@ -1820,7 +1820,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 347068be2f01ced4bb20fb10c013da2e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

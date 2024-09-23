@@ -14,12 +14,17 @@ public class walker : MonoBehaviour
     public float newWalkerSpawn = 0f;
 
     [SerializeField] private GameObject newWalker;
+    private int bounds;
     
     private Vector3Int intPos;
     [SerializeField] private float moveDelay;
     private float curDelay;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        bounds = startFiller.filler.walkerBounds;
+    }
+
     void Update()
     {
         intPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
@@ -44,7 +49,7 @@ public class walker : MonoBehaviour
 
         if (rng == 0 && actualRng <= upChance)
         {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, 10, 0)))
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, bounds+10, 0)))
             {
                 transform.position += new Vector3(0, 1, 0);
                 minMoves--;
@@ -60,7 +65,7 @@ public class walker : MonoBehaviour
         }
         else if (rng == 1 && actualRng <= sideChance)
         {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(-4, 0, 0)))
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(-bounds, 0, 0)))
             {
                 transform.position += new Vector3(-1, 0, 0);
                 minMoves--;
@@ -68,7 +73,7 @@ public class walker : MonoBehaviour
         }
         else if (rng == 2 && actualRng <= sideChance)
         {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(4, 0, 0)))
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(bounds, 0, 0)))
             {
                 transform.position += new Vector3(1, 0, 0);
                 minMoves--;
@@ -76,7 +81,7 @@ public class walker : MonoBehaviour
         }
         else if (rng == 3 && actualRng <= downChance)
         {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, -4, 0)))
+            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, -bounds, 0)))
             {
                 transform.position += new Vector3(0, -1, 0);
                 minMoves--;

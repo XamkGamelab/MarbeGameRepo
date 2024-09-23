@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     
     [Header("Public Values")]
     public float nextLevelXp;
+    
 
     [Header("UI Elements")]
     [SerializeField] private TMP_Text titleText;
