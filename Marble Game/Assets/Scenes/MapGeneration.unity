@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 143442193}
   - component: {fileID: 143442194}
+  - component: {fileID: 143442195}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -200,6 +201,21 @@ MonoBehaviour:
   - "The Supreme Sphere\u2122"
   - Ethereal Dynamo
   - Biblically Accurate
+--- !u!114 &143442195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143442191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab58598a10e2f0e4a877c4f6ab104b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 977093988}
+  testSkin: {fileID: 7400000, guid: a98237b7a06875844befc7d4d0cb8963, type: 2}
+  testSkin2: {fileID: 7400000, guid: b8671aed8233d414daaaebe2fba79f9f, type: 2}
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1363,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_AngularDrag: 3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
