@@ -168,10 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 50
+  level: 20
   curXp: 0
   shards: 0
   nextLevelXp: 0
+  xpModifier: 0
   titleText: {fileID: 299108106}
   xpText: {fileID: 386955224}
   lvlText: {fileID: 1467380336}

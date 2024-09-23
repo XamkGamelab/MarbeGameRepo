@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6334915851586131682}
   - component: {fileID: 5428606930484573990}
   - component: {fileID: 7886615569626576050}
+  - component: {fileID: -1593799286979362301}
   m_Layer: 0
   m_Name: Circle Bumper
   m_TagString: EndDestroy
@@ -162,3 +163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
+--- !u!114 &-1593799286979362301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868091383258313848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b738fe4b6bd102e45a1ca7f9fabc8571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpReduction: 0.01

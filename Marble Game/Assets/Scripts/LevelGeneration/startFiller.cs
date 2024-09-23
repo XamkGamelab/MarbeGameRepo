@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class startFiller : MonoBehaviour
 {
@@ -75,7 +76,6 @@ public class startFiller : MonoBehaviour
             remainingWalkers = -1;
             placeGoal();
             placeObstacles();
-            floorCanvas();
         }
         
         //Debug commands
@@ -163,8 +163,10 @@ public class startFiller : MonoBehaviour
     }
     
     //Generates floor where there arent any walls
-    public void floorCanvas()
+    private IEnumerator floorCanvas()
     {
+        yield return new WaitForSeconds(0.1f);
+
         floorMap.CompressBounds();
         for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
         {
@@ -293,6 +295,8 @@ public class startFiller : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine("floorCanvas");
     }
     
     

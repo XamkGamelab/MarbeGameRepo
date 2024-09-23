@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     
     [Header("Public Values")]
     public float nextLevelXp;
-    
+
+    public float xpModifier = 1;
 
     [Header("UI Elements")]
     [SerializeField] private TMP_Text titleText;
@@ -53,5 +54,15 @@ public class GameManager : MonoBehaviour
         }
 
         xpBar.sizeDelta = new Vector3((curXp/nextLevelXp)* 1000, xpBar.sizeDelta.y);
+    }
+
+    public void grantXp()
+    {
+        if (xpModifier < 0.1f)
+        {
+            xpModifier = 0.1f;
+        }
+        curXp += (100 + level * 50) * xpModifier;
+        xpModifier = 1;
     }
 }

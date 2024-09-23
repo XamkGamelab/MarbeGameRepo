@@ -68,7 +68,7 @@ public class loadManager : MonoBehaviour
 
         if (startFiller.filler.remainingWalkers <= 0 && !isTransitioning && canContinue)
         {
-            continueButton.SetActive(true);
+            StartCoroutine("enableContinue");
             canContinue = false;
         }
     }
@@ -91,5 +91,10 @@ public class loadManager : MonoBehaviour
         transitionIn = false;
         curDelay = totalDelay;
     }
-
+    
+    private IEnumerator enableContinue()
+    {
+        yield return new WaitForSeconds(0.2f);
+        continueButton.SetActive(true);
+    }
 }
