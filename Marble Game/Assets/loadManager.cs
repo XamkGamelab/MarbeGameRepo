@@ -16,7 +16,6 @@ public class loadManager : MonoBehaviour
 
     [SerializeField] private GameObject continueButton;
     [SerializeField] private TMP_Text generationText;
-    [SerializeField] private RectTransform loadBar;
 
     [SerializeField] private float totalDelay;
     private float curDelay;
