@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+using System.Data;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Constant Variables")]
+    private const float speedHardLimit = 30f;
     private const float powerLimit = 2f;
     private const float lowerLimit = 0.1f;
 
@@ -14,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private float shootStrength;
     private Vector2 shootAngle = Vector2.zero;
     private Vector2 currentDir = Vector2.zero;
+    //vector below is for gizmo usage
+    private Vector2 speedVector = Vector2.zero;
     private bool trackStartPos = true;
     private bool trackEndPos = false;
     private bool trackTime = false;
@@ -111,8 +117,11 @@ public class PlayerController : MonoBehaviour
         //normalize value to be between 0 and 1
         float reverseStrength = timer / powerLimit;
 
+
+        Debug.Log((1 / reverseStrength) - lowerLimit);
+
         //return actual strength after corrections
-        return (1 / reverseStrength) - lowerLimit;
+        return Mathf.Clamp((1 / reverseStrength) - lowerLimit, 0f, speedHardLimit);
     }
 
     private void ShootBall()
@@ -124,11 +133,23 @@ public class PlayerController : MonoBehaviour
         Vector2 forceToAdd = shootAngle * CalcStrength();
         Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
 
+        speedVector = forceToAdd;
+
         //this prevents misinput at start of game
         if (forceToAdd != null)
         {
             rb.AddForce(forceToAdd, ForceMode2D.Impulse);
         }
+    }
+
+    #endregion
+
+    #region gizmos
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + (0.2f * speedVector));
     }
 
     #endregion
