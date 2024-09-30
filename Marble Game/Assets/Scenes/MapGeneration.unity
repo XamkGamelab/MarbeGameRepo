@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 20
+  level: 50
   curXp: 0
   shards: 0
   nextLevelXp: 0
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   - {fileID: 2712020264500589460, guid: 9ea2410559f2da44a9990934be2b960e, type: 3}
   easyChance: 60
   moderateObstacles:
-  - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
+  - {fileID: 7968164225328612435, guid: 36624051eae29b34197790066d8fd2fa, type: 3}
   moderateChance: 40
   hardObstacles:
   - {fileID: 1962605190579784793, guid: f6a2f4e60f5246545ad4bfe5998c1cec, type: 3}
