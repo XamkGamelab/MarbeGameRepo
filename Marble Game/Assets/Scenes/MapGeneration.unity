@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 143442193}
   - component: {fileID: 143442194}
   - component: {fileID: 143442195}
+  - component: {fileID: 143442196}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -220,6 +221,21 @@ MonoBehaviour:
   generationText: {fileID: 1718973059}
   totalDelay: 1
   isTransitioning: 0
+--- !u!114 &143442196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143442191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62b9bb26c98ba84eac34dc6e1c0e296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - label: Marble_Hit
+    clip: {fileID: 8300000, guid: 04c68dc54db10124d97ec45f96f1111a, type: 3}
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +790,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   m_Layer: 0
@@ -784,14 +799,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,6 +1171,7 @@ GameObject:
   - component: {fileID: 977093990}
   - component: {fileID: 977093989}
   - component: {fileID: 977093988}
+  - component: {fileID: 977093994}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1337,6 +1345,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &977093994
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977093987}
+  m_Enabled: 1
 --- !u!1 &990365925
 GameObject:
   m_ObjectHideFlags: 0
