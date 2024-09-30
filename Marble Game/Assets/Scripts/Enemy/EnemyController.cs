@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject player;
     private Animator enemyAnimator;
+    [SerializeField] private bool canWander;
 
     [Header("Dynamic Variables")]
     private Vector3 playerLoc = Vector3.zero;
@@ -18,14 +20,14 @@ public class EnemyController : MonoBehaviour
     private bool delaying = false;
     private float timer = 0f;
 
-    private float lowPower = 5f;
-    private float highPower = 25f;
+    [SerializeField][Range(0f, 25.0f)] private float lowPower = 5f;
+    [SerializeField][Range(0f, 50.0f)] private float highPower = 25f;
 
     //randomize this based on current level -> smaller value = bigger difficulty
-    [SerializeField][Range(1.0f, 3.0f)] private float delayBeforeShoot = 3f;
+    [SerializeField][Range(1.0f, 10.0f)] private float delayBeforeShoot = 3f;
 
     //if player closer than this to player, enemy starts chasing, adjustable
-    [SerializeField][Range(5.0f, 15.0f)] private float detectDistance = 10f;
+    [SerializeField][Range(0f, 15.0f)] private float detectDistance = 10f;
 
     //Coroutines
     private Coroutine checkForPlayer;
@@ -50,7 +52,7 @@ public class EnemyController : MonoBehaviour
         Vector2 speed = rb.velocity;
 
         //timer
-        if (timing)
+        if (timing || canWander)
         {
             timer += Time.deltaTime;
         }
@@ -58,7 +60,14 @@ public class EnemyController : MonoBehaviour
         //if timer high enough, shoot
         if (timer > delayBeforeShoot)
         {
-            Shoot();
+            if (seesPlayer)
+            {
+                Shoot();
+            }
+            else
+            {
+                Wander();
+            }
         }
 
         //if stopped and bool on, grab location
@@ -78,6 +87,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator CheckForPlayer()
     {
+        //Once it sees player, it always sees player.
         while (!seesPlayer)
         {
             yield return new WaitForSeconds(0.5f);
@@ -87,6 +97,27 @@ public class EnemyController : MonoBehaviour
                 seesPlayer = true;
                 timing = true;
                 playerLoc = player.transform.position;
+                if (canWander)
+                {
+                    StartCoroutine("TrackPlayer");
+                }
+            }
+        }
+    }
+    
+    private IEnumerator TrackPlayer()
+    {
+        //Once it sees player, it always sees player.
+        while (seesPlayer)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (Vector2.Distance(gameObject.transform.position, player.transform.position) > detectDistance*2)
+            {
+                seesPlayer = false;
+                timing = false;
+                playerLoc = Vector3.zero;
+                checkForPlayer = StartCoroutine(CheckForPlayer());
             }
         }
     }
@@ -113,8 +144,26 @@ public class EnemyController : MonoBehaviour
         //shoot
         rb.AddForce(shootDir * shootPower, ForceMode2D.Impulse);
 
-        Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");
+        //Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");ä
+        //Debug.Log("Targeting");
 
+        //reset timer and delay bool
+        timer = 0f;
+        delayLocationTrack = StartCoroutine(DelayOn());
+    }
+    
+    private void Wander()
+    {
+        //grab dir and randomize power
+        Vector2 shootDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        float shootPower = Random.Range(lowPower, highPower/2);
+
+        //shoot
+        rb.AddForce(shootDir * shootPower, ForceMode2D.Impulse);
+        
+        //Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");
+        //Debug.Log("Wandering");
+        
         //reset timer and delay bool
         timer = 0f;
         delayLocationTrack = StartCoroutine(DelayOn());

@@ -1027,6 +1027,7 @@ MonoBehaviour:
   obstacleChanceMultiplier: 0.95
   easyObstacles:
   - {fileID: 6868091383258313848, guid: 77305ad4a9a6dbb4d8074820bcfa9b4c, type: 3}
+  - {fileID: 7968164225328612435, guid: b5b3b5a59e9c3ef469c5f0146798dae3, type: 3}
   easyChance: 60
   moderateObstacles:
   - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
