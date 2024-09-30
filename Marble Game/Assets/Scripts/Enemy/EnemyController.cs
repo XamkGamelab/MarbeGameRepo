@@ -87,7 +87,6 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator CheckForPlayer()
     {
-        //Once it sees player, it always sees player.
         while (!seesPlayer)
         {
             yield return new WaitForSeconds(0.5f);

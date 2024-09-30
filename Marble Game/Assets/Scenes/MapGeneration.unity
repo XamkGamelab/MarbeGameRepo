@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 20
+  level: 0
   curXp: 0
   shards: 0
   nextLevelXp: 0
@@ -236,6 +236,14 @@ MonoBehaviour:
   audioClips:
   - label: Marble_Hit
     clip: {fileID: 8300000, guid: 04c68dc54db10124d97ec45f96f1111a, type: 3}
+  - label: Marble_Roll
+    clip: {fileID: 8300000, guid: e91dcc8c117bf8042b430e79ef802e74, type: 3}
+  - label: Twang_a
+    clip: {fileID: 8300000, guid: 708a5f48d6cedbe4ebe8dd66d8ac2741, type: 3}
+  - label: Twang_b
+    clip: {fileID: 8300000, guid: 084e6c54c816d424b84c69924af3e6fa, type: 3}
+  - label: Victory
+    clip: {fileID: 8300000, guid: c7aaaa862b6188641a0c17f39f209577, type: 3}
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,6 +1043,7 @@ MonoBehaviour:
   easyObstacles:
   - {fileID: 6868091383258313848, guid: 77305ad4a9a6dbb4d8074820bcfa9b4c, type: 3}
   - {fileID: 7968164225328612435, guid: b5b3b5a59e9c3ef469c5f0146798dae3, type: 3}
+  - {fileID: 2158703936869193597, guid: 4650bc433f726ae44ac7e0e3443f3fef, type: 3}
   easyChance: 60
   moderateObstacles:
   - {fileID: 1962605190579784793, guid: 20664f8034b362e44af591965236994b, type: 3}
@@ -1172,6 +1181,7 @@ GameObject:
   - component: {fileID: 977093989}
   - component: {fileID: 977093988}
   - component: {fileID: 977093994}
+  - component: {fileID: 977093996}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1353,6 +1363,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977093987}
   m_Enabled: 1
+--- !u!114 &977093996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977093987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd4ed7068f00c74cb0f364332abb346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: Marble_Roll
+  maxSpeed: 30
+  volume: 1
 --- !u!1 &990365925
 GameObject:
   m_ObjectHideFlags: 0
