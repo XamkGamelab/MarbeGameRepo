@@ -43,6 +43,8 @@ public class startFiller : MonoBehaviour
     public int remainingWalkers = -1;
     [Header("Goal")]
     [SerializeField] private GameObject goal;
+
+    private Vector2 curFlagPos;
     
     [Header("Obstacles")]
     [SerializeField] private int minObstacles, maxObstacles, curObstacles;
@@ -257,38 +259,41 @@ public class startFiller : MonoBehaviour
                 {
                     if (!checkIsTile(new Vector3Int(x, y, 0)))
                     {
-                        int genAnythingRng = Random.Range(0, 101);
-                        if (remainingChance >= genAnythingRng)
-                        {
-                            int rngTier = Random.Range(0, 3);
-                            float rng = Random.Range(1, 101);
-                            if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
+                        RaycastHit2D intersecting = Physics2D.CircleCast( new Vector2(x, y), 0.01f, Vector2.zero);
+                        if (!intersecting) {
+                            int genAnythingRng = Random.Range(0, 101);
+                            if (remainingChance >= genAnythingRng)
                             {
-                                int rngEnemy = Random.Range(0, easyObstacles.Length);
-                                Instantiate(easyObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                curObstacles++;
-                            }
-                            if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
-                            {
-                                int rngEnemy = Random.Range(0, moderateObstacles.Length);
-                                Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                curObstacles++;
-                            }
-                            if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
-                            {
-                                int rngEnemy = Random.Range(0, hardObstacles.Length);
-                                Instantiate(hardObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                curObstacles++;
-                            }
+                                int rngTier = Random.Range(0, 3);
+                                float rng = Random.Range(1, 101);
+                                if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
+                                {
+                                    int rngEnemy = Random.Range(0, easyObstacles.Length);
+                                    Instantiate(easyObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
+                                    curObstacles++;
+                                }
+                                if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
+                                {
+                                    int rngEnemy = Random.Range(0, moderateObstacles.Length);
+                                    Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
+                                    curObstacles++;
+                                }
+                                if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
+                                {
+                                    int rngEnemy = Random.Range(0, hardObstacles.Length);
+                                    Instantiate(hardObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
+                                    curObstacles++;
+                                }
                             
                             
-                            if (remainingChance > obstacleMinChance)
-                            {
-                                remainingChance *= obstacleChanceMultiplier;
-                            }
-                            if (remainingChance < obstacleMinChance)
-                            {
-                                remainingChance = obstacleMinChance;
+                                if (remainingChance > obstacleMinChance)
+                                {
+                                    remainingChance *= obstacleChanceMultiplier;
+                                }
+                                if (remainingChance < obstacleMinChance)
+                                {
+                                    remainingChance = obstacleMinChance;
+                                }
                             }
                         }
                     }
