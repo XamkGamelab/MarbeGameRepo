@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     //[SerializeField] private GameManager gameManager;
     private Rigidbody2D rb;
     private GameObject player;
+    private Animator enemyAnimator;
 
     [Header("Dynamic Variables")]
     private Vector3 playerLoc = Vector3.zero;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
     {
         //fetch variables
         rb = GetComponent<Rigidbody2D>();
+        enemyAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -45,6 +47,8 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 speed = rb.velocity;
+
         //timer
         if (timing)
         {
@@ -62,6 +66,13 @@ public class EnemyController : MonoBehaviour
         {
             playerLoc = player.transform.position;
             delaying = true;
+        }
+
+        enemyAnimator.speed = speed.magnitude;
+
+        if (speed.magnitude > 0.1f)
+        {
+            rb.MoveRotation(Vector2.SignedAngle(Vector2.up, speed.normalized));
         }
     }
 
@@ -96,11 +107,13 @@ public class EnemyController : MonoBehaviour
     private void Shoot()
     {
         //grab dir and randomize power
-        Vector2 shootDir = (playerLoc - gameObject.transform.position).normalized;
+        Vector2 shootDir = ((Vector2)playerLoc - (Vector2)transform.position).normalized;
         float shootPower = Random.Range(lowPower, highPower);
 
         //shoot
         rb.AddForce(shootDir * shootPower, ForceMode2D.Impulse);
+
+        Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");
 
         //reset timer and delay bool
         timer = 0f;

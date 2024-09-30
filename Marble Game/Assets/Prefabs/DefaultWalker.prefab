@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upChance: 100
-  sideChance: 20
-  downChance: 5
-  deathChance: 1
-  minMoves: 20
-  newWalkerSpawn: 0
+  sideChance: 25
+  downChance: 10
+  deathChance: 0.9
+  minMoves: 40
+  newWalkerSpawn: 10
   newWalker: {fileID: 5581616006548335540, guid: 60258329630540246b6db0d060c56449, type: 3}
   moveDelay: 0
