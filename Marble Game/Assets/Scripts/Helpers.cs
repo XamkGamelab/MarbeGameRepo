@@ -10,4 +10,10 @@ public static class Helpers
 
         return clamp ? Mathf.Clamp(val, Mathf.Min(newMin, newMax), Mathf.Max(newMin, newMax)) : val;
     }
+
+    //returns the distance of 
+    public static float Project(Vector2 projectTo, Vector2 projection)
+    {
+        return Vector2.Dot(projectTo, projection) / projectTo.magnitude;
+    }
 }
