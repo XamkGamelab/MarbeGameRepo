@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,12 +26,15 @@ public class PlayerController : MonoBehaviour
     private bool trackTime = false;
     private bool shootBall = false;
     private float timer = 0;
+    private float curStun;
+    private bool isStunned;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem stunParticle;
 
     #region standard methods
 
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
         else if (!trackTime) timer = 0;
 
         //grab touch starting position on touch start
-        if (inputReader.touchActive && trackStartPos)
+        if (inputReader.touchActive && trackStartPos && !isStunned)
         {
             touchStart = currentDir;
             trackTime = true;
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviour
             //trackEndPos = true;
         }
         //grab touch end position on touch end
-        if (!inputReader.touchActive && trackEndPos)
+        if (!inputReader.touchActive && trackEndPos && !isStunned)
         {
             touchEnd = currentDir;
             trackTime = false;
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour
             //trackStartPos = true;
         }
 
-        if (shootBall)
+        if (shootBall && !isStunned)
         {
             ShootBall();
             shootBall = false;
@@ -79,6 +83,24 @@ public class PlayerController : MonoBehaviour
         if (playerSpeed.magnitude > 0.1f)
         {
             rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
+        }
+    }
+
+    private void Update()
+    {
+        if (curStun > 0)
+        {
+            curStun -= Time.deltaTime;
+        } else if (isStunned)
+        {
+            speedVector = Vector2.zero;
+            trackStartPos = true;
+            trackEndPos = false;
+            trackTime = false;
+            shootBall = false;
+            timer = 0;
+            isStunned = false;
+            stunParticle.Stop();
         }
     }
 
@@ -139,6 +161,22 @@ public class PlayerController : MonoBehaviour
         if (forceToAdd != null)
         {
             rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+        }
+    }
+
+    public void stunPlayer(float duration, bool canOverwrite)
+    {
+        if (canOverwrite && curStun < duration)
+        {
+            curStun = duration;
+            isStunned = true;
+            stunParticle.Play();
+        }
+        else if (curStun <= 0)
+        {
+            curStun = duration;
+            isStunned = true;
+            stunParticle.Play();
         }
     }
 
