@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class startFiller : MonoBehaviour
 {
@@ -77,7 +78,6 @@ public class startFiller : MonoBehaviour
         {
             remainingWalkers = -1;
             placeGoal();
-            placeObstacles();
         }
         
         //Debug commands
@@ -85,6 +85,23 @@ public class startFiller : MonoBehaviour
         {
             loadManager.Management.startTransitionIn();
         }
+        
+        //Object check debugger. Keep commented when not in use.
+        /*
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D intersecting = Physics2D.CircleCast( Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.01f, Vector2.zero);
+            if (intersecting)
+            {
+                Debug.Log(intersecting.collider.name);
+            }
+            else
+            {
+                Debug.Log("No collission detected");
+            }
+
+        }
+        */
     }
 
     public void mapGeneration()
@@ -243,6 +260,7 @@ public class startFiller : MonoBehaviour
                     
             }
         }
+        placeObstacles();
     }
     
     
@@ -260,6 +278,10 @@ public class startFiller : MonoBehaviour
                     if (!checkIsTile(new Vector3Int(x, y, 0)))
                     {
                         RaycastHit2D intersecting = Physics2D.CircleCast( new Vector2(x, y), 0.01f, Vector2.zero);
+                        if (intersecting)
+                        {
+                            Debug.Log(intersecting.collider.name);
+                        }
                         if (!intersecting) {
                             int genAnythingRng = Random.Range(0, 101);
                             if (remainingChance >= genAnythingRng)
