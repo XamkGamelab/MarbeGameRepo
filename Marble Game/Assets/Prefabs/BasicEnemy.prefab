@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2093872215615408550}
   - component: {fileID: 1883225710570342513}
   - component: {fileID: -2250771695105460812}
+  - component: {fileID: 1160642608124684518}
   m_Layer: 8
   m_Name: BasicEnemy
   m_TagString: EndDestroy
@@ -224,3 +225,16 @@ MonoBehaviour:
   label: Marble_Roll
   maxSpeed: 25
   volume: 1
+--- !u!114 &1160642608124684518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968164225328612435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b738fe4b6bd102e45a1ca7f9fabc8571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpReduction: 0.05

@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     private bool shootBall = false;
     private float timer = 0;
     private float curStun;
+    private float curFreeze;
     private bool isStunned;
+    private bool isFrozen;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
@@ -35,6 +37,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem stunParticle;
+    [SerializeField] private ParticleSystem freezeParticle;
+    [SerializeField] private SpriteRenderer freezeOverlay;
+    [SerializeField] [Range(0,1)] private float freezeMagnitude;
+    [SerializeField] [Range(0,1)] private float freezeOverlayMagnitude;
 
     #region standard methods
 
@@ -88,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //Stun stuff
         if (curStun > 0)
         {
             curStun -= Time.deltaTime;
@@ -101,6 +108,25 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             isStunned = false;
             stunParticle.Stop();
+        }
+        
+        //Frost stuff
+        if (curFreeze > 0)
+        {
+            curFreeze -= Time.deltaTime;
+        } else if (isFrozen)
+        {
+            isFrozen = false;
+            freezeParticle.Stop();
+        }
+
+        if (isFrozen)
+        {
+            freezeOverlay.color = new Vector4(freezeOverlay.color.r, freezeOverlay.color.g, freezeOverlay.color.b,Mathf.Lerp(freezeOverlay.color.a, freezeOverlayMagnitude, Time.deltaTime * 2));
+        }
+        else
+        {
+            freezeOverlay.color = new Vector4(freezeOverlay.color.r, freezeOverlay.color.g, freezeOverlay.color.b,Mathf.Lerp(freezeOverlay.color.a, 0, Time.deltaTime));
         }
     }
 
@@ -143,6 +169,10 @@ public class PlayerController : MonoBehaviour
         //Debug.Log((1 / reverseStrength) - lowerLimit);
 
         //return actual strength after corrections
+        if (isFrozen)
+        {
+            return Mathf.Clamp(((1 / reverseStrength) - lowerLimit)*(1-freezeMagnitude), 0f, speedHardLimit);
+        }
         return Mathf.Clamp((1 / reverseStrength) - lowerLimit, 0f, speedHardLimit);
     }
 
@@ -177,6 +207,22 @@ public class PlayerController : MonoBehaviour
             curStun = duration;
             isStunned = true;
             stunParticle.Play();
+        }
+    }
+    
+    public void freezePlayer(float duration, bool canOverwrite)
+    {
+        if (canOverwrite && curStun < duration)
+        {
+            curFreeze = duration;
+            isFrozen = true;
+            freezeParticle.Play();
+        }
+        else if (curStun <= 0)
+        {
+            curFreeze = duration;
+            isFrozen = true;
+            freezeParticle.Play();
         }
     }
 
