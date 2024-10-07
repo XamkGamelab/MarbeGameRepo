@@ -175,6 +175,7 @@ MonoBehaviour:
   shards: 0
   nextLevelXp: 0
   xpModifier: 1
+  menuOpen: 1
   titleText: {fileID: 299108106}
   xpText: {fileID: 386955224}
   lvlText: {fileID: 1467380336}
@@ -223,6 +224,8 @@ MonoBehaviour:
   generationText: {fileID: 1718973059}
   totalDelay: 1
   isTransitioning: 0
+  inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
+  cameraBehavior: {fileID: 1345540965}
 --- !u!114 &143442196
 MonoBehaviour:
   m_ObjectHideFlags: 0

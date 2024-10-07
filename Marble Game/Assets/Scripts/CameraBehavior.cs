@@ -56,6 +56,11 @@ public class CameraBehavior : MonoBehaviour
         distToGoal = goalVector.magnitude;
     }
 
+    public void DefaultOffset()
+    {
+        transposer.m_ScreenY = maxScaledOffset;
+    }
+
     private float CalcOffset()
     {
         //how far player has traveled so far, as a vector

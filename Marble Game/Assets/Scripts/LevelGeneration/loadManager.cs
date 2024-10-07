@@ -29,6 +29,9 @@ public class loadManager : MonoBehaviour
     [Header("Input System")]
     [SerializeField] private InputReader inputReader;
 
+    [Header("Camera Management")]
+    [SerializeField] private CameraBehavior cameraBehavior;
+
     private void Awake()
     {
         Management = this;
@@ -100,6 +103,7 @@ public class loadManager : MonoBehaviour
         curDelay = totalDelay;
         GameManager.Management.menuOpen = false;
         inputReader.SetGameplay();
+        cameraBehavior.DefaultOffset();
     }
     
     private IEnumerator enableContinue()
