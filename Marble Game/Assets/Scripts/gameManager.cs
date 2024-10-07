@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [Header("Public Values")]
     public float nextLevelXp;
 
-    [HideInInspector] public float xpModifier = 1;
+    public float xpModifier = 1;
+    public bool menuOpen = true;
 
     [Header("UI Elements")]
     [SerializeField] private TMP_Text titleText;

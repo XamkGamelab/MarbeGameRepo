@@ -26,6 +26,9 @@ public class loadManager : MonoBehaviour
     public bool isTransitioning;
     private bool canContinue;
 
+    [Header("Input System")]
+    [SerializeField] private InputReader inputReader;
+
     private void Awake()
     {
         Management = this;
@@ -84,6 +87,8 @@ public class loadManager : MonoBehaviour
         continueButton.SetActive(false);
         canContinue = true;
         curDelay = totalDelay;
+        GameManager.Management.menuOpen = true;
+        inputReader.DisableGameplay();
     }
     
     public void startTransitionOut()
@@ -93,6 +98,8 @@ public class loadManager : MonoBehaviour
         loadingUI.SetActive(false);
         transitionIn = false;
         curDelay = totalDelay;
+        GameManager.Management.menuOpen = false;
+        inputReader.SetGameplay();
     }
     
     private IEnumerator enableContinue()

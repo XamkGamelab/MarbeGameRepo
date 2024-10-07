@@ -32,6 +32,12 @@ public class InputReader : ScriptableObject, InputManager.IGameplayActions
         inputActions.Gameplay.Enable();
     }
 
+    public void DisableGameplay()
+    {
+
+        inputActions.Gameplay.Disable();
+    }
+
     //this is called whenever pointer or touch moves, vector2 given as context
     public void OnMovement(InputAction.CallbackContext context)
     {
