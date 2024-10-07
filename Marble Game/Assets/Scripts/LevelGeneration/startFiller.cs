@@ -78,6 +78,7 @@ public class startFiller : MonoBehaviour
         {
             remainingWalkers = -1;
             placeGoal();
+            placeObstacles();
         }
         
         //Debug commands
@@ -158,7 +159,6 @@ public class startFiller : MonoBehaviour
         wallMap.CompressBounds();
         wallMap.SetTile(new Vector3Int(Mathf.CeilToInt(sizeH/2),sizeV-vertOffset,0), wallTile);
         wallMap.SetTile(new Vector3Int(-Mathf.FloorToInt(sizeH/2),-vertOffset,0), wallTile);
-        //wallMap.BoxFill(new Vector3Int(0,0,0), tile, 0, -2, 5, 10);
         wallMap.FloodFill(new Vector3Int(0,0,0), wallTile);
     }
 
@@ -260,7 +260,6 @@ public class startFiller : MonoBehaviour
                     
             }
         }
-        placeObstacles();
     }
     
     
@@ -278,10 +277,6 @@ public class startFiller : MonoBehaviour
                     if (!checkIsTile(new Vector3Int(x, y, 0)))
                     {
                         RaycastHit2D intersecting = Physics2D.CircleCast( new Vector2(x, y), 0.01f, Vector2.zero);
-                        if (intersecting)
-                        {
-                            Debug.Log(intersecting.collider.name);
-                        }
                         if (!intersecting) {
                             int genAnythingRng = Random.Range(0, 101);
                             if (remainingChance >= genAnythingRng)

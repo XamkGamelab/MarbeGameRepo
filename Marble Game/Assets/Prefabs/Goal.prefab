@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7201996395456016950}
   - component: {fileID: -1828236367812639015}
   - component: {fileID: -8328926339682509901}
+  - component: {fileID: -8876340941736268176}
   m_Layer: 3
   m_Name: Goal
   m_TagString: EndDestroy
@@ -153,3 +154,15 @@ MonoBehaviour:
   - Victory
   Trigger: 1
   createSfxObject: 1
+--- !u!114 &-8876340941736268176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966799322725988153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78918b4f8780ba4a9046210b3dea7c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

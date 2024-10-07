@@ -13,18 +13,19 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [Header("Saved Values")]
     public int level;
     public float curXp;
-    public float shards;
+    public int shards;
     
     [Header("Public Values")]
     public float nextLevelXp;
 
-    public float xpModifier = 1;
+    [HideInInspector] public float xpModifier = 1;
 
     [Header("UI Elements")]
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text xpText;
     [SerializeField] private TMP_Text lvlText;
-    [SerializeField] private RectTransform xpBar;
+    [SerializeField] private TMP_Text shardText;
+    [SerializeField] private Image xpBar;
     
     [Header("Funky Titles")]
     [SerializeField] private string[] titles;
@@ -45,7 +46,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         nextLevelXp = (level*(level/2) + 1) * 100;
         xpText.text = Mathf.RoundToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
-        lvlText.text = level.ToString();
+        lvlText.text = (level+1).ToString();
+        shardText.text = shards.ToString();
 
         if (curXp >= nextLevelXp)
         {
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             shards++;
         }
 
-        xpBar.sizeDelta = new Vector3((curXp/nextLevelXp)* 1000, xpBar.sizeDelta.y);
+        xpBar.fillAmount  = curXp/nextLevelXp;
     }
 
     public void grantXp()
@@ -77,11 +79,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         this.curXp = gameData.xp;
         this.level = gameData.level;
+        this.shards = gameData.shards;
     }
 
     public void SaveData(ref GameData gameData)
     {
         gameData.xp = this.curXp;
         gameData.level = this.level;
+        gameData.shards = this.shards;
     }
 }

@@ -26,6 +26,7 @@ public class FileDataHandler
         File.Delete(fullPath);
         GameManager.Management.curXp = 0;
         GameManager.Management.level = 0;
+        GameManager.Management.shards = 0;
     }
 
     public GameData Load()
