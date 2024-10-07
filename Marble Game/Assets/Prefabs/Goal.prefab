@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   sfxName:
   - Victory
   Trigger: 1

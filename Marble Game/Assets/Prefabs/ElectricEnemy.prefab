@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1883225710570342513}
   - component: {fileID: -2250771695105460812}
   - component: {fileID: -7461667851622459398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ElectricEnemy
   m_TagString: EndDestroy
   m_Icon: {fileID: 0}
@@ -290,6 +290,10 @@ PrefabInstance:
     - target: {fileID: 9074523336486995923, guid: 791e8456e419d0f43b2de7bf8fad7089, type: 3}
       propertyPath: m_Name
       value: ElectricityFx
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074523336486995923, guid: 791e8456e419d0f43b2de7bf8fad7089, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

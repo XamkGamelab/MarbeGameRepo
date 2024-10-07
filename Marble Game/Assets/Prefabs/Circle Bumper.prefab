@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7886615569626576050}
   - component: {fileID: -1593799286979362301}
   - component: {fileID: 9180007284117706169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle Bumper
   m_TagString: EndDestroy
   m_Icon: {fileID: 0}
@@ -191,7 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   sfxName:
   - Twang_a
   - Twang_b
+  Trigger: 0
+  createSfxObject: 0
