@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     public static GameManager Management {get; private set;}
     
@@ -70,5 +70,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("Gained: " + addedXP + " experience.");
         Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
         xpModifier = 1;
+    }
+
+    //DATA PERSISTENCE
+    public void LoadData(GameData gameData)
+    {
+        this.curXp = gameData.xp;
+        this.level = gameData.level;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.xp = this.curXp;
+        gameData.level = this.level;
     }
 }

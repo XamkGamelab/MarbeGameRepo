@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 143442194}
   - component: {fileID: 143442195}
   - component: {fileID: 143442196}
+  - component: {fileID: 143442197}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -244,6 +245,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 084e6c54c816d424b84c69924af3e6fa, type: 3}
   - label: Victory
     clip: {fileID: 8300000, guid: c7aaaa862b6188641a0c17f39f209577, type: 3}
+--- !u!114 &143442197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143442191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451a4645fc771e54d8e3011d876a41f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: 
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0

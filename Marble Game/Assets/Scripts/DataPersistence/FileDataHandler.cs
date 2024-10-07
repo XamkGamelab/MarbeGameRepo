@@ -19,6 +19,15 @@ public class FileDataHandler
         }
     }
 
+    public void DeleteData()
+    {
+        //using path.combine to account for differing file systems
+        string fullPath = Path.Combine(dataDirPath, "saves", dataFileName);
+        File.Delete(fullPath);
+        GameManager.Management.curXp = 0;
+        GameManager.Management.level = 0;
+    }
+
     public GameData Load()
     {
         //using path.combine to account for differing file systems

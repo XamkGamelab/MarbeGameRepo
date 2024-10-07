@@ -61,6 +61,9 @@ public class loadManager : MonoBehaviour
             {
                 startFiller.filler.mapGeneration();
                 generateAfter = false;
+
+                //save game
+                DataPersistenceManager.instance.SaveGame();
             }
             
             isTransitioning = false;

@@ -28,6 +28,15 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
+    //REMOVE THIS FOR RELEASE
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            dataHandler.DeleteData();
+        }
+    }
+
     private void NewGame()
     {
         this.gameData = new GameData();

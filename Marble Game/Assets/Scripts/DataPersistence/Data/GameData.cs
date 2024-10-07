@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+public class GameData
 {
     [Header("Progression Variables")]
     public int level;
-    public int xp;
+    public float xp;
 
     //constructor, ran on starting new game
     public GameData()
     {
-        this.level = 1;
+        this.level = 0;
         this.xp = 0;
     }
 }
