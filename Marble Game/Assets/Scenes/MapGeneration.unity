@@ -200,12 +200,15 @@ MonoBehaviour:
   - Crystalline Ball
   - Bewitching Tumbler
   - Imperial Gyroscope
+  - Indescribably Smooth
   - Perfect Sphere
   - Beyond Perfection
   - "The Sphere\u2122"
   - "The Supreme Sphere\u2122"
   - Ethereal Dynamo
   - Biblically Accurate
+  - Past Expectation
+  - Final Sphere
 --- !u!114 &143442195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1070,7 @@ MonoBehaviour:
   easyChance: 60
   moderateObstacles:
   - {fileID: 7968164225328612435, guid: 36624051eae29b34197790066d8fd2fa, type: 3}
+  - {fileID: 7968164225328612435, guid: 5d55bba1a774c014f8c2c3c87b9f8023, type: 3}
   moderateChance: 40
   hardObstacles:
   - {fileID: 1962605190579784793, guid: f6a2f4e60f5246545ad4bfe5998c1cec, type: 3}

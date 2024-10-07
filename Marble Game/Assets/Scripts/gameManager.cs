@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             xpModifier = 0.1f;
         }
 
-        float addedXP = (100 + level * 50) * xpModifier;
+        float addedXP = (100 + (level * 50)) * xpModifier;
         curXp += addedXP;
         Debug.Log("Gained: " + addedXP + " experience.");
         Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
