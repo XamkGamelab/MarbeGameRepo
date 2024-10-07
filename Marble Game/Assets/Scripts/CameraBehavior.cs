@@ -40,7 +40,7 @@ public class CameraBehavior : MonoBehaviour
         //avoid nullref memes
         if (offset > 0.5f && offset < 0.75f)
         {
-            Debug.Log(message: $"0.5 - 0.75 scaled value between goal and player start is {offset}");
+            //Debug.Log(message: $"0.5 - 0.75 scaled value between goal and player start is {offset}");
             transposer.m_ScreenY = offset;
         }
     }

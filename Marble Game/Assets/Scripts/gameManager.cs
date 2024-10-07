@@ -49,8 +49,10 @@ public class GameManager : MonoBehaviour
 
         if (curXp >= nextLevelXp)
         {
+            Debug.Log("Gained a level, and with it a Shard!");
             curXp -= nextLevelXp;
             level++;
+            shards++;
         }
 
         xpBar.sizeDelta = new Vector3((curXp/nextLevelXp)* 1000, xpBar.sizeDelta.y);
@@ -62,7 +64,11 @@ public class GameManager : MonoBehaviour
         {
             xpModifier = 0.1f;
         }
-        curXp += (100 + level * 50) * xpModifier;
+
+        float addedXP = (100 + level * 50) * xpModifier;
+        curXp += addedXP;
+        Debug.Log("Gained: " + addedXP + " experience.");
+        Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
         xpModifier = 1;
     }
 }
