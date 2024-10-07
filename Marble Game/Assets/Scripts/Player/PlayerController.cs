@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         float reverseStrength = timer / powerLimit;
 
 
-        Debug.Log((1 / reverseStrength) - lowerLimit);
+        //Debug.Log((1 / reverseStrength) - lowerLimit);
 
         //return actual strength after corrections
         return Mathf.Clamp((1 / reverseStrength) - lowerLimit, 0f, speedHardLimit);
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
         //calc force to add by multiplying angle with reversed duration of touch
         Vector2 forceToAdd = shootAngle * CalcStrength();
-        Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
+        //Debug.Log(message: $"shoot angle: {shootAngle} force: {forceToAdd}");
 
         speedVector = forceToAdd;
 
