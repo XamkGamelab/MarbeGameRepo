@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TMP_Text lvlText;
     [SerializeField] private TMP_Text shardText;
     [SerializeField] private Image xpBar;
+    [SerializeField] private TMP_Text xpLossText;
     
     [Header("Funky Titles")]
     [SerializeField] private string[] titles;
@@ -71,7 +72,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         float addedXP = (100 + (level * 50)) * xpModifier;
         curXp += addedXP;
         Debug.Log("Gained: " + addedXP + " experience.");
-        Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
+        //Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
+        xpLossText.text = (100-(xpModifier*100)).ToString("0.0") + "% of experience was lost due to collision with foes.";
         xpModifier = 1;
     }
 
