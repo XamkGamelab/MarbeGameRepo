@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ac5626c7d9854686b4733683d657f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 50
+  level: 0
   curXp: 0
   shards: 0
   nextLevelXp: 0
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   - {fileID: 7968164225328612435, guid: 5d55bba1a774c014f8c2c3c87b9f8023, type: 3}
   moderateChance: 40
   hardObstacles:
-  - {fileID: 1962605190579784793, guid: f6a2f4e60f5246545ad4bfe5998c1cec, type: 3}
+  - {fileID: 7675577235514467126, guid: aa42ec648010b014aadd05134b70e560, type: 3}
   hardChance: 5
 --- !u!1 &619394800
 GameObject:
