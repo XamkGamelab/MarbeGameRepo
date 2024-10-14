@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1951069771956522627}
   - component: {fileID: 4429770250446077615}
   - component: {fileID: 2433811438278487222}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 4944761138069318244}
   - component: {fileID: 7372146520920279962}
   - component: {fileID: 3252993955296734990}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BarL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,9 +294,9 @@ GameObject:
   - component: {fileID: 5309259218244911265}
   - component: {fileID: 4147087615479166874}
   - component: {fileID: 8548525151420830184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FoeCrusher
-  m_TagString: Untagged
+  m_TagString: EndDestroy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 4744849609176616126}
   - component: {fileID: 5892345734792144340}
   - component: {fileID: 1872993825416519688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BarR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
