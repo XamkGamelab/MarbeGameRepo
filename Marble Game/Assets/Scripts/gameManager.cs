@@ -14,11 +14,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public int level;
     public float curXp;
     public int shards;
+    public float xpModifier = 1;
+    [SerializeField] private float previousXpModifier; //Not actually saved, but is related to xpModifier
+
+    [Header("Serialized Values")]
+    [SerializeField] private float xpModBonus;
     
     [Header("Public Values")]
     public float nextLevelXp;
-
-    public float xpModifier = 1;
+    
     public bool menuOpen = true;
 
     [Header("UI Elements")]
@@ -28,6 +32,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TMP_Text shardText;
     [SerializeField] private Image xpBar;
     [SerializeField] private TMP_Text xpLossText;
+    [SerializeField] private TMP_Text modifierText;
+    [SerializeField] private TMP_Text xpModLossText;
+    [SerializeField] private Animator xpModLossAnim;
     
     [Header("Funky Titles")]
     [SerializeField] private string[] titles;
@@ -51,6 +58,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
         lvlText.text = (level+1).ToString();
         shardText.text = shards.ToString();
 
+        if (xpModifier >= 1)
+        {
+            modifierText.text = "+" + Mathf.RoundToInt((xpModifier-1) * 100).ToString() +"%";
+        }
+        else
+        {
+            modifierText.text = Mathf.RoundToInt((xpModifier-1) * 100).ToString() +"%";
+        }
+
         if (curXp >= nextLevelXp)
         {
             Debug.Log("Gained a level, and with it a Shard!");
@@ -64,17 +80,57 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void grantXp()
     {
-        if (xpModifier < 0.1f)
+        if (xpModifier == previousXpModifier)
         {
-            xpModifier = 0.1f;
+            xpModifier += xpModBonus;
         }
 
         float addedXP = (100 + (level * 50)) * xpModifier;
         curXp += addedXP;
-        Debug.Log("Gained: " + addedXP + " experience.");
-        //Debug.Log(100-(xpModifier*100) + "% of experience was lost because of bumping into obstacles.");
-        xpLossText.text = (100-(xpModifier*100)).ToString("0.0") + "% of experience was lost due to collision with foes.";
-        xpModifier = 1;
+        //xpLossText.text = (100-(xpModifier*100)).ToString("0.0") + "% of experience was lost due to collision with foes.";
+        
+        if (xpModifier < 1)
+        {
+            xpModifier = 1;
+        }
+
+        previousXpModifier = xpModifier;
+    }
+
+    public void xpReduction(float reduction)
+    {
+        if (xpModifier > 1)
+        {
+            if (xpModifier-reduction < 1)
+            {
+                reduction = xpModifier - 1;
+                xpModifier = 1;
+                xpLossAnim(reduction);
+            }
+            else
+            {
+                xpModifier -= reduction*2;
+                xpLossAnim(reduction*2);
+            }
+        }
+        else
+        {
+            xpModifier -= reduction;
+            xpLossAnim(reduction);
+        }
+
+        if (xpModifier < 0.1)
+        {
+            xpModifier = 0.1f;
+        }
+    }
+
+    private void xpLossAnim(float reduction)
+    {
+        Debug.Log(reduction);
+        xpModLossText.text = "-" + Mathf.RoundToInt(reduction * 100).ToString() + "%";
+        xpModLossAnim.Play("Activated", -1, 0f);
+        xpModLossAnim.Play("Activated");
     }
 
     //DATA PERSISTENCE
@@ -83,6 +139,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.curXp = gameData.xp;
         this.level = gameData.level;
         this.shards = gameData.shards;
+        this.xpModifier = gameData.xpModifier;
+        previousXpModifier = xpModifier;
     }
 
     public void SaveData(ref GameData gameData)
@@ -90,5 +148,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
         gameData.xp = this.curXp;
         gameData.level = this.level;
         gameData.shards = this.shards;
+        gameData.xpModifier = this.xpModifier;
     }
 }

@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 5309259218244911265}
   - component: {fileID: 4147087615479166874}
   - component: {fileID: 8548525151420830184}
+  - component: {fileID: 7458090384648778073}
   m_Layer: 7
   m_Name: FoeCrusher
   m_TagString: EndDestroy
@@ -422,6 +423,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   animator: {fileID: 4429770250446077615}
+--- !u!114 &7458090384648778073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399774444793437747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711ebc4a5651689428379c19cda86382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
 --- !u!1 &8549402999776168174
 GameObject:
   m_ObjectHideFlags: 0

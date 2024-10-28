@@ -8,6 +8,7 @@ public class GameData
     public int level;
     public float xp;
     public int shards;
+    public float xpModifier;
 
     //constructor, ran on starting new game
     public GameData()
@@ -15,5 +16,6 @@ public class GameData
         this.level = 0;
         this.xp = 0;
         this.shards = 0;
+        this.xpModifier = 1;
     }
 }

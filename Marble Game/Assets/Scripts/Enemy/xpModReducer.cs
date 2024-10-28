@@ -10,7 +10,7 @@ public class xpModReducer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Management.xpModifier -= xpReduction;
+            GameManager.Management.xpReduction(xpReduction);
         }
     }
 }
