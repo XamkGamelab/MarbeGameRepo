@@ -62,12 +62,10 @@ public class loadManager : MonoBehaviour
             curDelay -= Time.deltaTime;
             if (transitionIn)
             {
-                //Currently black screen
                 fadeToBlack.color = new Color(0, 0, 0, 1-1*curDelay/totalDelay);
             }
             else
             {
-                //Currently black screen
                 fadeToBlack.color = new Color(0, 0, 0, 1*curDelay/totalDelay);
             }
         } else if (curDelay > -1)
@@ -120,6 +118,16 @@ public class loadManager : MonoBehaviour
         curDelay = totalDelay;
         GameManager.Management.menuOpen = true;
         inputReader.DisableGameplay();
+        
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("EndDestroy");
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<EnemyController>())
+            {
+                enemy.GetComponent<EnemyController>().canMove = false;
+                enemy.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            }
+        }
     }
     
     public void startTransitionOut()

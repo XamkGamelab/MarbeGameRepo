@@ -18,6 +18,8 @@ public class goalManager : MonoBehaviour
             goalActivated = true;
             GameManager.Management.grantXp();
             loadManager.Management.startTransitionIn();
+
+            other.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
     }
 }
