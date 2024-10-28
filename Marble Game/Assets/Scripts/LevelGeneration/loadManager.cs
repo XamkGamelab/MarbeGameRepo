@@ -8,6 +8,8 @@ using TMPro;
 public class loadManager : MonoBehaviour
 {
     public static loadManager Management {get; private set;}
+    [Header("Variables")]
+    [SerializeField] private GameObject player;
     
     [Header("UI")]
     [SerializeField] private Image fadeToBlack;
@@ -134,5 +136,6 @@ public class loadManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         continueButton.SetActive(true);
+        player.GetComponent<PlayerController>().firstMove = true;
     }
 }

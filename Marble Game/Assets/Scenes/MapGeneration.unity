@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5011e554660a84c83e28107ef2822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 977093987}
   fadeToBlack: {fileID: 1566055734}
   loadingUI: {fileID: 1016579794}
   continueButton: {fileID: 1370859580}
@@ -6689,6 +6690,7 @@ MonoBehaviour:
   freezeOverlay: {fileID: 1143646472}
   freezeMagnitude: 0.8
   freezeOverlayMagnitude: 0.5
+  firstMove: 0
 --- !u!212 &977093992
 SpriteRenderer:
   m_ObjectHideFlags: 0

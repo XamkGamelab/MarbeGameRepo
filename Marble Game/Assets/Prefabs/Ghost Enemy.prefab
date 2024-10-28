@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canWander: 0
+  canMove: 0
   lowPower: 5
   highPower: 20
   delayBeforeShoot: 3

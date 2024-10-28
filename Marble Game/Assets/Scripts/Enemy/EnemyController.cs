@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private Animator enemyAnimator;
     [SerializeField] private bool canWander;
+    public bool canMove;
 
     [Header("Dynamic Variables")]
     private Vector3 playerLoc = Vector3.zero;
@@ -48,39 +49,42 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 speed = rb.velocity;
-
-        //timer
-        if (timing || canWander)
+        if (canMove)
         {
-            timer += Time.deltaTime;
-        }
+            Vector2 speed = rb.velocity;
 
-        //if timer high enough, shoot
-        if (timer > delayBeforeShoot)
-        {
-            if (seesPlayer)
+            //timer
+            if (timing || canWander)
             {
-                Shoot();
+                timer += Time.deltaTime;
             }
-            else
+
+            //if timer high enough, shoot
+            if (timer > delayBeforeShoot)
             {
-                Wander();
+                if (seesPlayer)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    Wander();
+                }
             }
-        }
 
-        //if stopped and bool on, grab location
-        if (!delaying)
-        {
-            playerLoc = player.transform.position;
-            delaying = true;
-        }
+            //if stopped and bool on, grab location
+            if (!delaying)
+            {
+                playerLoc = player.transform.position;
+                delaying = true;
+            }
 
-        enemyAnimator.speed = speed.magnitude;
+            enemyAnimator.speed = speed.magnitude;
 
-        if (speed.magnitude > 0.1f)
-        {
-            rb.MoveRotation(Vector2.SignedAngle(Vector2.up, speed.normalized));
+            if (speed.magnitude > 0.1f)
+            {
+                rb.MoveRotation(Vector2.SignedAngle(Vector2.up, speed.normalized));
+            }
         }
     }
 

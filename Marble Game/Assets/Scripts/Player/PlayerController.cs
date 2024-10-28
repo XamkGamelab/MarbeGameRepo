@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer freezeOverlay;
     [SerializeField] [Range(0,1)] private float freezeMagnitude;
     [SerializeField] [Range(0,1)] private float freezeOverlayMagnitude;
+    [HideInInspector] public bool firstMove = true;
 
     #region standard methods
 
@@ -82,6 +83,19 @@ public class PlayerController : MonoBehaviour
         {
             ShootBall();
             shootBall = false;
+
+            if (firstMove)
+            {
+                firstMove = false;
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("EndDestroy");
+                foreach (GameObject enemy in enemies)
+                {
+                    if (enemy.GetComponent<EnemyController>())
+                    {
+                        enemy.GetComponent<EnemyController>().canMove = true;
+                    }
+                }
+            }
         }
 
         animator.speed = playerSpeed.magnitude;
@@ -91,7 +105,7 @@ public class PlayerController : MonoBehaviour
             rb.MoveRotation(Vector2.SignedAngle(Vector2.up, playerSpeed.normalized));
         }
     }
-
+    
     private void Update()
     {
         //Stun stuff
