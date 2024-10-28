@@ -17,6 +17,7 @@ public class loadManager : MonoBehaviour
     [SerializeField] private GameObject continueButton;
     [SerializeField] private TMP_Text generationText;
     [SerializeField] private GameObject xpLossText;
+    [SerializeField] private GameObject menuButtonHolder;
 
     [SerializeField] private float totalDelay;
     private float curDelay;
@@ -62,6 +63,7 @@ public class loadManager : MonoBehaviour
             {
                 loadingUI.SetActive(true);
                 xpLossText.SetActive(true);
+                menuButtonHolder.SetActive(true);
             }
             
             //Start finishing generation
@@ -91,6 +93,7 @@ public class loadManager : MonoBehaviour
         generateAfter = true;
         continueButton.SetActive(false);
         xpLossText.SetActive(false);
+        menuButtonHolder.SetActive(false);
         canContinue = true;
         curDelay = totalDelay;
         GameManager.Management.menuOpen = true;
@@ -103,6 +106,7 @@ public class loadManager : MonoBehaviour
         continueButton.SetActive(false);
         loadingUI.SetActive(false);
         xpLossText.SetActive(false);
+        menuButtonHolder.SetActive(false);
         transitionIn = false;
         curDelay = totalDelay;
         GameManager.Management.menuOpen = false;
