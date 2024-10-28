@@ -27,6 +27,11 @@ public class loadManager : MonoBehaviour
     public bool isTransitioning;
     private bool canContinue;
 
+    private bool startScreen = true;
+    [SerializeField] private Image splashScreen;
+    [SerializeField] private float splashScreenDelay;
+    private float curDelaySplashScreen;
+
     [Header("Input System")]
     [SerializeField] private InputReader inputReader;
 
@@ -36,10 +41,19 @@ public class loadManager : MonoBehaviour
     private void Awake()
     {
         Management = this;
+        splashScreen.color = new Color(1, 1, 1, 1);
     }
 
     private void Update()
     {
+        //Handles start splash Screen
+        if (startScreen == false && curDelaySplashScreen > 0)
+        {
+            curDelaySplashScreen -= Time.deltaTime;
+            splashScreen.color = new Color(1, 1, 1, 1*curDelaySplashScreen/totalDelay);
+        }
+        
+        
         if (curDelay > 0)
         {
             curDelay -= Time.deltaTime;
@@ -81,6 +95,12 @@ public class loadManager : MonoBehaviour
         {
             StartCoroutine("enableContinue");
             canContinue = false;
+
+            if (startScreen)
+            {
+                startScreen = false;
+                curDelaySplashScreen = splashScreenDelay;
+            }
         }
     }
 
