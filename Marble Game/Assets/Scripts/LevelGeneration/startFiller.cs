@@ -57,6 +57,7 @@ public class startFiller : MonoBehaviour
     [SerializeField] private GameObject[] hardObstacles;
     [SerializeField] private float hardChance;
 
+    private bool openedGame = true;
     private void Awake()
     {
         if (filler == null)
@@ -64,6 +65,27 @@ public class startFiller : MonoBehaviour
             filler = this;
         }
         player = GameObject.FindGameObjectWithTag("Player");
+        
+        //Ensures no weird start sounds, etc
+        if (!overWriteGeneration)
+        {
+            sizeH = 0;
+            sizeV = 0;
+        
+            walkerCount = 0;
+            walkerMinMoves = 0;
+            walkerDeathChance = 0;
+            walkerSideChance = 0;
+            walkerDownChance = 0;
+            walkerSpawnChance = 0;
+        
+        
+            minObstacles = 0;
+            maxObstacles = 0;
+            easyChance = 0;
+            moderateChance = 0;
+            hardChance = 0;
+        }
     }
 
     private void Start()
@@ -74,7 +96,7 @@ public class startFiller : MonoBehaviour
     private void Update()
     {
         //If no remaining walkers, generate floor and goal
-        if (remainingWalkers == 0)
+        if (remainingWalkers == 0 && openedGame != false)
         {
             remainingWalkers = -1;
             placeGoal();
