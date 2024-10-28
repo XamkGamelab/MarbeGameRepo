@@ -96,7 +96,7 @@ public class startFiller : MonoBehaviour
     private void Update()
     {
         //If no remaining walkers, generate floor and goal
-        if (remainingWalkers == 0 && openedGame != false)
+        if (remainingWalkers == 0 && openedGame)
         {
             remainingWalkers = -1;
             placeGoal();
@@ -181,7 +181,7 @@ public class startFiller : MonoBehaviour
         wallMap.CompressBounds();
         wallMap.SetTile(new Vector3Int(Mathf.CeilToInt(sizeH/2),sizeV-vertOffset,0), wallTile);
         wallMap.SetTile(new Vector3Int(-Mathf.FloorToInt(sizeH/2),-vertOffset,0), wallTile);
-        wallMap.FloodFill(new Vector3Int(0,0,0), wallTile);
+        wallMap.FloodFill(Vector3Int.zero, wallTile);
     }
 
     private void engageWalkers()
@@ -223,12 +223,11 @@ public class startFiller : MonoBehaviour
 
     public void placeGoal()
     {
-        
-        //Find highest up available tile
+        // Find highest up available tile
         int highestAvailable = 0;
-        for (int y = sizeV-vertOffset; y > -vertOffset+1; y--)
+        for (int y = sizeV - vertOffset; y > -vertOffset + 1; y--)
         {
-            for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+            for (int x = -Mathf.FloorToInt(sizeH / 2); x < Mathf.CeilToInt(sizeH / 2); x++)
             {
                 if (!checkIsTile(new Vector3Int(x, y, 0)))
                 {
@@ -238,109 +237,112 @@ public class startFiller : MonoBehaviour
             }
         }
         FOUND:
-        
-        //Randomize a tile between highest tile and the 4 below it
+
         int finalY = Random.Range(highestAvailable, highestAvailable - 3);
         int howManyOptions = 0;
-        
-        //Check how many tiles on x in the y layer
-        for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+
+        for (int x = -Mathf.FloorToInt(sizeH / 2); x < Mathf.CeilToInt(sizeH / 2); x++)
         {
             if (!checkIsTile(new Vector3Int(x, finalY, 0)))
             {
                 howManyOptions++;
             }
         }
-        
-        //Randomize which X to use
+
         int finalX = Random.Range(0, howManyOptions);
         int i = 0;
-        
-        //Go through the x layer again, this time placing the flag at the finalX tile
-        for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+
+        for (int x = -Mathf.FloorToInt(sizeH / 2); x < Mathf.CeilToInt(sizeH / 2); x++)
         {
             if (!checkIsTile(new Vector3Int(x, finalY, 0)))
             {
                 if (finalX == i)
                 {
-                    Instantiate(goal, new Vector3(x, finalY, 0), quaternion.identity);
+                    Vector3 flagPosition = new Vector3(x, finalY, 0);
+                    Instantiate(goal, flagPosition, quaternion.identity);
+                    curFlagPos = new Vector2(flagPosition.x, flagPosition.y); // Store the flag position
+
                     eraseTile(new Vector3(x, finalY));
-                    eraseTile(new Vector3(x, finalY+1));
-                    eraseTile(new Vector3(x, finalY-1));
-                    eraseTile(new Vector3(x+1, finalY));
-                    eraseTile(new Vector3(x-1, finalY));
-                    eraseTile(new Vector3(x+1, finalY+1));
-                    eraseTile(new Vector3(x+1, finalY-1));
-                    eraseTile(new Vector3(x-1, finalY+1));
-                    eraseTile(new Vector3(x-1, finalY-1));
+                    eraseTile(new Vector3(x, finalY + 1));
+                    eraseTile(new Vector3(x, finalY - 1));
+                    eraseTile(new Vector3(x + 1, finalY));
+                    eraseTile(new Vector3(x - 1, finalY));
+                    eraseTile(new Vector3(x + 1, finalY + 1));
+                    eraseTile(new Vector3(x + 1, finalY - 1));
+                    eraseTile(new Vector3(x - 1, finalY + 1));
+                    eraseTile(new Vector3(x - 1, finalY - 1));
                     return;
                 }
                 else
                 {
                     i++;
                 }
-                    
             }
         }
     }
+
     
     
     
     //Handles obstacle generations similarly to goal placement
     public void placeObstacles()
+{
+    float minFlagDistance = 2f; // Minimum distance from flag
+
+    while (curObstacles < minObstacles)
     {
-        while (curObstacles < minObstacles)
+        float remainingChance = obstacleChance;
+        for (int y = sizeV - vertOffset; y > -vertOffset + 1; y--)
         {
-            float remainingChance = obstacleChance;
-            for (int y = sizeV-vertOffset; y > -vertOffset+1; y--)
+            for (int x = -Mathf.FloorToInt(sizeH / 2); x < Mathf.CeilToInt(sizeH / 2); x++)
             {
-                for (int x = -Mathf.FloorToInt(sizeH/2); x < Mathf.CeilToInt(sizeH/2); x++)
+                Vector3 spawnPosition = new Vector3(x, y + 1, 0);
+
+                if (!checkIsTile(new Vector3Int(x, y, 0)) && Vector2.Distance(spawnPosition, curFlagPos) > minFlagDistance)
                 {
-                    if (!checkIsTile(new Vector3Int(x, y, 0)))
+                    RaycastHit2D intersecting = Physics2D.CircleCast(new Vector2(x, y), 0.01f, Vector2.zero);
+                    if (!intersecting)
                     {
-                        RaycastHit2D intersecting = Physics2D.CircleCast( new Vector2(x, y), 0.01f, Vector2.zero);
-                        if (!intersecting) {
-                            int genAnythingRng = Random.Range(0, 101);
-                            if (remainingChance >= genAnythingRng)
+                        int genAnythingRng = Random.Range(0, 101);
+                        if (remainingChance >= genAnythingRng)
+                        {
+                            int rngTier = Random.Range(0, 3);
+                            float rng = Random.Range(1, 101);
+                            if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
                             {
-                                int rngTier = Random.Range(0, 3);
-                                float rng = Random.Range(1, 101);
-                                if (rngTier == 0 && easyChance >= rng && curObstacles < maxObstacles)
-                                {
-                                    int rngEnemy = Random.Range(0, easyObstacles.Length);
-                                    Instantiate(easyObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                    curObstacles++;
-                                }
-                                if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
-                                {
-                                    int rngEnemy = Random.Range(0, moderateObstacles.Length);
-                                    Instantiate(moderateObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                    curObstacles++;
-                                }
-                                if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
-                                {
-                                    int rngEnemy = Random.Range(0, hardObstacles.Length);
-                                    Instantiate(hardObstacles[rngEnemy], new Vector3(x, y+1, 0), quaternion.identity);
-                                    curObstacles++;
-                                }
-                            
-                            
-                                if (remainingChance > obstacleMinChance)
-                                {
-                                    remainingChance *= obstacleChanceMultiplier;
-                                }
-                                if (remainingChance < obstacleMinChance)
-                                {
-                                    remainingChance = obstacleMinChance;
-                                }
+                                int rngEnemy = Random.Range(0, easyObstacles.Length);
+                                Instantiate(easyObstacles[rngEnemy], spawnPosition, quaternion.identity);
+                                curObstacles++;
+                            }
+                            else if (rngTier == 1 && moderateChance >= rng && curObstacles < maxObstacles)
+                            {
+                                int rngEnemy = Random.Range(0, moderateObstacles.Length);
+                                Instantiate(moderateObstacles[rngEnemy], spawnPosition, quaternion.identity);
+                                curObstacles++;
+                            }
+                            else if (rngTier == 2 && hardChance >= rng && curObstacles < maxObstacles)
+                            {
+                                int rngEnemy = Random.Range(0, hardObstacles.Length);
+                                Instantiate(hardObstacles[rngEnemy], spawnPosition, quaternion.identity);
+                                curObstacles++;
+                            }
+
+                            if (remainingChance > obstacleMinChance)
+                            {
+                                remainingChance *= obstacleChanceMultiplier;
+                            }
+                            if (remainingChance < obstacleMinChance)
+                            {
+                                remainingChance = obstacleMinChance;
                             }
                         }
                     }
                 }
             }
         }
+    }
 
-        StartCoroutine("floorCanvas");
+    StartCoroutine("floorCanvas");
     }
     
     
