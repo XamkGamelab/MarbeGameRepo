@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class stableRotation : MonoBehaviour
+public class StableRotation : MonoBehaviour
 {
-    [SerializeField][Range(1.0f, 10.0f)] private float rotationSpeed = 3f;
+    [SerializeField][Range(0.5f, 10.0f)] private float rotationTime = 3f; // Time in seconds for a full rotation
     [SerializeField] private float rngRotation;
     private Rigidbody2D rb;
     [SerializeField] private bool randomizeDirection;
     [SerializeField][Range(0, 1)] private int direction;
+    [SerializeField] private Animator anim;
+    private float rotationSpeed; // Degrees per second
 
     private void Awake()
     {
@@ -20,19 +22,20 @@ public class stableRotation : MonoBehaviour
         {
             direction = Random.Range(0, 2);
         }
-
-        rotationSpeed += Random.Range(-rngRotation, rngRotation);
+        
+        rotationTime += Random.Range(-rngRotation, rngRotation);
+        
+        rotationSpeed = 360f / rotationTime;
+        
+        if (anim)
+        {
+            anim.SetFloat("SpeedMultiplier", (direction == 0 ? -1 : 1) * (2/rotationTime));
+        }
     }
 
     private void FixedUpdate()
     {
-        if (direction == 0)
-        {
-            rb.MoveRotation(rb.rotation + (rotationSpeed * 10) * Time.fixedDeltaTime);
-        }
-        else
-        {
-            rb.MoveRotation(rb.rotation - (rotationSpeed * 10) * Time.fixedDeltaTime);
-        }
+        float rotationAmount = rotationSpeed * Time.fixedDeltaTime;
+        rb.MoveRotation(rb.rotation + (direction == 0 ? rotationAmount : -rotationAmount));
     }
 }

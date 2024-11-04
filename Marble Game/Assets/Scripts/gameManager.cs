@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private void xpLossAnim(float reduction)
     {
-        Debug.Log(reduction);
         xpModLossText.text = "-" + Mathf.RoundToInt(reduction * 100).ToString() + "%";
         xpModLossAnim.Play("Activated", -1, 0f);
         xpModLossAnim.Play("Activated");
