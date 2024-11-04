@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TMP_Text lvlText;
     [SerializeField] private TMP_Text shardText;
     [SerializeField] private Image xpBar;
-    [SerializeField] private TMP_Text xpLossText;
     [SerializeField] private TMP_Text modifierText;
     [SerializeField] private TMP_Text xpModLossText;
     [SerializeField] private Animator xpModLossAnim;
@@ -69,7 +68,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         if (curXp >= nextLevelXp)
         {
-            Debug.Log("Gained a level, and with it a Shard!");
             curXp -= nextLevelXp;
             level++;
             shards++;
@@ -80,14 +78,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void grantXp()
     {
-        if (xpModifier == previousXpModifier)
+        if (Mathf.Approximately(xpModifier, previousXpModifier))
         {
             xpModifier += xpModBonus;
         }
 
         float addedXP = (100 + (level * 50)) * xpModifier;
         curXp += addedXP;
-        //xpLossText.text = (100-(xpModifier*100)).ToString("0.0") + "% of experience was lost due to collision with foes.";
         
         if (xpModifier < 1)
         {

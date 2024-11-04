@@ -517,7 +517,7 @@ MonoBehaviour:
   shards: 0
   xpModifier: 1
   previousXpModifier: 0
-  xpModBonus: 0
+  xpModBonus: 0.05
   nextLevelXp: 0
   menuOpen: 1
   titleText: {fileID: 299108106}
@@ -525,7 +525,6 @@ MonoBehaviour:
   lvlText: {fileID: 1467380336}
   shardText: {fileID: 659126946}
   xpBar: {fileID: 1831882362}
-  xpLossText: {fileID: 654575006}
   modifierText: {fileID: 2088423350}
   xpModLossText: {fileID: 707222129}
   xpModLossAnim: {fileID: 707222131}
