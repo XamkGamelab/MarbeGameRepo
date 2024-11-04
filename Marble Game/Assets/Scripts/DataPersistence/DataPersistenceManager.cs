@@ -37,9 +37,9 @@ public class DataPersistenceManager : MonoBehaviour
         }
     }
 
-    private void NewGame()
+    private GameData NewGame()
     {
-        this.gameData = new GameData();
+        return new GameData();
     }
 
     private void LoadGame()
@@ -49,8 +49,10 @@ public class DataPersistenceManager : MonoBehaviour
         if (this.gameData == null)
         {
             Debug.Log("No saved data was found, initializing with default values");
-            NewGame();
+            gameData = NewGame();
         }
+
+        
         //pass data to other scripts so it can be used
         foreach (IDataPersistence dataPersistence in dataPersistences)
         {

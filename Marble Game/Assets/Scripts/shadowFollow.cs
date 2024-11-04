@@ -16,11 +16,12 @@ public class shadowFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position = parent.transform.position + offset;
-        
+
         if (!parent)
         {
             Destroy(gameObject);
         }
+        else
+        transform.position = parent.transform.position + offset;
     }
 }
