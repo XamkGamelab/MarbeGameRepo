@@ -75,6 +75,7 @@ public class loadManager : MonoBehaviour
             //Enable UI
             if (transitionIn)
             {
+                generationText.text = "Generating Level...";
                 loadingUI.SetActive(true);
                 xpLossText.SetActive(true);
                 menuButtonHolder.SetActive(true);
@@ -149,5 +150,6 @@ public class loadManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         continueButton.SetActive(true);
         player.GetComponent<PlayerController>().firstMove = true;
+        generationText.text = "Generation Complete!";
     }
 }
