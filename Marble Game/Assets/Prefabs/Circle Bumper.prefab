@@ -332,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   sfxName:
   - Twang_a
   - Twang_b
