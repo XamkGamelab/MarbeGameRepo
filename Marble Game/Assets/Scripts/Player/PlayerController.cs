@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using System.Data;
 using UnityEditor;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [Header("Constant Variables")]
     private const float speedHardLimit = 30f;
@@ -30,12 +30,14 @@ public class PlayerController : MonoBehaviour
     private float curFreeze;
     private bool isStunned;
     private bool isFrozen;
+    public int activeSkin { get; private set; } = 1;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip[] animations;
     [SerializeField] private ParticleSystem stunParticle;
     [SerializeField] private ParticleSystem freezeParticle;
     [SerializeField] private SpriteRenderer freezeOverlay;
@@ -238,6 +240,23 @@ public class PlayerController : MonoBehaviour
             isFrozen = true;
             freezeParticle.Play();
         }
+    }
+
+    public void ChangeSkin(int _newSkinNumber)
+    {
+        animator.Play(animations[_newSkinNumber].name);
+        activeSkin = _newSkinNumber;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.activeSkin = data.activeSkin;
+        animator.Play(animations[activeSkin].name);
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.activeSkin = this.activeSkin;
     }
 
     #endregion
