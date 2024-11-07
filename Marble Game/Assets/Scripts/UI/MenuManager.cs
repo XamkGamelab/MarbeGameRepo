@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject shopObject;
     [SerializeField] private Sprite[] skins;
     [Range(1, 50)][SerializeField] int[] skinPrices;
+    private Color equippedColor = new Color(0.41568627451f, 0.76470588235f , 0.7294117647f, 0.5f);
+    private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 0.5f);
     private bool[] skinsOwned;
     private int skinsAmount;
+    [SerializeField] private TextMeshProUGUI shardsText;
 
     void Awake()
     {
@@ -58,17 +62,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             lockerButton.onClick.AddListener(() => EquippedItem(saveIndex));
             if (!skinsOwned[i])
             {
-                lockerButton.enabled = false;
+                lockerButton.interactable = false;
                 addToLocker.transform.GetChild(0).gameObject.SetActive(true);
             }
             else if (skinsOwned[i] && playerController.activeSkin == i)
             {
-                lockerButton.enabled = false;
+                lockerButton.interactable = false;
+                var newColorBlock = lockerButton.colors;
+                newColorBlock.disabledColor = equippedColor;
+                lockerButton.colors = newColorBlock;
                 addToLocker.transform.GetChild(1).gameObject.SetActive(true);
             }
             else
             {
-                lockerButton.enabled = true;
+                lockerButton.interactable = true;
             }
         }
     }
@@ -88,6 +95,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     {
         shopMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
+        UpdateShards();
 
         for (int i = 0; i < skins.Length; i++)
         {
@@ -99,10 +107,24 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             Button shopButton = addToShop.GetComponent<Button>();
             GameObject ownedCover = addToShop.transform.GetChild(0).gameObject;
             shopButton.onClick.AddListener(() => BoughtItem(saveIndex, skinPrices[saveIndex], ownedCover));
-            if (!skinsOwned[i])
+            if (skinsOwned[i])
             {
-                shopButton.enabled = true;
+                shopButton.interactable = false;
+                ownedCover.SetActive(true);
+                var newColorBlock = shopButton.colors;
+                newColorBlock.disabledColor = equippedColor;
+                shopButton.colors = newColorBlock;
+            }
+            else if (skinPrices[i] > GameManager.Management.shards)
+            {
+                shopButton.interactable = false;
+                shopButton.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                shopButton.interactable = true;
                 ownedCover.SetActive(false);
+                shopButton.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
     }
@@ -137,21 +159,30 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         for (int i = 0; i < skinsAmount; i++)
         {
             GameObject lockerItem = lockerItemHolder.transform.GetChild(i).gameObject;
+            Button thisButton = lockerItem.GetComponent<Button>();
             if (i != _equippedIndex && skinsOwned[i])
             {
                 //ugly ass way to do this but honestly i ran out of good ideas
                 lockerItem.transform.GetChild(0).gameObject.SetActive(false);
                 lockerItem.transform.GetChild(1).gameObject.SetActive(false);
-                lockerItem.transform.gameObject.GetComponent<Button>().enabled = true;
+                thisButton.interactable = true;
+                var newColorBlock = thisButton.colors;
+                newColorBlock.disabledColor = disabledColor;
+                thisButton.colors = newColorBlock;
             }
             else if (i == _equippedIndex)
             {
                 lockerItem.transform.GetChild(1).gameObject.SetActive(true);
+                var newColorBlock = thisButton.colors;
+                newColorBlock.disabledColor = equippedColor;
+                thisButton.colors = newColorBlock;
+                thisButton.interactable = false;
             }
             else
             {
                 lockerItem.transform.GetChild(0).gameObject.SetActive(true);
                 lockerItem.transform.GetChild(1).gameObject.SetActive(false);
+                thisButton.interactable = false;
             }
         }
     }
@@ -163,7 +194,13 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             GameManager.Management.shards -= _skinPrice;
             skinsOwned[_buttonNumber] = true;
             _ownedCover.SetActive(true);
+            UpdateShards();
         }
+    }
+
+    private void UpdateShards()
+    {
+        shardsText.text = GameManager.Management.shards.ToString();
     }
 
     public void LoadData(GameData data)

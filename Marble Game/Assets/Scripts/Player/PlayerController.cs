@@ -244,8 +244,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void ChangeSkin(int _newSkinNumber)
     {
-        Debug.Log($"chose animation number {_newSkinNumber}");
-        Debug.Log($"animation count: {animations.Length}");
         animator.Play(animations[_newSkinNumber].name);
         activeSkin = _newSkinNumber;
     }
