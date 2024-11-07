@@ -11,6 +11,7 @@ public class GameData
     public float xpModifier;
     public List<bool> skinsOwned;
     public int skinsAmount;
+    public int activeSkin;
 
     //constructor, ran on starting new game
     public GameData()
@@ -19,7 +20,7 @@ public class GameData
         this.xp = 0;
         this.shards = 0;
         this.xpModifier = 1;
-        this.skinsOwned = new List<bool> { false };
         this.skinsAmount = 0;
+        this.activeSkin = 1;
     }
 }

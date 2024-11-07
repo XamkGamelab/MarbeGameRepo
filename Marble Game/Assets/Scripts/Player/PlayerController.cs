@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using System.Data;
 using UnityEditor;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [Header("Constant Variables")]
     private const float speedHardLimit = 30f;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private float curFreeze;
     private bool isStunned;
     private bool isFrozen;
+    public int activeSkin { get; private set; } = 1;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
@@ -246,6 +247,18 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"chose animation number {_newSkinNumber}");
         Debug.Log($"animation count: {animations.Length}");
         animator.Play(animations[_newSkinNumber].name);
+        activeSkin = _newSkinNumber;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.activeSkin = data.activeSkin;
+        animator.Play(animations[activeSkin].name);
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.activeSkin = this.activeSkin;
     }
 
     #endregion

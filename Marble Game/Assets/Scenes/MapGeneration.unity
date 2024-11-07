@@ -562,12 +562,14 @@ MonoBehaviour:
   lockerItemHolder: {fileID: 1371768496}
   shopItemHolder: {fileID: 374459968}
   lockerObject: {fileID: 7233142850844989008, guid: 9e3486abb6d9fad42bec43cf4a600248, type: 3}
+  shopObject: {fileID: 7233142850844989008, guid: b5c2244236aa9c64f965cc6143f8e007, type: 3}
   skins:
   - {fileID: -1602506401, guid: 1e70b0dfae06a5d42bd87837c7e99030, type: 3}
   - {fileID: -887662427, guid: 58301468d070b354aa20b727be97cde1, type: 3}
   - {fileID: 1537374170, guid: 6cfc10e86b78b5d4bba6093139ecd043, type: 3}
   - {fileID: 2088015828, guid: 6e36020d00922e144a31b804f4256259, type: 3}
   - {fileID: 1887953095, guid: 100d805826335454082b1640f79ad4ac, type: 3}
+  skinPrices: 05000000000000000a000000050000000a000000
 --- !u!1 &145876456
 GameObject:
   m_ObjectHideFlags: 0
