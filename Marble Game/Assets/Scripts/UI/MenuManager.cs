@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
     [SerializeField] private GameObject shopMenu;
     [SerializeField] private GameObject settingsMenu;
@@ -40,9 +41,13 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
         for (int i = 0; i < skins.Length; i++)
         {
-            GameObject addToLocker = lockerObject;
+            int saveIndex = i;
+            //instantiate menu buttons, change their sprites to match
+            GameObject addToLocker = Instantiate(lockerObject, lockerItemHolder.transform);
             addToLocker.GetComponent<Image>().sprite = skins[i];
-            Instantiate(addToLocker, lockerItemHolder.transform);
+            //add listener to mennu button component: on click, call ChangeSkin from PlayerController
+            //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
+            addToLocker.GetComponent<Button>().onClick.AddListener(() => playerController.ChangeSkin(saveIndex));
         }
     }
 
@@ -89,6 +94,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     {
         settingsMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
+    }
+
+    private void lockerButtonClicked(int _buttonNumber)
+    {
+
     }
 
     public void LoadData(GameData data)

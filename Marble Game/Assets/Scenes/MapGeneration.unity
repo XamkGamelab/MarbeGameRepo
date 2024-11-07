@@ -554,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a32d3e6cfd1ec049ab5633af0e2827c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 977093991}
   lockerMenu: {fileID: 818768016}
   shopMenu: {fileID: 1893389122}
   settingsMenu: {fileID: 1364516854}
@@ -6889,7 +6890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200.00003}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &638138502
@@ -7912,6 +7913,12 @@ MonoBehaviour:
   rb: {fileID: 977093990}
   collider2d: {fileID: 0}
   animator: {fileID: 977093988}
+  animations:
+  - {fileID: 7400000, guid: 5b684727d9038be4ea8afcbb7472184f, type: 2}
+  - {fileID: 7400000, guid: 2c7017996d680d841a840bdc66b3ba7d, type: 2}
+  - {fileID: 7400000, guid: e5de63e682d6a5c44a5afff448d4feff, type: 2}
+  - {fileID: 7400000, guid: 5ae8be0a937db714ea552f1fc956979c, type: 2}
+  - {fileID: 7400000, guid: 111439b7f412bc64bae6ee8031e757bd, type: 2}
   stunParticle: {fileID: 1391835031}
   freezeParticle: {fileID: 7992143265788582032}
   freezeOverlay: {fileID: 1143646472}
@@ -8068,7 +8075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200.00003}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986233543
@@ -11710,7 +11717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200.00003}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042774245

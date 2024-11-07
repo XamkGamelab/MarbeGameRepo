@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip[] animations;
     [SerializeField] private ParticleSystem stunParticle;
     [SerializeField] private ParticleSystem freezeParticle;
     [SerializeField] private SpriteRenderer freezeOverlay;
@@ -238,6 +239,13 @@ public class PlayerController : MonoBehaviour
             isFrozen = true;
             freezeParticle.Play();
         }
+    }
+
+    public void ChangeSkin(int _newSkinNumber)
+    {
+        Debug.Log($"chose animation number {_newSkinNumber}");
+        Debug.Log($"animation count: {animations.Length}");
+        animator.Play(animations[_newSkinNumber].name);
     }
 
     #endregion
