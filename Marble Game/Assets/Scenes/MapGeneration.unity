@@ -507,7 +507,7 @@ MonoBehaviour:
   isTransitioning: 0
   splashScreen: {fileID: 1288709769}
   splashScreenDelay: 2
-  advertChance: 1
+  advertChance: 0.1
   advertControl: {fileID: 1342755618}
   inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
   cameraBehavior: {fileID: 1345540965}
@@ -9144,8 +9144,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: -120}
-  m_SizeDelta: {x: 90, y: 120}
+  m_AnchoredPosition: {x: 90, y: -90}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036758669
 MonoBehaviour:
