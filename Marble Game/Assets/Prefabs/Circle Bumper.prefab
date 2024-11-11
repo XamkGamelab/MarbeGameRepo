@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: -1593799286979362301}
   - component: {fileID: 9180007284117706169}
   - component: {fileID: 2749059804563693098}
+  - component: {fileID: -5759584030621771245}
   m_Layer: 7
   m_Name: Circle Bumper
   m_TagString: EndDestroy
@@ -353,6 +354,19 @@ MonoBehaviour:
   trigger: 0
   animationName: BumperUp
   anim: {fileID: 3559189273196156327}
+--- !u!114 &-5759584030621771245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868091383258313848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca5a4a61e9eed946b82faf0d13e0ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
 --- !u!1001 &4481096959695734876
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 3327290393937157802}
   - component: {fileID: 3584832155388431261}
   - component: {fileID: 3138225458153954343}
+  - component: {fileID: 1201777615960943269}
   m_Layer: 8
   m_Name: Ghost Enemy
   m_TagString: EndDestroy
@@ -400,6 +401,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1201777615960943269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675577235514467126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca5a4a61e9eed946b82faf0d13e0ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
 --- !u!1001 &5732184355678048431
 PrefabInstance:
   m_ObjectHideFlags: 0

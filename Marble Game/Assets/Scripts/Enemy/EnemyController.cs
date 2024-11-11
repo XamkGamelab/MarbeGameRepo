@@ -54,9 +54,11 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 speed = rb.velocity;
+        enemyAnimator.speed = speed.magnitude;
         if (canMove)
         {
-            Vector2 speed = rb.velocity;
+            
 
             //timer
             if (timing || canWander)
@@ -83,9 +85,7 @@ public class EnemyController : MonoBehaviour
                 playerLoc = player.transform.position;
                 delaying = true;
             }
-
-            enemyAnimator.speed = speed.magnitude;
-
+            
             if (speed.magnitude > 0.1f)
             {
                 rb.MoveRotation(Vector2.SignedAngle(Vector2.up, speed.normalized));

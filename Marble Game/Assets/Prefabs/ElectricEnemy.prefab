@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: -7461667851622459398}
   - component: {fileID: 3906282335778473828}
   - component: {fileID: 1627811865206410540}
+  - component: {fileID: -5849510434321206180}
   m_Layer: 8
   m_Name: ElectricEnemy
   m_TagString: EndDestroy
@@ -398,6 +399,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5849510434321206180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968164225328612435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca5a4a61e9eed946b82faf0d13e0ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
 --- !u!1001 &682015911296132606
 PrefabInstance:
   m_ObjectHideFlags: 0

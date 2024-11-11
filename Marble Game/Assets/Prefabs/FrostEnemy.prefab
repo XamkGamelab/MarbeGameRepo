@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 7115433534905015888}
   - component: {fileID: -5647148845220286436}
   - component: {fileID: -3364995146011684189}
+  - component: {fileID: -2460896158059194166}
   m_Layer: 8
   m_Name: FrostEnemy
   m_TagString: EndDestroy
@@ -399,6 +400,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2460896158059194166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968164225328612435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca5a4a61e9eed946b82faf0d13e0ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
 --- !u!1 &8944743134609218584
 GameObject:
   m_ObjectHideFlags: 0
