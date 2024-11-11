@@ -6,6 +6,7 @@ using UnityEngine;
 public class audioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource mainMusic;
+    [SerializeField] private AudioSource defaultSource;
     private float mainMusicVolume;
     public static audioManager Management {get; private set;}
     public LabeledAudioClip[] audioClips;
@@ -34,6 +35,20 @@ public class audioManager : MonoBehaviour
             if (labeledClip.label == label)
             {
                 source.PlayOneShot(labeledClip.clip);
+                return;
+            }
+        }
+        
+        Debug.LogWarning("Audio clip with label " + label + " not found.");
+    }
+    
+    public void PlaySimpleClip(string label)
+    {
+        foreach (LabeledAudioClip labeledClip in audioClips)
+        {
+            if (labeledClip.label == label)
+            {
+                defaultSource.PlayOneShot(labeledClip.clip);
                 return;
             }
         }

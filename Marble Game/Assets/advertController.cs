@@ -29,6 +29,7 @@ public class advertController : MonoBehaviour
 
     public void closeAd()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         advert.SetActive(false);
     }
     

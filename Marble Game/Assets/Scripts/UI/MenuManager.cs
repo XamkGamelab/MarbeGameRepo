@@ -51,6 +51,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void OpenLocker()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         lockerMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
 
@@ -86,6 +87,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void CloseLocker()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         lockerMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
         for (int i = 0; i < skins.Length; i++)
@@ -97,6 +99,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void OpenShop()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         shopMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
         UpdateShards();
@@ -141,6 +144,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void CloseShop()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         shopMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
         for (int i = 0; i < skins.Length; i++)
@@ -152,18 +156,21 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void OpenSettings()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         settingsMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
     }
 
     public void CloseSettings()
     {
+        audioManager.Management.PlaySimpleClip("Click");
         settingsMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
     }
 
     private void EquippedItem(int _equippedIndex)
     {
+        audioManager.Management.PlaySimpleClip("Click");
         if (!skinsOwned[_equippedIndex]) return;
         playerController.ChangeSkin(_equippedIndex);
         for (int i = 0; i < skinsAmount; i++)
@@ -199,6 +206,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     private void BoughtItem(int _buttonNumber, int _skinPrice, GameObject _ownedCover)
     {
+        audioManager.Management.PlaySimpleClip("Click");
         if (GameManager.Management.shards >= _skinPrice)
         {
             GameManager.Management.shards -= _skinPrice;
