@@ -29,6 +29,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         for (int i = 0; i < skinsOwned.Length; i++)
         {
             skinsOwned[i] = false;
+            if (playerController.activeSkin == i)
+            {
+                skinsOwned[i] = true;
+            }
         }
         skinsAmount = skinsOwned.Length;
     }
@@ -102,9 +106,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             int saveIndex = i;
             GameObject addToShop = Instantiate(shopObject, shopItemHolder.transform);
             addToShop.GetComponent<Image>().sprite = skins[i];
-            //add listener to mennu button component: on click, call ChangeSkin from PlayerController
+            //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
             Button shopButton = addToShop.GetComponent<Button>();
+            TextMeshProUGUI buttonTxt = shopButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             GameObject ownedCover = addToShop.transform.GetChild(0).gameObject;
             shopButton.onClick.AddListener(() => BoughtItem(saveIndex, skinPrices[saveIndex], ownedCover));
             if (skinsOwned[i])
@@ -114,17 +119,22 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 var newColorBlock = shopButton.colors;
                 newColorBlock.disabledColor = equippedColor;
                 shopButton.colors = newColorBlock;
+                shopButton.transform.GetChild(1).gameObject.SetActive(false);
             }
             else if (skinPrices[i] > GameManager.Management.shards)
             {
                 shopButton.interactable = false;
                 shopButton.transform.GetChild(1).gameObject.SetActive(true);
+                buttonTxt.text = skinPrices[saveIndex].ToString();
+                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
             else
             {
                 shopButton.interactable = true;
                 ownedCover.SetActive(false);
-                shopButton.transform.GetChild(1).gameObject.SetActive(false);
+                shopButton.transform.GetChild(1).gameObject.SetActive(true);
+                buttonTxt.text = skinPrices[saveIndex].ToString();
+                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
         }
     }
@@ -196,6 +206,38 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             _ownedCover.SetActive(true);
             UpdateShards();
         }
+
+        for (int i = 0; i < skins.Length; i++)
+        {
+            int saveIndex = i;
+            Button shopButton = shopItemHolder.transform.GetChild(i).GetComponent<Button>();
+            TextMeshProUGUI buttonTxt = shopButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+            GameObject ownedCover = shopButton.transform.GetChild(0).gameObject;
+            if (skinsOwned[i])
+            {
+                shopButton.interactable = false;
+                ownedCover.SetActive(true);
+                var newColorBlock = shopButton.colors;
+                newColorBlock.disabledColor = equippedColor;
+                shopButton.colors = newColorBlock;
+                shopButton.transform.GetChild(1).gameObject.SetActive(false);
+            }
+            else if (skinPrices[i] > GameManager.Management.shards)
+            {
+                shopButton.interactable = false;
+                shopButton.transform.GetChild(1).gameObject.SetActive(true);
+                buttonTxt.text = skinPrices[saveIndex].ToString();
+                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
+            }
+            else
+            {
+                shopButton.interactable = true;
+                ownedCover.SetActive(false);
+                shopButton.transform.GetChild(1).gameObject.SetActive(true);
+                buttonTxt.text = skinPrices[saveIndex].ToString();
+                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
+            }
+        }
     }
 
     private void UpdateShards()
@@ -205,7 +247,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if (data.skinsOwned.Count == 0 || data.skinsOwned == null) return;
+        if (data.skinsOwned == null || data.skinsOwned.Count == 0 )
+        {
+            Debug.Log("no data found by menumanager");
+            return;
+        }
         if (this.skinsAmount != data.skinsAmount)
         {
             List<bool> currentSkins = data.skinsOwned.ToList();
