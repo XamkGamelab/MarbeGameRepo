@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
 
         nextLevelXp = (level*(level/2) + 1) * 100;
-        xpText.text = Mathf.RoundToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
+        xpText.text = Mathf.FloorToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
         lvlText.text = (level+1).ToString();
         shardText.text = shards.ToString();
 

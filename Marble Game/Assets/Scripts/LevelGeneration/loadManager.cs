@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class loadManager : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class loadManager : MonoBehaviour
     [SerializeField] private float splashScreenDelay;
     private float curDelaySplashScreen;
 
+    [Header("Advertising")]
+    [SerializeField] [Range(0, 1)] private float advertChance;
+    [SerializeField] private advertController advertControl;
+    
     [Header("Input System")]
     [SerializeField] private InputReader inputReader;
 
@@ -70,11 +75,17 @@ public class loadManager : MonoBehaviour
             }
         } else if (curDelay > -1)
         {
-            curDelay = -1;
-            
             //Enable UI
             if (transitionIn)
             {
+                curDelay = -1;
+
+                float advertRng = Random.Range(0f, 1f);
+                if (advertRng <= advertChance && !startScreen)
+                {
+                    advertControl.startAdvert();
+                }
+                
                 generationText.text = "Generating Level...";
                 loadingUI.SetActive(true);
                 xpLossText.SetActive(true);
