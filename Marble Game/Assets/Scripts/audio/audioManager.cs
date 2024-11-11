@@ -1,12 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class audioManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource mainMusic;
+    private float mainMusicVolume;
     public static audioManager Management {get; private set;}
     public LabeledAudioClip[] audioClips;
-    
+
+    private void Update()
+    {
+        if (mainMusicVolume < 1)
+        {
+            mainMusicVolume += Time.deltaTime;
+            mainMusic.volume = mainMusicVolume;
+        }
+    }
+
     private void Awake()
     {
         if (Management == null)
