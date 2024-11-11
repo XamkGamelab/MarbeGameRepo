@@ -10,8 +10,11 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject player;
     private Animator enemyAnimator;
+    [SerializeField] private AnimationClip[] animations;
     [SerializeField] private bool canWander;
     public bool canMove;
+
+    private Color32 enemyColor = new(255, 177, 177, 255);
 
     [Header("Dynamic Variables")]
     private Vector3 playerLoc = Vector3.zero;
@@ -45,6 +48,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         checkForPlayer = StartCoroutine(CheckForPlayer());
+        enemyAnimator.Play(animations[Random.Range(0, animations.Length)].name);
+        GetComponent<SpriteRenderer>().color = enemyColor;
     }
 
     void FixedUpdate()
