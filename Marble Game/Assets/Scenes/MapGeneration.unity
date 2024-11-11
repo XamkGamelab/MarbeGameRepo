@@ -507,7 +507,7 @@ MonoBehaviour:
   isTransitioning: 0
   splashScreen: {fileID: 1288709769}
   splashScreenDelay: 2
-  advertChance: 0.1
+  advertChance: 1
   advertControl: {fileID: 1342755618}
   inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
   cameraBehavior: {fileID: 1345540965}
@@ -9144,8 +9144,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120, y: -120}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchoredPosition: {x: 90, y: -120}
+  m_SizeDelta: {x: 90, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036758669
 MonoBehaviour:
@@ -10206,11 +10206,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
+  - {fileID: 21300000, guid: 08cd679ae60bae34395167a92055241d, type: 3}
   links:
   - https://portfolio.gamelab.fi/mikko.anttila/Website/index.html
   - https://portfolio.gamelab.fi/veera.raita/projects/
   - https://paperscollisions.carrd.co/
-  - 
+  - https://portfolio.gamelab.fi/roni.sundstrom/
+  - https://en.wikipedia.org/wiki/Cat
   advert: {fileID: 974602419}
 --- !u!1 &1345540962
 GameObject:

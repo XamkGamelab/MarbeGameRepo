@@ -22,7 +22,7 @@ public class advertController : MonoBehaviour
     {
         if (links[currentAd] != null || links[currentAd] != "")
         {
-            Application.OpenURL(links[0]);
+            Application.OpenURL(links[currentAd]);
             Debug.Log("Should open: " + links[currentAd].ToString());
         }
     }
