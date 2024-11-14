@@ -2,14 +2,19 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour, IDataPersistence
 {
+    [Header("UI")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
     [SerializeField] private GameObject shopMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private GameObject deleteConfirm;
+    [SerializeField] private GameObject deletedPopup;
     [SerializeField] private GameObject menuButtonHolder;
     [SerializeField] private GameObject lockerItemHolder;
     [SerializeField] private GameObject shopItemHolder;
@@ -22,6 +27,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private bool[] skinsOwned;
     private int skinsAmount;
     [SerializeField] private TextMeshProUGUI shardsText;
+
+    [Header("Volume")]
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private AudioMixer volumeMaster;
 
     void Awake()
     {
@@ -40,13 +49,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetVolume(PlayerPrefs.GetFloat("SavedVolume", 100));
     }
 
     public void OpenLocker()
@@ -168,6 +171,45 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         menuButtonHolder.SetActive(true);
     }
 
+    public void OpenCredits()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        creditsMenu.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        creditsMenu.SetActive(false);
+    }
+
+    public void OpenConfirmDelete()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        deleteConfirm.SetActive(true);
+    }
+
+    public void CloseConfirmDelete()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        deleteConfirm.SetActive(false);
+    }
+
+    public void DeleteData()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        DataPersistenceManager.instance.dataHandler.DeleteData();
+        DataPersistenceManager.instance.LoadGame();
+        deletedPopup.SetActive(true);
+        deleteConfirm.SetActive(false);
+    }
+
+    public void CloseDeletePopup()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        deletedPopup.SetActive(false);
+    }
+
     private void EquippedItem(int _equippedIndex)
     {
         audioManager.Management.PlaySimpleClip("Click");
@@ -251,6 +293,28 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private void UpdateShards()
     {
         shardsText.text = GameManager.Management.shards.ToString();
+    }
+
+    private void SetVolume(float _vol)
+    {
+        if (_vol < 1f)
+        {
+            _vol = 0.0001f;
+        }
+        
+        RefreshSlider(_vol);
+        PlayerPrefs.SetFloat("SavedVolume", _vol);
+        volumeMaster.SetFloat("MasterVolume", Mathf.Log10(_vol / 100) * 20f);
+    }
+
+    public void SetVolFromSlider()
+    {
+        SetVolume(volumeSlider.value);
+    }
+
+    private void RefreshSlider(float _vol)
+    {
+        volumeSlider.value = _vol;
     }
 
     public void LoadData(GameData data)

@@ -7,7 +7,7 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
-    private FileDataHandler dataHandler;
+    public FileDataHandler dataHandler { get; private set; }
     private List<IDataPersistence> dataPersistences;
     private GameData gameData;
     public static DataPersistenceManager instance { get; private set; }
@@ -28,21 +28,12 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    //REMOVE THIS FOR RELEASE
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            dataHandler.DeleteData();
-        }
-    }
-
     private GameData NewGame()
     {
         return new GameData();
     }
 
-    private void LoadGame()
+    public void LoadGame()
     {
         //load saved data from file using datahandler, no data returns null
         this.gameData = dataHandler.Load();
