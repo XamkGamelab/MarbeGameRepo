@@ -6583,7 +6583,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -200, y: 100}
+  m_SizeDelta: {x: -100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333019067
 MonoBehaviour:
@@ -6634,8 +6634,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86
-  m_fontSizeBase: 86
+  m_fontSize: 82
+  m_fontSizeBase: 82
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6832,7 +6832,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -200, y: 100}
+  m_SizeDelta: {x: -100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376647222
 MonoBehaviour:
@@ -6856,7 +6856,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mikko Anttila
 
-    Programming, Design'
+    Programming, Design, HUD'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
   m_sharedMaterial: {fileID: 6435981882987293802, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
@@ -6883,8 +6883,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86
-  m_fontSizeBase: 86
+  m_fontSize: 82
+  m_fontSizeBase: 82
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7307,7 +7307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &389783321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7537,7 +7537,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -200, y: 100}
+  m_SizeDelta: {x: -100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &456887601
 MonoBehaviour:
@@ -7561,7 +7561,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Roni Sundstrom
 
-    UI Assets'
+    Menu Assets'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
   m_sharedMaterial: {fileID: 6435981882987293802, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
@@ -7588,8 +7588,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86
-  m_fontSizeBase: 86
+  m_fontSize: 82
+  m_fontSizeBase: 82
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7976,10 +7976,10 @@ RectTransform:
   - {fileID: 376647221}
   m_Father: {fileID: 2095506056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441.9098, y: -170}
-  m_SizeDelta: {x: 883.8196, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609893644
 MonoBehaviour:
@@ -10160,10 +10160,10 @@ RectTransform:
   - {fileID: 333019066}
   m_Father: {fileID: 2095506056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441.9098, y: -546}
-  m_SizeDelta: {x: 883.8196, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006365176
 MonoBehaviour:
@@ -12369,10 +12369,10 @@ RectTransform:
   - {fileID: 456887600}
   m_Father: {fileID: 2095506056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441.9098, y: -1298}
-  m_SizeDelta: {x: 883.8196, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413449380
 MonoBehaviour:
@@ -12445,10 +12445,10 @@ RectTransform:
   - {fileID: 1888200153}
   m_Father: {fileID: 2095506056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441.9098, y: -922}
-  m_SizeDelta: {x: 883.8196, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422711548
 MonoBehaviour:
@@ -14658,7 +14658,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -200, y: 100}
+  m_SizeDelta: {x: -100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888200154
 MonoBehaviour:
@@ -14682,7 +14682,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Veera Raita
 
-    Programming, UI'
+    Programming, Menu UI'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
   m_sharedMaterial: {fileID: 6435981882987293802, guid: 14687b418cd452647bf6bff84f901a52, type: 2}
@@ -14709,8 +14709,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86
-  m_fontSizeBase: 86
+  m_fontSize: 82
+  m_fontSizeBase: 82
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
