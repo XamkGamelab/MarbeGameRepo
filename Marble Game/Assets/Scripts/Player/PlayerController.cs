@@ -146,6 +146,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void resetConditions()
+    {
+        curFreeze = 0;
+        curStun = 0;
+    }
+
     #endregion
 
     #region other methods

@@ -11,6 +11,8 @@ public class loadManager : MonoBehaviour
     public static loadManager Management {get; private set;}
     [Header("Variables")]
     [SerializeField] private GameObject player;
+
+    private PlayerController playerControl;
     
     [Header("UI")]
     [SerializeField] private Image fadeToBlack;
@@ -50,6 +52,7 @@ public class loadManager : MonoBehaviour
     {
         Management = this;
         splashScreen.color = new Color(1, 1, 1, 1);
+        playerControl = player.GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -154,13 +157,15 @@ public class loadManager : MonoBehaviour
         GameManager.Management.menuOpen = false;
         inputReader.SetGameplay();
         cameraBehavior.DefaultOffset();
+        playerControl.resetConditions();
     }
     
     private IEnumerator enableContinue()
     {
         yield return new WaitForSeconds(0.2f);
         continueButton.SetActive(true);
-        player.GetComponent<PlayerController>().firstMove = true;
+        playerControl.firstMove = true;
         generationText.text = "Generation Complete!";
+        playerControl.resetConditions();
     }
 }
