@@ -24,9 +24,6 @@ public class FileDataHandler
         //using path.combine to account for differing file systems
         string fullPath = Path.Combine(dataDirPath, "saves", dataFileName);
         File.Delete(fullPath);
-        GameManager.Management.curXp = 0;
-        GameManager.Management.level = 0;
-        GameManager.Management.shards = 0;
     }
 
     public GameData Load()
