@@ -51,7 +51,7 @@ public class loadManager : MonoBehaviour
     private void Awake()
     {
         Management = this;
-        splashScreen.color = new Color(1, 1, 1, 1);
+        splashScreen.color = new Color(splashScreen.color.r, splashScreen.color.g, splashScreen.color.b, 1);
         playerControl = player.GetComponent<PlayerController>();
     }
 
@@ -61,7 +61,7 @@ public class loadManager : MonoBehaviour
         if (startScreen == false && curDelaySplashScreen > 0)
         {
             curDelaySplashScreen -= Time.deltaTime;
-            splashScreen.color = new Color(1, 1, 1, 1*curDelaySplashScreen/totalDelay);
+            splashScreen.color = new Color(splashScreen.color.r, splashScreen.color.g, splashScreen.color.b, 1*curDelaySplashScreen/totalDelay);
         }
         
         

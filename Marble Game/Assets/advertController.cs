@@ -11,6 +11,7 @@ public class advertController : MonoBehaviour
     [SerializeField] private Sprite[] visuals;
     [SerializeField] private string[] links;
     [SerializeField] private GameObject advert;
+    [SerializeField] private GameObject advertHolder;
     private Image advertImage;
 
     private void Start()
@@ -30,13 +31,14 @@ public class advertController : MonoBehaviour
     public void closeAd()
     {
         audioManager.Management.PlaySimpleClip("Click");
-        advert.SetActive(false);
+        advertHolder.SetActive(false);
     }
     
     public void startAdvert()
     {
+        advertHolder.SetActive(true);
         currentAd = Random.Range(0, links.Length);
+        Debug.Log(currentAd);
         advertImage.sprite = visuals[currentAd];
-        advert.SetActive(true);
     }
 }
