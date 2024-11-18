@@ -326,6 +326,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         }
         if (this.skinsAmount != data.skinsAmount)
         {
+            Debug.Log("filling list with unowned skins");
             List<bool> currentSkins = data.skinsOwned.ToList();
             while (currentSkins.Count < data.skinsOwned.Count)
             {
