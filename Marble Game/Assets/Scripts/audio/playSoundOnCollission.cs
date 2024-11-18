@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 public class playSoundOnCollission : MonoBehaviour
@@ -11,6 +12,8 @@ public class playSoundOnCollission : MonoBehaviour
     private AudioSource source;
     [SerializeField] private bool Trigger = false;
     [SerializeField] private bool createSfxObject = false;
+    [SerializeField] private AudioMixerGroup mixer;
+    [SerializeField] private bool simpleSound;
 
     private void Awake()
     {
@@ -19,6 +22,14 @@ public class playSoundOnCollission : MonoBehaviour
             if (!source)
             {
                 source = gameObject.AddComponent<AudioSource>();
+                if (mixer)
+                {
+                    source.outputAudioMixerGroup = mixer;
+                }
+                else
+                {
+                    source.outputAudioMixerGroup = audioManager.Management.gameObject.GetComponent<AudioSource>().outputAudioMixerGroup;
+                }
                 source.spatialBlend = 1;
             }
         }
@@ -31,7 +42,14 @@ public class playSoundOnCollission : MonoBehaviour
             makeSfxObject();
             
             string randomizedString = sfxName[Random.Range(0, sfxName.Length)];
-            audioManager.Management.PlayClip(source, randomizedString);
+            if (!simpleSound)
+            {
+                audioManager.Management.PlayClip(source, randomizedString);
+            }
+            else
+            {
+                audioManager.Management.PlaySimpleClip(randomizedString);
+            }
         }
     }
 
@@ -42,7 +60,14 @@ public class playSoundOnCollission : MonoBehaviour
             makeSfxObject();
             
             string randomizedString = sfxName[Random.Range(0, sfxName.Length)];
-            audioManager.Management.PlayClip(source, randomizedString);
+            if (!simpleSound)
+            {
+                audioManager.Management.PlayClip(source, randomizedString);
+            }
+            else
+            {
+                audioManager.Management.PlaySimpleClip(randomizedString);
+            }
         }
     }
 
@@ -53,6 +78,14 @@ public class playSoundOnCollission : MonoBehaviour
             GameObject sfxObject = new GameObject("sfxObject");
             sfxObject.transform.parent = null;
             source = sfxObject.AddComponent<AudioSource>();
+            if (mixer)
+            {
+                source.outputAudioMixerGroup = mixer;
+            }
+            else
+            {
+                source.outputAudioMixerGroup = audioManager.Management.gameObject.GetComponent<AudioSource>().outputAudioMixerGroup;
+            }
             source.spatialBlend = 1;
             sfxObject.AddComponent<sfxObjectHandler>();
         }

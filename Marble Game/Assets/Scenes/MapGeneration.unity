@@ -9782,6 +9782,7 @@ MonoBehaviour:
   label: Marble_Roll
   maxSpeed: 30
   volume: 1
+  mixer: {fileID: 24300002, guid: 209c0835d8b7f9c4aaa8d12f3fa32152, type: 2}
 --- !u!114 &977093997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9801,6 +9802,8 @@ MonoBehaviour:
   - Marble_Hit
   Trigger: 0
   createSfxObject: 0
+  mixer: {fileID: 24300002, guid: 209c0835d8b7f9c4aaa8d12f3fa32152, type: 2}
+  simpleSound: 0
 --- !u!1 &986233541
 GameObject:
   m_ObjectHideFlags: 0

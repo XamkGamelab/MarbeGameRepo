@@ -294,6 +294,8 @@ MonoBehaviour:
   - Victory
   Trigger: 1
   createSfxObject: 1
+  mixer: {fileID: 24300002, guid: 209c0835d8b7f9c4aaa8d12f3fa32152, type: 2}
+  simpleSound: 1
 --- !u!114 &-8876340941736268176
 MonoBehaviour:
   m_ObjectHideFlags: 0
