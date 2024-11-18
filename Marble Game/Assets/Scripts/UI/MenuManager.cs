@@ -202,6 +202,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         DataPersistenceManager.instance.LoadGame();
         deletedPopup.SetActive(true);
         deleteConfirm.SetActive(false);
+        startFiller.filler.mapGeneration();
     }
 
     public void CloseDeletePopup()
