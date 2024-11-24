@@ -651,14 +651,41 @@ MonoBehaviour:
   lockerObject: {fileID: 7233142850844989008, guid: 9e3486abb6d9fad42bec43cf4a600248, type: 3}
   shopObject: {fileID: 7233142850844989008, guid: b5c2244236aa9c64f965cc6143f8e007, type: 3}
   skins:
-  - {fileID: -1602506401, guid: 1e70b0dfae06a5d42bd87837c7e99030, type: 3}
-  - {fileID: -887662427, guid: 58301468d070b354aa20b727be97cde1, type: 3}
-  - {fileID: 1537374170, guid: 6cfc10e86b78b5d4bba6093139ecd043, type: 3}
-  - {fileID: 2088015828, guid: 6e36020d00922e144a31b804f4256259, type: 3}
-  - {fileID: 1887953095, guid: 100d805826335454082b1640f79ad4ac, type: 3}
-  - {fileID: 1072222071, guid: e8b386b107e6c134685366e2eea9ba68, type: 3}
-  - {fileID: -1546909021, guid: 94b6c4c5d3e8f094e8068ae97488892f, type: 3}
-  skinPrices: 05000000000000000a000000050000000a0000000a0000000a000000
+  - <id>k__BackingField: 0
+    <price>k__BackingField: 5
+    <skinName>k__BackingField: 0
+    <sprite>k__BackingField: {fileID: -1602506401, guid: 1e70b0dfae06a5d42bd87837c7e99030, type: 3}
+    <owned>k__BackingField: 0
+  - <id>k__BackingField: 1
+    <price>k__BackingField: 10
+    <skinName>k__BackingField: 1
+    <sprite>k__BackingField: {fileID: 1072222071, guid: e8b386b107e6c134685366e2eea9ba68, type: 3}
+    <owned>k__BackingField: 0
+  - <id>k__BackingField: 2
+    <price>k__BackingField: 1
+    <skinName>k__BackingField: 2
+    <sprite>k__BackingField: {fileID: 1915103186, guid: 58301468d070b354aa20b727be97cde1, type: 3}
+    <owned>k__BackingField: 1
+  - <id>k__BackingField: 3
+    <price>k__BackingField: 10
+    <skinName>k__BackingField: 3
+    <sprite>k__BackingField: {fileID: -1546909021, guid: 94b6c4c5d3e8f094e8068ae97488892f, type: 3}
+    <owned>k__BackingField: 0
+  - <id>k__BackingField: 4
+    <price>k__BackingField: 7
+    <skinName>k__BackingField: 4
+    <sprite>k__BackingField: {fileID: 1537374170, guid: 6cfc10e86b78b5d4bba6093139ecd043, type: 3}
+    <owned>k__BackingField: 0
+  - <id>k__BackingField: 5
+    <price>k__BackingField: 6
+    <skinName>k__BackingField: 5
+    <sprite>k__BackingField: {fileID: 1000476527, guid: 6e36020d00922e144a31b804f4256259, type: 3}
+    <owned>k__BackingField: 0
+  - <id>k__BackingField: 6
+    <price>k__BackingField: 8
+    <skinName>k__BackingField: 6
+    <sprite>k__BackingField: {fileID: 1887953095, guid: 100d805826335454082b1640f79ad4ac, type: 3}
+    <owned>k__BackingField: 0
   shardsText: {fileID: 2129141558}
   volumeSlider: {fileID: 1612720845}
   volumeMaster: {fileID: 24100000, guid: 209c0835d8b7f9c4aaa8d12f3fa32152, type: 2}
@@ -9680,12 +9707,12 @@ MonoBehaviour:
   animator: {fileID: 977093988}
   animations:
   - {fileID: 7400000, guid: 5b684727d9038be4ea8afcbb7472184f, type: 2}
+  - {fileID: 7400000, guid: 6b267e4476f5919459e207885a7c8bd5, type: 2}
   - {fileID: 7400000, guid: 2c7017996d680d841a840bdc66b3ba7d, type: 2}
+  - {fileID: 7400000, guid: b855629c3a7bc5a4384284af15a24b91, type: 2}
   - {fileID: 7400000, guid: e5de63e682d6a5c44a5afff448d4feff, type: 2}
   - {fileID: 7400000, guid: 5ae8be0a937db714ea552f1fc956979c, type: 2}
   - {fileID: 7400000, guid: 111439b7f412bc64bae6ee8031e757bd, type: 2}
-  - {fileID: 7400000, guid: 6b267e4476f5919459e207885a7c8bd5, type: 2}
-  - {fileID: 7400000, guid: b855629c3a7bc5a4384284af15a24b91, type: 2}
   stunParticle: {fileID: 1391835031}
   freezeParticle: {fileID: 7992143265788582032}
   freezeOverlay: {fileID: 1143646472}
@@ -15797,7 +15824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -49.99994}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: -200, y: -900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2075607279

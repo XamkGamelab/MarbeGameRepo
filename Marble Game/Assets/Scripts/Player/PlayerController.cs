@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private float curFreeze;
     private bool isStunned;
     private bool isFrozen;
-    public int activeSkin { get; private set; } = 1;
+    public int activeSkin { get; private set; } = 2;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
