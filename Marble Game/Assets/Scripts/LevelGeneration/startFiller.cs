@@ -25,10 +25,11 @@ public class startFiller : MonoBehaviour
     public int walkerBounds;
     [SerializeField] private Tilemap wallMap;
     [SerializeField] private Tilemap floorMap;
+    [SerializeField] private Tilemap slowMap;
     
     [Header("Tiles")]
 
-    public RuleTile wallTile, floorTile;
+    public RuleTile wallTile, floorTile, slowTile;
     public static startFiller filler {get; private set;}
     
     [Header("Walker Data")]
@@ -56,6 +57,9 @@ public class startFiller : MonoBehaviour
     [SerializeField] private float moderateChance;
     [SerializeField] private GameObject[] hardObstacles;
     [SerializeField] private float hardChance;
+    private int burstCount;
+    private int burstSize;
+    private int burstRange;
 
     private bool openedGame = true;
     private void Awake()
@@ -181,6 +185,11 @@ public class startFiller : MonoBehaviour
         easyChance = 100;
         moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/3), 0, 75);
         hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/6), 0, 50);
+        
+        if (playerLevel > 3)
+        {
+            burstCount = Random.Range(0, Mathf.FloorToInt(playerLevel / 5)+1);
+        }
     }
     
 
@@ -229,6 +238,47 @@ public class startFiller : MonoBehaviour
             }
         }
     }
+    
+    private IEnumerator slowTileCanvas()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        slowMap.CompressBounds();
+        burstRange = Random.Range(2, 5);
+        burstSize = Random.Range(5+burstRange*2, 15+burstRange*2);
+
+        for (int i = 0; i < burstCount; i++)
+        {
+            // Ensure burst center is valid
+            Vector3Int burstCenter;
+            do
+            {
+                burstCenter = new Vector3Int(
+                    Random.Range(-Mathf.FloorToInt(sizeH / 2), Mathf.CeilToInt(sizeH / 2)),
+                    Random.Range(-vertOffset + 1, sizeV - vertOffset),
+                    0
+                );
+            } while (checkIsTile(burstCenter));
+
+            for (int j = 0; j < burstSize; j++)
+            {
+                // Generate a random position within the burst radius
+                float angle = Random.Range(0f, 2 * Mathf.PI);
+                float radius = Random.Range(0f, burstRange);
+                Vector3Int tilePos = new Vector3Int(
+                    Mathf.RoundToInt(burstCenter.x + Mathf.Cos(angle) * radius),
+                    Mathf.RoundToInt(burstCenter.y + Mathf.Sin(angle) * radius),
+                    0
+                );
+
+                if (!checkIsTile(tilePos) && checkBounds(tilePos))
+                {
+                    slowMap.SetTile(tilePos, slowTile);
+                }
+            }
+        }
+    }
+
 
     public void placeGoal()
     {
@@ -352,6 +402,7 @@ public class startFiller : MonoBehaviour
     }
 
     StartCoroutine("floorCanvas");
+    StartCoroutine("slowTileCanvas");
     }
     
     
@@ -390,5 +441,6 @@ public class startFiller : MonoBehaviour
     {
         wallMap.ClearAllTiles();
         floorMap.ClearAllTiles();
+        slowMap.ClearAllTiles();
     }
 }
