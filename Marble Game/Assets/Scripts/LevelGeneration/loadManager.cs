@@ -23,6 +23,7 @@ public class loadManager : MonoBehaviour
     [SerializeField] private TMP_Text generationText;
     [SerializeField] private GameObject xpLossText;
     [SerializeField] private GameObject menuButtonHolder;
+    [SerializeField] private GameObject buttonShadow;
 
     [SerializeField] private float totalDelay;
     private float curDelay;
@@ -70,11 +71,11 @@ public class loadManager : MonoBehaviour
             curDelay -= Time.deltaTime;
             if (transitionIn)
             {
-                fadeToBlack.color = new Color(0, 0, 0, 1-1*curDelay/totalDelay);
+                fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1-1*curDelay/totalDelay);
             }
             else
             {
-                fadeToBlack.color = new Color(0, 0, 0, 1*curDelay/totalDelay);
+                fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1*curDelay/totalDelay);
             }
         } else if (curDelay > -1)
         {
@@ -112,12 +113,6 @@ public class loadManager : MonoBehaviour
         {
             StartCoroutine("enableContinue");
             canContinue = false;
-
-            if (startScreen)
-            {
-                startScreen = false;
-                curDelaySplashScreen = splashScreenDelay;
-            }
         }
     }
 
@@ -129,6 +124,7 @@ public class loadManager : MonoBehaviour
         continueButton.SetActive(false);
         xpLossText.SetActive(false);
         menuButtonHolder.SetActive(false);
+        buttonShadow.SetActive(false);
         canContinue = true;
         curDelay = totalDelay;
         GameManager.Management.menuOpen = true;
@@ -152,6 +148,7 @@ public class loadManager : MonoBehaviour
         loadingUI.SetActive(false);
         xpLossText.SetActive(false);
         menuButtonHolder.SetActive(false);
+        buttonShadow.SetActive(false);
         transitionIn = false;
         curDelay = totalDelay;
         GameManager.Management.menuOpen = false;
@@ -164,8 +161,18 @@ public class loadManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         continueButton.SetActive(true);
+        buttonShadow.SetActive(true);
         playerControl.firstMove = true;
-        generationText.text = "Generation Complete!";
+        if (startScreen)
+        {
+            generationText.text = "";
+            startScreen = false;
+            curDelaySplashScreen = splashScreenDelay;
+        }
+        else
+        {
+            generationText.text = "Generation Complete!"; 
+        }
         playerControl.resetConditions();
     }
 }
