@@ -21,6 +21,6 @@ public class GameData
         this.shards = 0;
         this.xpModifier = 1;
         this.skinsAmount = 0;
-        this.activeSkin = 1;
+        this.activeSkin = 2;
     }
 }

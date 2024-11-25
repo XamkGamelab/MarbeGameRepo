@@ -39,21 +39,27 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     void Awake()
     {
-        for (int i = 0; i < skins.Length; i++)
-        {
-            skins[i].owned = false;
-            if (playerController.activeSkin == i)
-            {
-                skins[i].owned = true;
-            }
-        }
-        skinsAmount = skins.Length;
+        InitSkinValues();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         SetVolume(PlayerPrefs.GetFloat("SavedVolume", 100));
+    }
+
+    private void InitSkinValues()
+    {
+        for (int i = 0; i < skins.Length; i++)
+        {
+            skins[i].owned = false;
+            if (playerController.activeSkin == i)
+            {
+                skins[i].owned = true;
+                Debug.Log($"owned skin at {i}");
+            }
+        }
+        skinsAmount = skins.Length;
     }
 
     public void OpenLocker()
@@ -277,6 +283,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         audioManager.Management.PlaySimpleClip("Click");
         DataPersistenceManager.instance.dataHandler.DeleteData();
         DataPersistenceManager.instance.LoadGame();
+        InitSkinValues();
         deletedPopup.SetActive(true);
         deleteConfirm.SetActive(false);
         startFiller.filler.mapGeneration();
@@ -290,7 +297,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     private void EquippedItem(int _equippedIndex)
     {
-        Debug.Log($"equipped item with index {_equippedIndex}");
         audioManager.Management.PlaySimpleClip("Click");
         if (!skins[_equippedIndex].owned) return;
         playerController.ChangeSkin(_equippedIndex);
@@ -445,7 +451,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        Debug.Log("loading only owned skins");
         for (int i = 0; i < this.skins.Count(); i++)
         {
             if (i < data.skinOwned.Count)
