@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour, IDataPersistence
 {
+    [Header("Const Values")]
+    private const float widthForItem = 240;
+
     [Header("UI")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
@@ -17,7 +20,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject deletedPopup;
     [SerializeField] private GameObject menuButtonHolder;
     [SerializeField] private GameObject lockerItemHolder;
-    [SerializeField] private GameObject shopItemHolder;
+    [SerializeField] private GameObject commonItemsShop;
+    [SerializeField] private GameObject rareItemsShop;
+    [SerializeField] private GameObject miscItemsShop;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
     [SerializeField] private Skin[] skins;
@@ -107,7 +112,22 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
-            GameObject addToShop = Instantiate(shopObject, shopItemHolder.transform);
+            GameObject addToShop;
+
+            //common skins to common skin holder et cetera
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                addToShop = Instantiate(shopObject, commonItemsShop.transform);
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                addToShop = Instantiate(shopObject, rareItemsShop.transform);
+            }
+            else
+            {
+                addToShop = Instantiate(shopObject, miscItemsShop.transform);
+            }
+
             addToShop.GetComponent<Image>().sprite = skins[i].sprite;
             //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
@@ -147,10 +167,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         audioManager.Management.PlaySimpleClip("Click");
         shopMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
-        for (int i = 0; i < skins.Length; i++)
+
+        foreach (Transform child in commonItemsShop.transform)
         {
-            Destroy(shopItemHolder.transform.GetChild(i).gameObject);
+            Destroy(child.gameObject);
         }
+        foreach (Transform child in rareItemsShop.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in miscItemsShop.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
         DataPersistenceManager.instance.SaveGame();
     }
 
@@ -255,10 +285,31 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             UpdateShards();
         }
 
+        int commonCounter = 0;
+        int rareCounter = 0;
+        int miscCounter = 0;
+
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
-            Button shopButton = shopItemHolder.transform.GetChild(i).GetComponent<Button>();
+            Button shopButton;
+
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                shopButton = commonItemsShop.transform.GetChild(commonCounter).GetComponent<Button>();
+                commonCounter++;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                shopButton = rareItemsShop.transform.GetChild(rareCounter).GetComponent<Button>();
+                rareCounter++;
+            }
+            else
+            {
+                shopButton = miscItemsShop.transform.GetChild(miscCounter).GetComponent<Button>();
+                miscCounter++;
+            }
+
             TextMeshProUGUI buttonTxt = shopButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             GameObject ownedCover = shopButton.transform.GetChild(0).gameObject;
             if (skins[i].owned)
