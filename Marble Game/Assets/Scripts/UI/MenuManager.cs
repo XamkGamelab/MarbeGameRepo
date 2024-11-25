@@ -62,12 +62,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         lockerMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
 
-        var tempRect1 = commonItemsLocker.transform.parent.GetComponent<RectTransform>().rect;
-        var tempRect2 = rareItemsLocker.transform.parent.GetComponent<RectTransform>().rect;
-        var tempRect3 = miscItemsLocker.transform.parent.GetComponent<RectTransform>().rect;
-        tempRect1.width = 0;
-        tempRect2.width = 0;
-        tempRect3.width = 0;
+        float width1 = 0;
+        float width2 = 0;
+        float width3 = 0;
+        float objHeight = commonItemsLocker.GetComponent<RectTransform>().rect.height;
 
 
         for (int i = 0; i < skins.Length; i++)
@@ -79,21 +77,21 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             if (skins[i].rarity == Skin.Rarity.Common)
             {
                 addToLocker = Instantiate(lockerObject, commonItemsLocker.transform);
-                tempRect1.width += widthForItem;
+                width1 += widthForItem;
             }
             else if (skins[i].rarity == Skin.Rarity.Rare)
             {
                 addToLocker = Instantiate(lockerObject, rareItemsLocker.transform);
-                tempRect2.width += widthForItem;
+                width2 += widthForItem;
             }
             else
             {
                 addToLocker = Instantiate(lockerObject, miscItemsLocker.transform);
-                tempRect3.width += widthForItem;
+                width3 += widthForItem;
             }
 
             addToLocker.GetComponent<Image>().sprite = skins[i].sprite;
-            //add listener to mennu button component: on click, call ChangeSkin from PlayerController
+            //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
             Button lockerButton = addToLocker.GetComponent<Button>();
             lockerButton.onClick.AddListener(() => EquippedItem(saveIndex));
@@ -116,10 +114,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
         
-        //do something idk
-        commonItemsLocker.transform.parent.GetComponent<RectTransform>().rect = tempRect1;
-        rareItemsLocker.transform.parent.GetComponent<RectTransform>().rect = tempRect2;
-        miscItemsLocker.transform.parent.GetComponent<RectTransform>().rect = tempRect3;
+        commonItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
+        rareItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
+        miscItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
     }
 
     public void CloseLocker()
@@ -151,6 +148,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         menuButtonHolder.SetActive(false);
         UpdateShards();
 
+        float width1 = 0;
+        float width2 = 0;
+        float width3 = 0;
+        float objHeight = commonItemsShop.GetComponent<RectTransform>().rect.height;
+
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
@@ -160,14 +162,17 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             if (skins[i].rarity == Skin.Rarity.Common)
             {
                 addToShop = Instantiate(shopObject, commonItemsShop.transform);
+                width1 += widthForItem;
             }
             else if (skins[i].rarity == Skin.Rarity.Rare)
             {
                 addToShop = Instantiate(shopObject, rareItemsShop.transform);
+                width2 += widthForItem;
             }
             else
             {
                 addToShop = Instantiate(shopObject, miscItemsShop.transform);
+                width3 += widthForItem;
             }
             
             addToShop.GetComponent<Image>().sprite = skins[saveIndex].sprite;
@@ -201,6 +206,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 buttonTxt.text = skins[saveIndex].price.ToString();
             }
         }
+
+        commonItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
+        rareItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
+        miscItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
     }
 
     public void CloseShop()
