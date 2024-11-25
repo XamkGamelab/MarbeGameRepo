@@ -17,7 +17,6 @@ public class destroyCloseDuplicates : MonoBehaviour
             if (Vector3.Distance(transform.position, obj.transform.position) < range)
             {
                 Destroy(gameObject);
-                Debug.Log("Destruction");
                 return;
             }
         }
