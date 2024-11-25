@@ -9,7 +9,7 @@ public class GameData
     public float xp;
     public int shards;
     public float xpModifier;
-    public List<Skin> skins;
+    public List<bool> skinOwned;
     public int skinsAmount;
     public int activeSkin;
 
