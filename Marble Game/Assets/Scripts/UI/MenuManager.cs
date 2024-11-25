@@ -127,8 +127,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             {
                 addToShop = Instantiate(shopObject, miscItemsShop.transform);
             }
-
-            addToShop.GetComponent<Image>().sprite = skins[i].sprite;
+            
+            addToShop.GetComponent<Image>().sprite = skins[saveIndex].sprite;
+            
             //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
             Button shopButton = addToShop.GetComponent<Button>();
@@ -368,7 +369,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if (data.skins == null || data.skins.Count == 0 )
+        if (data.skinOwned == null || data.skinOwned.Count == 0 )
         {
             Debug.Log("no data found by menumanager");
             return;
@@ -377,16 +378,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         Debug.Log("loading only owned skins");
         for (int i = 0; i < this.skins.Count(); i++)
         {
-            if (i < data.skins.Count)
+            if (i < data.skinOwned.Count)
             {
-                skins[i] = data.skins[i];
+                skins[i].owned = data.skinOwned[i];
             }
         }
     }
 
     public void SaveData(ref GameData data)
     {
-        data.skins = this.skins.ToList();
+        data.skinOwned = new List<bool>();
+        for (int i = 0; i < this.skins.Length; i++)
+        {
+            data.skinOwned.Add(skins[i].owned);
+        }
         data.skinsAmount = this.skinsAmount;
     }
 }

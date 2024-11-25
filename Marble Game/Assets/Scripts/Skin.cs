@@ -2,7 +2,7 @@ using System;
 using TMPro.Examples;
 using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public class Skin
 {
     public enum SkinName
