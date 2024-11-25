@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public float curXp;
     public int shards;
     public float xpModifier = 1;
-    [SerializeField] private float previousXpModifier; //Not actually saved, but is related to xpModifier
+    private float previousXpModifier; //Not actually saved, but is related to xpModifier.
 
     [Header("Serialized Values")]
     [SerializeField] private float xpModBonus;

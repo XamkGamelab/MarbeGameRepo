@@ -70,11 +70,11 @@ public class loadManager : MonoBehaviour
             curDelay -= Time.deltaTime;
             if (transitionIn)
             {
-                fadeToBlack.color = new Color(0, 0, 0, 1-1*curDelay/totalDelay);
+                fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1-1*curDelay/totalDelay);
             }
             else
             {
-                fadeToBlack.color = new Color(0, 0, 0, 1*curDelay/totalDelay);
+                fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1*curDelay/totalDelay);
             }
         } else if (curDelay > -1)
         {
