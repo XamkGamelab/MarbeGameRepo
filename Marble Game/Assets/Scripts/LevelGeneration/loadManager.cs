@@ -143,6 +143,7 @@ public class loadManager : MonoBehaviour
     
     public void startTransitionOut()
     {
+        generationText.text = "";
         isTransitioning = true;
         continueButton.SetActive(false);
         loadingUI.SetActive(false);
