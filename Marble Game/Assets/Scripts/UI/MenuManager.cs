@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour, IDataPersistence
 {
+    [Header("Const Values")]
+    private const float widthForItem = 240;
+
     [Header("UI")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
@@ -16,8 +19,12 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject deleteConfirm;
     [SerializeField] private GameObject deletedPopup;
     [SerializeField] private GameObject menuButtonHolder;
-    [SerializeField] private GameObject lockerItemHolder;
-    [SerializeField] private GameObject shopItemHolder;
+    [SerializeField] private GameObject commonItemsShop;
+    [SerializeField] private GameObject rareItemsShop;
+    [SerializeField] private GameObject miscItemsShop;
+    [SerializeField] private GameObject commonItemsLocker;
+    [SerializeField] private GameObject rareItemsLocker;
+    [SerializeField] private GameObject miscItemsLocker;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
     [SerializeField] private Skin[] skins;
@@ -55,13 +62,36 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         lockerMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
 
+        float width1 = 0;
+        float width2 = 0;
+        float width3 = 0;
+        float objHeight = commonItemsLocker.GetComponent<RectTransform>().rect.height;
+
+
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
-            //instantiate menu buttons, change their sprites to match
-            GameObject addToLocker = Instantiate(lockerObject, lockerItemHolder.transform);
+            GameObject addToLocker;
+
+            //common skins to common skin holder et cetera
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                addToLocker = Instantiate(lockerObject, commonItemsLocker.transform);
+                width1 += widthForItem;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                addToLocker = Instantiate(lockerObject, rareItemsLocker.transform);
+                width2 += widthForItem;
+            }
+            else
+            {
+                addToLocker = Instantiate(lockerObject, miscItemsLocker.transform);
+                width3 += widthForItem;
+            }
+
             addToLocker.GetComponent<Image>().sprite = skins[i].sprite;
-            //add listener to mennu button component: on click, call ChangeSkin from PlayerController
+            //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
             Button lockerButton = addToLocker.GetComponent<Button>();
             lockerButton.onClick.AddListener(() => EquippedItem(saveIndex));
@@ -83,6 +113,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 lockerButton.interactable = true;
             }
         }
+        
+        commonItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
+        rareItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
+        miscItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
     }
 
     public void CloseLocker()
@@ -90,10 +124,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         audioManager.Management.PlaySimpleClip("Click");
         lockerMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
-        for (int i = 0; i < skins.Length; i++)
+
+        foreach (Transform child in commonItemsLocker.transform)
         {
-            Destroy(lockerItemHolder.transform.GetChild(i).gameObject);
+            Destroy(child.gameObject);
         }
+        foreach (Transform child in rareItemsLocker.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in miscItemsLocker.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         DataPersistenceManager.instance.SaveGame();
     }
 
@@ -104,11 +148,35 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         menuButtonHolder.SetActive(false);
         UpdateShards();
 
+        float width1 = 0;
+        float width2 = 0;
+        float width3 = 0;
+        float objHeight = commonItemsShop.GetComponent<RectTransform>().rect.height;
+
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
-            GameObject addToShop = Instantiate(shopObject, shopItemHolder.transform);
-            addToShop.GetComponent<Image>().sprite = skins[i].sprite;
+            GameObject addToShop;
+
+            //common skins to common skin holder et cetera
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                addToShop = Instantiate(shopObject, commonItemsShop.transform);
+                width1 += widthForItem;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                addToShop = Instantiate(shopObject, rareItemsShop.transform);
+                width2 += widthForItem;
+            }
+            else
+            {
+                addToShop = Instantiate(shopObject, miscItemsShop.transform);
+                width3 += widthForItem;
+            }
+            
+            addToShop.GetComponent<Image>().sprite = skins[saveIndex].sprite;
+            
             //add listener to menu button component: on click, call ChangeSkin from PlayerController
             //meaning skin Sprites should be in same order on this script as AnimationClips on PlayerController
             Button shopButton = addToShop.GetComponent<Button>();
@@ -129,7 +197,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 shopButton.interactable = false;
                 shopButton.transform.GetChild(1).gameObject.SetActive(true);
                 buttonTxt.text = skins[saveIndex].price.ToString();
-                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
             else
             {
@@ -137,9 +204,12 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 ownedCover.SetActive(false);
                 shopButton.transform.GetChild(1).gameObject.SetActive(true);
                 buttonTxt.text = skins[saveIndex].price.ToString();
-                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
         }
+
+        commonItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
+        rareItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
+        miscItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
     }
 
     public void CloseShop()
@@ -147,10 +217,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         audioManager.Management.PlaySimpleClip("Click");
         shopMenu.SetActive(false);
         menuButtonHolder.SetActive(true);
-        for (int i = 0; i < skins.Length; i++)
+
+        foreach (Transform child in commonItemsShop.transform)
         {
-            Destroy(shopItemHolder.transform.GetChild(i).gameObject);
+            Destroy(child.gameObject);
         }
+        foreach (Transform child in rareItemsShop.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in miscItemsShop.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
         DataPersistenceManager.instance.SaveGame();
     }
 
@@ -210,12 +290,35 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     private void EquippedItem(int _equippedIndex)
     {
+        Debug.Log($"equipped item with index {_equippedIndex}");
         audioManager.Management.PlaySimpleClip("Click");
         if (!skins[_equippedIndex].owned) return;
         playerController.ChangeSkin(_equippedIndex);
+
+        int commonCounter = 0;
+        int rareCounter = 0;
+        int miscCounter = 0;
+
         for (int i = 0; i < skinsAmount; i++)
         {
-            GameObject lockerItem = lockerItemHolder.transform.GetChild(i).gameObject;
+            GameObject lockerItem;
+
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                lockerItem = commonItemsLocker.transform.GetChild(commonCounter).gameObject;
+                commonCounter++;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                lockerItem = rareItemsLocker.transform.GetChild(rareCounter).gameObject;
+                rareCounter++;
+            }
+            else
+            {
+                lockerItem = miscItemsLocker.transform.GetChild(miscCounter).gameObject;
+                miscCounter++;
+            }
+
             Button thisButton = lockerItem.GetComponent<Button>();
             if (i != _equippedIndex && skins[i].owned)
             {
@@ -255,10 +358,31 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             UpdateShards();
         }
 
+        int commonCounter = 0;
+        int rareCounter = 0;
+        int miscCounter = 0;
+
         for (int i = 0; i < skins.Length; i++)
         {
             int saveIndex = i;
-            Button shopButton = shopItemHolder.transform.GetChild(i).GetComponent<Button>();
+            Button shopButton;
+
+            if (skins[i].rarity == Skin.Rarity.Common)
+            {
+                shopButton = commonItemsShop.transform.GetChild(commonCounter).GetComponent<Button>();
+                commonCounter++;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Rare)
+            {
+                shopButton = rareItemsShop.transform.GetChild(rareCounter).GetComponent<Button>();
+                rareCounter++;
+            }
+            else
+            {
+                shopButton = miscItemsShop.transform.GetChild(miscCounter).GetComponent<Button>();
+                miscCounter++;
+            }
+
             TextMeshProUGUI buttonTxt = shopButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             GameObject ownedCover = shopButton.transform.GetChild(0).gameObject;
             if (skins[i].owned)
@@ -275,7 +399,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 shopButton.interactable = false;
                 shopButton.transform.GetChild(1).gameObject.SetActive(true);
                 buttonTxt.text = skins[saveIndex].price.ToString();
-                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
             else
             {
@@ -283,7 +406,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 ownedCover.SetActive(false);
                 shopButton.transform.GetChild(1).gameObject.SetActive(true);
                 buttonTxt.text = skins[saveIndex].price.ToString();
-                buttonTxt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = buttonTxt.text;
             }
         }
     }
@@ -317,7 +439,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if (data.skins == null || data.skins.Count == 0 )
+        if (data.skinOwned == null || data.skinOwned.Count == 0 )
         {
             Debug.Log("no data found by menumanager");
             return;
@@ -326,16 +448,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         Debug.Log("loading only owned skins");
         for (int i = 0; i < this.skins.Count(); i++)
         {
-            if (i < data.skins.Count)
+            if (i < data.skinOwned.Count)
             {
-                skins[i] = data.skins[i];
+                skins[i].owned = data.skinOwned[i];
             }
         }
     }
 
     public void SaveData(ref GameData data)
     {
-        data.skins = this.skins.ToList();
+        data.skinOwned = new List<bool>();
+        for (int i = 0; i < this.skins.Length; i++)
+        {
+            data.skinOwned.Add(skins[i].owned);
+        }
         data.skinsAmount = this.skinsAmount;
     }
 }
