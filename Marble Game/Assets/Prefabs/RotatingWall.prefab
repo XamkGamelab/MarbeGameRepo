@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d5691267224785c33e5fdc4f8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTime: 2.5
-  rngRotation: 2.5
+  rotationTime: 3
+  rngRotation: 1.5
   randomizeDirection: 1
   direction: 0
   anim: {fileID: 827789534995344215}
@@ -245,7 +245,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &8278497181906428750
 BoxCollider2D:
