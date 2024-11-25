@@ -1,0 +1,1548 @@
+fileFormatVersion: 2
+guid: d8dc23bd4c1f18f40b0f7d1e2e66a48c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 700
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a59a16e294e9443bb667a35a766562
+      internalID: 826114795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9131c9ced777a74ebed62c0cf7c918b
+      internalID: -1898448489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_2
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f7e625334aced4b82f9425e5f8847b
+      internalID: -1946325837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_3
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b497d560aadac44ac54e34fa9be05c
+      internalID: -973156795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_4
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c1e352cb25b4364d9b5437a20dda209
+      internalID: -730404401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_5
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0120ce8756e5264fa7aef91b4a5d740
+      internalID: 1442091693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_6
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89844e748eebf4849a5deb3fd063575a
+      internalID: 83515624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_7
+      rect:
+        serializedVersion: 2
+        x: 4900
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c349200c4d8a6a478cbc372ffe59657
+      internalID: 1145737975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_8
+      rect:
+        serializedVersion: 2
+        x: 5600
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551ae1086009b3f46842fa1f0a0b5835
+      internalID: -1915218903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_9
+      rect:
+        serializedVersion: 2
+        x: 6300
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adec148043b62ee42b6a55e05c17ad7b
+      internalID: 1647245417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_10
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d4228aa4c76bcd4f9a8a2d128057ccc
+      internalID: -1030260044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_11
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf585b837d008f4da0efb22170604e0
+      internalID: -1132518738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_12
+      rect:
+        serializedVersion: 2
+        x: 8400
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8132ad1aa0f69944b50f365c7131608
+      internalID: -481636738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_13
+      rect:
+        serializedVersion: 2
+        x: 9100
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86a86e5e2949834d84581c9ee04ac00
+      internalID: 2089258288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_14
+      rect:
+        serializedVersion: 2
+        x: 9800
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde841de7ee5e3b4cbb8af479e0c7381
+      internalID: 1731161563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_15
+      rect:
+        serializedVersion: 2
+        x: 10500
+        y: 2250
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262b88022d0f82c44ad2d728608c7deb
+      internalID: 2052931770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817e339b941179c41ad3c97784cdef8e
+      internalID: 949015204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_17
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef074b5ad3667924abcefa7ff331ffaa
+      internalID: 412280926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_18
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968e8e731cd5c7d47aab60384caef9cb
+      internalID: 840001027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_19
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18239a9bf01d46f46863c01595d38f9a
+      internalID: 339108021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_20
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c30a09acf8f4174bb342a3a9cebad58
+      internalID: -1665295592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_21
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597310b48871e024f835f67c733f7a4c
+      internalID: -733101707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_22
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40022dc7e86830e4a9e49ed5b053c8ec
+      internalID: -322393917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_23
+      rect:
+        serializedVersion: 2
+        x: 4900
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5206071099f48ef44be69b770501de29
+      internalID: -2115885972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_24
+      rect:
+        serializedVersion: 2
+        x: 5600
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7236691c3b439034c8f5e1142fa679ec
+      internalID: -636424538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_25
+      rect:
+        serializedVersion: 2
+        x: 6300
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2bb9c6dfdd5b248b7f20ec518e3ebd
+      internalID: 747039069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_26
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4676b6356eb4a104fb9c601b405a853c
+      internalID: 903726581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_27
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbd65dcd470bdc4c8480e42c353ca27
+      internalID: 981681945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_28
+      rect:
+        serializedVersion: 2
+        x: 8400
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7863d2ecde098a42ae4eeedd3ee11fa
+      internalID: 1698714204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_29
+      rect:
+        serializedVersion: 2
+        x: 9100
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ba247d8f537ce44961289bc6415abe
+      internalID: -1232598971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_30
+      rect:
+        serializedVersion: 2
+        x: 9800
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc58bc6d3f300c4c91c38e7ddee9532
+      internalID: -1998298620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_31
+      rect:
+        serializedVersion: 2
+        x: 10500
+        y: 1500
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d1c69fa02084e4faea7c0e78ba2e0c
+      internalID: -649842678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0561de3be5f5064da7a9f234faf5e85
+      internalID: 1180243180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_33
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca7b33fcce7197645bc8b24c402f4c9a
+      internalID: 1485038565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_34
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe17b5db6f8d70419235418b9eaf94c
+      internalID: -106461161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_35
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5df7d271bcb7d4a810eaea15d67574
+      internalID: -1046173988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_36
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d23a86c6fee954a8752e5a8a845f15
+      internalID: -728090153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_37
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f02b82e2c34f714da120b86ef5becca
+      internalID: 881794201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_38
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 286626cb0f42ed140a07ac5beb46cb2e
+      internalID: -761184412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_39
+      rect:
+        serializedVersion: 2
+        x: 4900
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc3d55c500dd084988fd5e66ba73d00
+      internalID: -928786448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_40
+      rect:
+        serializedVersion: 2
+        x: 5600
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d9e2f539b5b204c84dc389a1e2396f
+      internalID: -567999198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_41
+      rect:
+        serializedVersion: 2
+        x: 6300
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb308cbfefc9ed4888e874b03a7baff
+      internalID: -187142695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_42
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea6fda4ce809ea40a51018bee0460d1
+      internalID: -2021041314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_43
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c56c020cc1da834b8b4c784b964ec09
+      internalID: -1105842550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_44
+      rect:
+        serializedVersion: 2
+        x: 8400
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daee0ec1242b5804fa47ee6f44a6f363
+      internalID: 1254810468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_45
+      rect:
+        serializedVersion: 2
+        x: 9100
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ed541a8bdfd4ab4a80025be0fa45587
+      internalID: 1301261140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_46
+      rect:
+        serializedVersion: 2
+        x: 9800
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b634e007d31bc745894f166751b5996
+      internalID: -668293967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_47
+      rect:
+        serializedVersion: 2
+        x: 10500
+        y: 750
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6f0d4f3312f1594d83bfd14877fa8a0
+      internalID: -536064223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd828b4ce3a36944b7e2af77f10a315
+      internalID: -1970450267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_49
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11cfe8f2380462640a4332a3f11ebf98
+      internalID: 1383616433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_50
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2241cbee0262f046b2645a53c4affb7
+      internalID: -982299638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_51
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4535326258557404b984426d8b25ef0e
+      internalID: -1358381978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_52
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9307e309d2f7104d90f2a66aa324522
+      internalID: -863983524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_53
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d8cd58efc9e2248a1de600ac9ac68c
+      internalID: -521882460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_54
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475c27830a37ffe408710b4aa7ab0830
+      internalID: 927386398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_55
+      rect:
+        serializedVersion: 2
+        x: 4900
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83218469336b4444a4849e55ec063ec
+      internalID: -260399231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_56
+      rect:
+        serializedVersion: 2
+        x: 5600
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bac0da2b54eb3e4bae55890095f6910
+      internalID: -949771601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_57
+      rect:
+        serializedVersion: 2
+        x: 6300
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f50417885dc964f45a3e18f6a7abcb6b
+      internalID: 958896277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_58
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3377d9bdcc792c43bb4987b4698060c
+      internalID: 1096147585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_59
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3412e8f8eb8974140911ca0f49954c09
+      internalID: -1710003323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_60
+      rect:
+        serializedVersion: 2
+        x: 8400
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10192d12fcb9cb74aa34bef73b704fbe
+      internalID: 1676103555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_61
+      rect:
+        serializedVersion: 2
+        x: 9100
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce8faabd4f1b9044a5c9d9713e0ce12
+      internalID: -106869221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_62
+      rect:
+        serializedVersion: 2
+        x: 9800
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac2d26a393d0c94888db5742cd96e71
+      internalID: 2140809141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpinningWall-HigherFPS_63
+      rect:
+        serializedVersion: 2
+        x: 10500
+        y: 0
+        width: 700
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b80b72c4fba6b249bb93e28507e7098
+      internalID: -1467916400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 75e7bfe4b7074c5478d474018b20da1b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SpinningWall-HigherFPS_0: 826114795
+      SpinningWall-HigherFPS_1: -1898448489
+      SpinningWall-HigherFPS_10: -1030260044
+      SpinningWall-HigherFPS_11: -1132518738
+      SpinningWall-HigherFPS_12: -481636738
+      SpinningWall-HigherFPS_13: 2089258288
+      SpinningWall-HigherFPS_14: 1731161563
+      SpinningWall-HigherFPS_15: 2052931770
+      SpinningWall-HigherFPS_16: 949015204
+      SpinningWall-HigherFPS_17: 412280926
+      SpinningWall-HigherFPS_18: 840001027
+      SpinningWall-HigherFPS_19: 339108021
+      SpinningWall-HigherFPS_2: -1946325837
+      SpinningWall-HigherFPS_20: -1665295592
+      SpinningWall-HigherFPS_21: -733101707
+      SpinningWall-HigherFPS_22: -322393917
+      SpinningWall-HigherFPS_23: -2115885972
+      SpinningWall-HigherFPS_24: -636424538
+      SpinningWall-HigherFPS_25: 747039069
+      SpinningWall-HigherFPS_26: 903726581
+      SpinningWall-HigherFPS_27: 981681945
+      SpinningWall-HigherFPS_28: 1698714204
+      SpinningWall-HigherFPS_29: -1232598971
+      SpinningWall-HigherFPS_3: -973156795
+      SpinningWall-HigherFPS_30: -1998298620
+      SpinningWall-HigherFPS_31: -649842678
+      SpinningWall-HigherFPS_32: 1180243180
+      SpinningWall-HigherFPS_33: 1485038565
+      SpinningWall-HigherFPS_34: -106461161
+      SpinningWall-HigherFPS_35: -1046173988
+      SpinningWall-HigherFPS_36: -728090153
+      SpinningWall-HigherFPS_37: 881794201
+      SpinningWall-HigherFPS_38: -761184412
+      SpinningWall-HigherFPS_39: -928786448
+      SpinningWall-HigherFPS_4: -730404401
+      SpinningWall-HigherFPS_40: -567999198
+      SpinningWall-HigherFPS_41: -187142695
+      SpinningWall-HigherFPS_42: -2021041314
+      SpinningWall-HigherFPS_43: -1105842550
+      SpinningWall-HigherFPS_44: 1254810468
+      SpinningWall-HigherFPS_45: 1301261140
+      SpinningWall-HigherFPS_46: -668293967
+      SpinningWall-HigherFPS_47: -536064223
+      SpinningWall-HigherFPS_48: -1970450267
+      SpinningWall-HigherFPS_49: 1383616433
+      SpinningWall-HigherFPS_5: 1442091693
+      SpinningWall-HigherFPS_50: -982299638
+      SpinningWall-HigherFPS_51: -1358381978
+      SpinningWall-HigherFPS_52: -863983524
+      SpinningWall-HigherFPS_53: -521882460
+      SpinningWall-HigherFPS_54: 927386398
+      SpinningWall-HigherFPS_55: -260399231
+      SpinningWall-HigherFPS_56: -949771601
+      SpinningWall-HigherFPS_57: 958896277
+      SpinningWall-HigherFPS_58: 1096147585
+      SpinningWall-HigherFPS_59: -1710003323
+      SpinningWall-HigherFPS_6: 83515624
+      SpinningWall-HigherFPS_60: 1676103555
+      SpinningWall-HigherFPS_61: -106869221
+      SpinningWall-HigherFPS_62: 2140809141
+      SpinningWall-HigherFPS_63: -1467916400
+      SpinningWall-HigherFPS_7: 1145737975
+      SpinningWall-HigherFPS_8: -1915218903
+      SpinningWall-HigherFPS_9: 1647245417
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

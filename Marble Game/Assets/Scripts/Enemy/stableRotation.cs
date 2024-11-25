@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class StableRotation : MonoBehaviour
 {
-    [SerializeField][Range(0.5f, 10.0f)] private float rotationTime = 3f; // Time in seconds for a full rotation
+    [SerializeField][Range(0f, 10.0f)] private float rotationTime = 3f; // Time in seconds for a full rotation
     [SerializeField] private float rngRotation;
     private Rigidbody2D rb;
     [SerializeField] private bool randomizeDirection;
@@ -17,25 +17,18 @@ public class StableRotation : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+    
         if (randomizeDirection)
         {
             direction = Random.Range(0, 2);
         }
-        
+    
         rotationTime += Random.Range(-rngRotation, rngRotation);
-        
         rotationSpeed = 360f / rotationTime;
-        
+
         if (anim)
         {
-            anim.SetFloat("SpeedMultiplier", (direction == 0 ? -1 : 1) * (2/rotationTime));
+            anim.SetFloat("SpeedMultiplier", (direction == 0 ? -1 : 1) * (8f / rotationTime));
         }
-    }
-
-    private void FixedUpdate()
-    {
-        float rotationAmount = rotationSpeed * Time.fixedDeltaTime;
-        rb.MoveRotation(rb.rotation + (direction == 0 ? rotationAmount : -rotationAmount));
     }
 }
