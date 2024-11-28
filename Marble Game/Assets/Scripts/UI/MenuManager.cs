@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 {
     [Header("Const Values")]
     private const float widthForItem = 240;
-    private readonly TimeSpan tutSeenExpiry = TimeSpan.FromDays(7);
+    private const int tutSeenExpiry = 7;    //this is days
 
     [Header("UI")]
     [SerializeField] private PlayerController playerController;
@@ -40,7 +40,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private Color equippedColor = new Color(0.41568627451f, 0.76470588235f, 0.7294117647f, 0.5f);
     private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 0.5f);
     private int skinsAmount;
-    private bool tutSeen;
+    public bool tutSeen { get; private set; }
     private bool tutFadeRunning = false;
     [SerializeField] private float tutFadeInTime = 1f;
     private Color tutTextColor;
@@ -327,7 +327,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void FadeInTutorial()
     {
-        Debug.Log("tutfade called");
         if (!tutSeen && !tutFadeRunning)
         {
             StartCoroutine(TutorialFader());
@@ -337,6 +336,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private IEnumerator TutorialFader()
     {
         tutFadeRunning = true;
+        tutorialObject.SetActive(true);
 
         float takenTime = 0;
         float tutTextAlpha = 0;
@@ -530,7 +530,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        if ((DateTime.Now - lastOpenedTime) > tutSeenExpiry)
+        if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays > tutSeenExpiry)
         {
             this.tutSeen = false;
         }
@@ -546,6 +546,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         }
         data.skinsAmount = this.skinsAmount;
 
+        Debug.Log(this.tutSeen);
         data.tutSeen = this.tutSeen;
 
         data.lastOpenedTime = DateTime.Now;

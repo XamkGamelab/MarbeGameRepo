@@ -26,5 +26,6 @@ public class GameData
         this.skinsAmount = 0;
         this.activeSkin = 2;
         this.tutSeen = false;
+        lastOpenedTime = DateTime.Now;
     }
 }

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private bool isStunned;
     private bool isFrozen;
     public int activeSkin { get; private set; } = 2;
+    public bool trackMoves { get; set; } = true;
+    private int movesMade = 0;
 
     [Header("Engine Variables")]
     [SerializeField] private InputReader inputReader;
@@ -53,6 +55,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         inputReader.MoveEvent += CalcDirection;
         inputReader.TouchEvent += HandleTouch;
         inputReader.TouchCanceledEvent += HandleTouchEnd;
+    }
+
+    private void Start()
+    {
+        if (!MenuManager.instance.tutSeen) trackMoves = true;
     }
 
     // Update is called once per frame
@@ -213,6 +220,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if (forceToAdd != null)
         {
             rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+        }
+
+        if (trackMoves) movesMade++;
+        if (movesMade >= 5 && trackMoves)
+        {
+            MenuManager.instance.CloseTutorial();
+            trackMoves = false;
         }
     }
 
