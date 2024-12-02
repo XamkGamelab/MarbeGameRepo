@@ -888,6 +888,7 @@ MonoBehaviour:
   isTransitioning: 0
   splashScreen: {fileID: 1288709769}
   splashScreenDelay: 2
+  slowdownScript: {fileID: 0}
   advertChance: 0.1
   advertControl: {fileID: 1342755618}
   inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
@@ -21264,7 +21265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1771834247
 RectTransform:
   m_ObjectHideFlags: 0
