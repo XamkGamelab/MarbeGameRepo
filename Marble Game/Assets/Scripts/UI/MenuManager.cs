@@ -26,9 +26,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject menuButtonHolder;
     [SerializeField] private GameObject commonItemsShop;
     [SerializeField] private GameObject rareItemsShop;
+    [SerializeField] private GameObject epicItemsShop;
     [SerializeField] private GameObject miscItemsShop;
     [SerializeField] private GameObject commonItemsLocker;
     [SerializeField] private GameObject rareItemsLocker;
+    [SerializeField] private GameObject epicItemsLocker;
     [SerializeField] private GameObject miscItemsLocker;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
@@ -87,7 +89,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             if (playerController.activeSkin == i)
             {
                 skins[i].owned = true;
-                Debug.Log($"owned skin at {i}");
             }
         }
         skinsAmount = skins.Length;
@@ -102,6 +103,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         float width1 = 0;
         float width2 = 0;
         float width3 = 0;
+        float width4 = 0;
         float objHeight = commonItemsLocker.GetComponent<RectTransform>().rect.height;
 
 
@@ -121,10 +123,15 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 addToLocker = Instantiate(lockerObject, rareItemsLocker.transform);
                 width2 += widthForItem;
             }
+            else if (skins[i].rarity == Skin.Rarity.Epic)
+            {
+                addToLocker = Instantiate(lockerObject, epicItemsLocker.transform);
+                width3 += widthForItem;
+            }
             else
             {
                 addToLocker = Instantiate(lockerObject, miscItemsLocker.transform);
-                width3 += widthForItem;
+                width4 += widthForItem;
             }
 
             addToLocker.GetComponent<Image>().sprite = skins[i].sprite;
@@ -151,9 +158,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
         
-        commonItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
-        rareItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
-        miscItemsLocker.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
+        commonItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width1);
+        rareItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width2);
+        epicItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width3);
+        miscItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width4);
     }
 
     public void CloseLocker()
@@ -167,6 +175,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             Destroy(child.gameObject);
         }
         foreach (Transform child in rareItemsLocker.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in epicItemsLocker.transform)
         {
             Destroy(child.gameObject);
         }
@@ -188,6 +200,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         float width1 = 0;
         float width2 = 0;
         float width3 = 0;
+        float width4 = 0;
         float objHeight = commonItemsShop.GetComponent<RectTransform>().rect.height;
 
         for (int i = 0; i < skins.Length; i++)
@@ -206,10 +219,15 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 addToShop = Instantiate(shopObject, rareItemsShop.transform);
                 width2 += widthForItem;
             }
+            else if (skins[i].rarity == Skin.Rarity.Epic)
+            {
+                addToShop = Instantiate(shopObject, epicItemsShop.transform);
+                width3 += widthForItem;
+            }
             else
             {
                 addToShop = Instantiate(shopObject, miscItemsShop.transform);
-                width3 += widthForItem;
+                width4 += widthForItem;
             }
             
             addToShop.GetComponent<Image>().sprite = skins[saveIndex].sprite;
@@ -244,9 +262,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        commonItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width1 ,objHeight);
-        rareItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width2 ,objHeight);
-        miscItemsShop.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(width3 ,objHeight);
+        commonItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width1);
+        rareItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width2);
+        epicItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width3);
+        miscItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width4);
     }
 
     public void CloseShop()
@@ -260,6 +279,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             Destroy(child.gameObject);
         }
         foreach (Transform child in rareItemsShop.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in epicItemsShop.transform)
         {
             Destroy(child.gameObject);
         }
@@ -548,7 +571,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         }
         data.skinsAmount = this.skinsAmount;
 
-        Debug.Log(this.tutSeen);
         data.tutSeen = this.tutSeen;
 
         data.lastOpenedTime = DateTime.Now;
