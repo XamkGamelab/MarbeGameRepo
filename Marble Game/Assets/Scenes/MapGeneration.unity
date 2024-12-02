@@ -888,8 +888,8 @@ MonoBehaviour:
   isTransitioning: 0
   splashScreen: {fileID: 1288709769}
   splashScreenDelay: 2
-  slowdownScript: {fileID: 0}
-  advertChance: 0.1
+  slowdownScript: {fileID: 951994695}
+  advertChance: 1
   advertControl: {fileID: 1342755618}
   inputReader: {fileID: 11400000, guid: 0363caaeb2e2c6941b74476fe30ae4b6, type: 2}
   cameraBehavior: {fileID: 1345540965}
@@ -8557,7 +8557,7 @@ MonoBehaviour:
   slowMap: {fileID: 951994689}
   wallTile: {fileID: 11400000, guid: c5cea304a656d5c4cb9690d06ab5bee9, type: 2}
   floorTile: {fileID: 11400000, guid: 7bbdaf4105f115045b40ad4a38a506aa, type: 2}
-  slowTile: {fileID: 11400000, guid: 27a246a49e51221469c149aa3d1dd8e9, type: 2}
+  slowTile: {fileID: 11400000, guid: cb4a1dc2da480ac47b7f4fd88cc4da56, type: 2}
   walkerCount: 10
   walkerObj: {fileID: 5581616006548335540, guid: eb883e5058764824da33a16d2b0f191b, type: 3}
   randomWalker: {fileID: 5581616006548335540, guid: 60258329630540246b6db0d060c56449, type: 3}
@@ -18667,9 +18667,9 @@ MonoBehaviour:
   visuals:
   - {fileID: 21300000, guid: f47c714c57fa0f94d9ada6a93e1b16bd, type: 3}
   - {fileID: 21300000, guid: e04eeb99eb1820d45b7bf5021caca778, type: 3}
-  - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
-  - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
-  - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
+  - {fileID: 21300000, guid: 301d12dab45e8274d8a9bbc6f9d40f0e, type: 3}
+  - {fileID: 21300000, guid: d174121a5a43b40429285cf814ca6374, type: 3}
+  - {fileID: 21300000, guid: b2c2ad3def971a849ad07e680433e51c, type: 3}
   - {fileID: 21300000, guid: 08cd679ae60bae34395167a92055241d, type: 3}
   links:
   - https://portfolio.gamelab.fi/mikko.anttila/Website/index.html
