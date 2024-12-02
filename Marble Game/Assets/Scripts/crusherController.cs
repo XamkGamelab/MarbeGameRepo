@@ -14,8 +14,6 @@ public class crusherController : MonoBehaviour
         if ((crushLayer.value & (1 << other.gameObject.layer)) > 0 && !wasUsed)
         {
             animator.Play("Crush");
-            Destroy(other.gameObject);
-            GameManager.Management.curXp += GameManager.Management.nextLevelXp / 6;
             wasUsed = true;
         }
     }

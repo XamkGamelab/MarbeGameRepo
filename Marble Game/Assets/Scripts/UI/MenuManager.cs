@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private const int tutSeenExpiry = 7;    //this is days
 
     [Header("UI")]
+    [SerializeField] private loadManager loadingManager;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
     [SerializeField] private GameObject shopMenu;
@@ -311,6 +312,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     public void DeleteData()
     {
         audioManager.Management.PlaySimpleClip("Click");
+        loadingManager.dataDeletion();
         DataPersistenceManager.instance.dataHandler.DeleteData();
         DataPersistenceManager.instance.LoadGame();
         InitSkinValues();

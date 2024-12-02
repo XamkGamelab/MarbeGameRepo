@@ -157,6 +157,14 @@ public class loadManager : MonoBehaviour
         cameraBehavior.DefaultOffset();
         playerControl.resetConditions();
     }
+
+    public void dataDeletion()
+    {
+        generationText.text = "Generating Level...";
+        continueButton.SetActive(false);
+        buttonShadow.SetActive(false);
+        canContinue = true;
+    }
     
     private IEnumerator enableContinue()
     {

@@ -904,6 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a32d3e6cfd1ec049ab5633af0e2827c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingManager: {fileID: 143442195}
   playerController: {fileID: 977093991}
   lockerMenu: {fileID: 818768016}
   shopMenu: {fileID: 1893389122}
@@ -8658,7 +8659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -199.99994}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &638138502
@@ -15827,7 +15828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -199.99994}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986233543
@@ -18134,13 +18135,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals:
-  - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
+  - {fileID: 21300000, guid: f47c714c57fa0f94d9ada6a93e1b16bd, type: 3}
+  - {fileID: 21300000, guid: e04eeb99eb1820d45b7bf5021caca778, type: 3}
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
   - {fileID: 21300000, guid: 6e47e6bd1d321c8489c947840a9e6390, type: 3}
   - {fileID: 21300000, guid: 08cd679ae60bae34395167a92055241d, type: 3}
   links:
   - https://portfolio.gamelab.fi/mikko.anttila/Website/index.html
+  - https://portfolio.gamelab.fi/mikko.anttila/Website/Games/DoomedVR/DoomedVR.html
   - https://portfolio.gamelab.fi/veera.raita/projects/
   - https://paperscollisions.carrd.co/
   - https://portfolio.gamelab.fi/roni.sundstrom/
@@ -27052,7 +27055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -199.99994}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: -200, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042774245
@@ -27895,7 +27898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -99.99994}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: -200, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095506057
