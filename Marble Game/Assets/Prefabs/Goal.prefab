@@ -199,12 +199,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3330597663288029359}
-  - component: {fileID: 7201996395456016950}
   - component: {fileID: -1828236367812639015}
-  - component: {fileID: -8328926339682509901}
-  - component: {fileID: -8876340941736268176}
-  - component: {fileID: 6164282983971396090}
   - component: {fileID: 1529634952309641359}
+  - component: {fileID: -8328926339682509901}
+  - component: {fileID: 7201996395456016950}
+  - component: {fileID: 6164282983971396090}
   m_Layer: 3
   m_Name: Goal
   m_TagString: EndDestroy
@@ -229,18 +228,6 @@ Transform:
   - {fileID: 1213215471272324825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7201996395456016950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966799322725988153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40412c41ffda53c4fbf79c5d65172dc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-1828236367812639015
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -276,6 +263,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &1529634952309641359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966799322725988153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7ac79d2a895474bace6e26e3db3f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  effect: {fileID: 6820922522757274916, guid: 6b7219c77c708004f8eb7f0c94e21fbe, type: 3}
+  effectSpot: {fileID: 0}
+  Trigger: 1
+  singleActivation: 1
 --- !u!114 &-8328926339682509901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,16 +303,16 @@ MonoBehaviour:
   createSfxObject: 1
   mixer: {fileID: 24300002, guid: 209c0835d8b7f9c4aaa8d12f3fa32152, type: 2}
   simpleSound: 1
---- !u!114 &-8876340941736268176
+--- !u!114 &7201996395456016950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966799322725988153}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78918b4f8780ba4a9046210b3dea7c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 40412c41ffda53c4fbf79c5d65172dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!58 &6164282983971396090
@@ -344,22 +350,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!114 &1529634952309641359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966799322725988153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7ac79d2a895474bace6e26e3db3f67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  effect: {fileID: 6820922522757274916, guid: 6b7219c77c708004f8eb7f0c94e21fbe, type: 3}
-  effectSpot: {fileID: 0}
-  Trigger: 0
-  singleActivation: 1

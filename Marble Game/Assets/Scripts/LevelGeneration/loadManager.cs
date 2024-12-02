@@ -39,6 +39,8 @@ public class loadManager : MonoBehaviour
     [SerializeField] private float splashScreenDelay;
     private float curDelaySplashScreen;
 
+    [SerializeField] private slowRBVelocity slowdownScript;
+
     [Header("Advertising")]
     [SerializeField] [Range(0, 1)] private float advertChance;
     [SerializeField] private advertController advertControl;
@@ -129,6 +131,7 @@ public class loadManager : MonoBehaviour
         curDelay = totalDelay;
         GameManager.Management.menuOpen = true;
         inputReader.DisableGameplay();
+        slowdownScript.eradicateList();
         
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("EndDestroy");
         foreach (GameObject enemy in enemies)

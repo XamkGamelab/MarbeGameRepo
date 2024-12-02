@@ -32,4 +32,9 @@ public class slowRBVelocity : MonoBehaviour
             rbs.Remove(other.GetComponent<Rigidbody2D>());
         }
     }
+
+    public void eradicateList()
+    {
+        rbs.Clear();
+    }
 }
