@@ -14,6 +14,7 @@ public class GameData
     public int skinsAmount;
     public int activeSkin;
     public bool tutSeen;
+    public bool enemyTutSeen;
     public DateTime lastOpenedTime;
 
     //constructor, ran on starting new game
@@ -26,6 +27,7 @@ public class GameData
         this.skinsAmount = 0;
         this.activeSkin = 2;
         this.tutSeen = false;
+        this.enemyTutSeen = false;
         lastOpenedTime = DateTime.Now;
     }
 }

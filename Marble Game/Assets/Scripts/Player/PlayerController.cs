@@ -226,6 +226,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if (movesMade >= 5 && trackMoves)
         {
             MenuManager.instance.CloseTutorial();
+            MenuManager.instance.CloseEnemyTutorial();
             trackMoves = false;
         }
     }

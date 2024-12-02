@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 {
     [Header("Const Values")]
     private const float widthForItem = 240;
-    private const int tutSeenExpiry = 7;    //this is days
+    private const int tutSeenExpiry = 30;    //this is days
 
     [Header("UI")]
     [SerializeField] private loadManager loadingManager;
@@ -36,6 +36,8 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject shopObject;
     [SerializeField] private GameObject tutorialObject;
     [SerializeField] private TextMeshProUGUI tutorialText;
+    [SerializeField] private GameObject enemyTutorialObject;
+    [SerializeField] private TextMeshProUGUI enemyTutorialText;
     [SerializeField] private Skin[] skins;
     [SerializeField] private TextMeshProUGUI shardsText;
 
@@ -44,6 +46,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 0.5f);
     private int skinsAmount;
     public bool tutSeen { get; private set; }
+    public bool enemyTutSeen { get; private set; }
     private bool tutFadeRunning = false;
     [SerializeField] private float tutFadeInTime = 1f;
     private Color tutTextColor;
@@ -352,9 +355,15 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void FadeInTutorial()
     {
+        bool sceneHasEnemies = FindObjectsOfType<EnemyController>().Length > 0;
+
         if (!tutSeen && !tutFadeRunning)
         {
             StartCoroutine(TutorialFader());
+        }
+        else if (tutSeen && !enemyTutSeen && sceneHasEnemies)
+        {
+            StartCoroutine(EnemyTutorialFader());
         }
     }
 
@@ -383,12 +392,47 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             yield return null;
         }
         tutSeen = true;
+        tutFadeRunning = false;
+    }
+
+    private IEnumerator EnemyTutorialFader()
+    {
+        playerController.trackMoves = true;
+        tutFadeRunning = true;
+        enemyTutorialObject.SetActive(true);
+
+        float takenTime = 0;
+        float tutTextAlpha = 0;
+        float tutPanelAlpha = 0;
+
+        while (takenTime < tutFadeInTime)
+        {
+            takenTime += Time.deltaTime;
+
+            tutTextAlpha = Mathf.Lerp(0, tutTextColor.a, takenTime / tutFadeInTime);
+            tutPanelAlpha = Mathf.Lerp(0, tutPanelColor.a, takenTime / tutFadeInTime);
+
+            Color newTextColor = new(tutTextColor.r, tutTextColor.g, tutTextColor.b, tutTextAlpha);
+            Color newPanelColor = new(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, tutPanelAlpha);
+
+            enemyTutorialObject.GetComponent<Image>().color = newPanelColor;
+            enemyTutorialText.color = newTextColor;
+
+            yield return null;
+        }
+        tutSeen = true;
+        tutFadeRunning = false;
     }
 
     public void CloseTutorial()
     {
         tutorialObject.SetActive(false);
         tutSeen = true;
+    }
+    public void CloseEnemyTutorial()
+    {
+        enemyTutorialObject.SetActive(false);
+        enemyTutSeen = true;
     }
 
     private void EquippedItem(int _equippedIndex)
@@ -555,11 +599,17 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
 
+        //load tutorial seen variables, but reset them if game was last opened less than tutSeenExpiry days ago
+        this.enemyTutSeen = false;
         if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays > tutSeenExpiry)
         {
             this.tutSeen = false;
         }
-        else this.tutSeen = data.tutSeen;
+        else
+        {
+            this.tutSeen = data.tutSeen;
+            this.enemyTutSeen = data.enemyTutSeen;
+        }
     }
 
     public void SaveData(ref GameData data)
@@ -572,6 +622,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         data.skinsAmount = this.skinsAmount;
 
         data.tutSeen = this.tutSeen;
+        data.enemyTutSeen = this.enemyTutSeen;
 
         data.lastOpenedTime = DateTime.Now;
     }
