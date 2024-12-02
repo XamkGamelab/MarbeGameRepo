@@ -1,6 +1,9 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -9,6 +12,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 {
     [Header("Const Values")]
     private const float widthForItem = 240;
+    private const int tutSeenExpiry = 7;    //this is days
 
     [Header("UI")]
     [SerializeField] private PlayerController playerController;
@@ -27,25 +31,51 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject miscItemsLocker;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
+    [SerializeField] private GameObject tutorialObject;
+    [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private Skin[] skins;
-    private Color equippedColor = new Color(0.41568627451f, 0.76470588235f , 0.7294117647f, 0.5f);
+    [SerializeField] private TextMeshProUGUI shardsText;
+
+    [Header("UI Values")]
+    private Color equippedColor = new Color(0.41568627451f, 0.76470588235f, 0.7294117647f, 0.5f);
     private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 0.5f);
     private int skinsAmount;
-    [SerializeField] private TextMeshProUGUI shardsText;
+    public bool tutSeen { get; private set; }
+    private bool tutFadeRunning = false;
+    [SerializeField] private float tutFadeInTime = 1f;
+    private Color tutTextColor;
+    private Color tutPanelColor;
+    public DateTime lastOpenedTime;
 
     [Header("Volume")]
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioMixer volumeMaster;
 
+    [Header("Singleton")]
+    public static MenuManager instance;
+
     void Awake()
     {
         InitSkinValues();
+
+        if (instance != null && instance != this)
+        {
+            Debug.LogError("Found more than one MenuManager");
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
         SetVolume(PlayerPrefs.GetFloat("SavedVolume", 100));
+        tutTextColor = tutorialText.color;
+        tutPanelColor = tutorialObject.GetComponent<Image>().color;
+        tutorialText.color = new Color(tutTextColor.r, tutTextColor.g, tutTextColor.b, 0);
+        tutorialObject.GetComponent<Image>().color = new Color(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, 0);
     }
 
     private void InitSkinValues()
@@ -295,6 +325,47 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         deletedPopup.SetActive(false);
     }
 
+    public void FadeInTutorial()
+    {
+        if (!tutSeen && !tutFadeRunning)
+        {
+            StartCoroutine(TutorialFader());
+        }
+    }
+
+    private IEnumerator TutorialFader()
+    {
+        tutFadeRunning = true;
+        tutorialObject.SetActive(true);
+
+        float takenTime = 0;
+        float tutTextAlpha = 0;
+        float tutPanelAlpha = 0;
+
+        while (takenTime < tutFadeInTime)
+        {
+            takenTime += Time.deltaTime;
+
+            tutTextAlpha = Mathf.Lerp(0, tutTextColor.a, takenTime / tutFadeInTime);
+            tutPanelAlpha = Mathf.Lerp(0, tutPanelColor.a, takenTime / tutFadeInTime);
+
+            Color newTextColor = new(tutTextColor.r , tutTextColor.g, tutTextColor.b, tutTextAlpha);
+            Color newPanelColor = new(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, tutPanelAlpha);
+
+            tutorialObject.GetComponent<Image>().color = newPanelColor;
+            tutorialText.color = newTextColor;
+
+            yield return null;
+        }
+        tutSeen = true;
+    }
+
+    public void CloseTutorial()
+    {
+        tutorialObject.SetActive(false);
+        tutSeen = true;
+    }
+
     private void EquippedItem(int _equippedIndex)
     {
         audioManager.Management.PlaySimpleClip("Click");
@@ -458,6 +529,12 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 skins[i].owned = data.skinOwned[i];
             }
         }
+
+        if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays > tutSeenExpiry)
+        {
+            this.tutSeen = false;
+        }
+        else this.tutSeen = data.tutSeen;
     }
 
     public void SaveData(ref GameData data)
@@ -468,5 +545,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             data.skinOwned.Add(skins[i].owned);
         }
         data.skinsAmount = this.skinsAmount;
+
+        Debug.Log(this.tutSeen);
+        data.tutSeen = this.tutSeen;
+
+        data.lastOpenedTime = DateTime.Now;
     }
 }

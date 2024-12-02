@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class GameData
     public List<bool> skinOwned;
     public int skinsAmount;
     public int activeSkin;
+    public bool tutSeen;
+    public DateTime lastOpenedTime;
 
     //constructor, ran on starting new game
     public GameData()
@@ -22,5 +25,7 @@ public class GameData
         this.xpModifier = 1;
         this.skinsAmount = 0;
         this.activeSkin = 2;
+        this.tutSeen = false;
+        lastOpenedTime = DateTime.Now;
     }
 }
