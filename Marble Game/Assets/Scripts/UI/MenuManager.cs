@@ -18,7 +18,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private loadManager loadingManager;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject lockerMenu;
+    [SerializeField] private GameObject lockerHolder;
     [SerializeField] private GameObject shopMenu;
+    [SerializeField] private GameObject shopHolder;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject deleteConfirm;
@@ -99,6 +101,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void OpenLocker()
     {
+        RectTransform vertRect = lockerHolder.GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(vertRect);
+
         audioManager.Management.PlaySimpleClip("Click");
         lockerMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
@@ -161,10 +166,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
         
-        commonItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width1);
-        rareItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width2);
-        epicItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width3);
-        miscItemsLocker.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width4);
+        commonItemsLocker.GetComponent<RectTransform>().sizeDelta = new(width1, objHeight);
+        rareItemsLocker.GetComponent<RectTransform>().sizeDelta = new(width2, objHeight);
+        epicItemsLocker.GetComponent<RectTransform>().sizeDelta = new(width3, objHeight);
+        miscItemsLocker.GetComponent<RectTransform>().sizeDelta = new(width4, objHeight);
+
     }
 
     public void CloseLocker()
@@ -195,6 +201,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void OpenShop()
     {
+        RectTransform vertRect = lockerHolder.GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(vertRect);
+        
         audioManager.Management.PlaySimpleClip("Click");
         shopMenu.SetActive(true);
         menuButtonHolder.SetActive(false);
@@ -265,10 +274,10 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        commonItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width1);
-        rareItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width2);
-        epicItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width3);
-        miscItemsShop.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width4);
+        commonItemsShop.GetComponent<RectTransform>().sizeDelta = new(width1, objHeight);
+        rareItemsShop.GetComponent<RectTransform>().sizeDelta = new(width2, objHeight);
+        epicItemsShop.GetComponent<RectTransform>().sizeDelta = new(width3, objHeight);
+        miscItemsShop.GetComponent<RectTransform>().sizeDelta = new(width4, objHeight);
     }
 
     public void CloseShop()
