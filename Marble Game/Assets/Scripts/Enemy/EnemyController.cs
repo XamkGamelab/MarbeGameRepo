@@ -23,11 +23,12 @@ public class EnemyController : MonoBehaviour
     private bool delaying = false;
     private float timer = 0f;
 
-    [SerializeField][Range(0f, 25.0f)] private float lowPower = 5f;
-    [SerializeField][Range(0f, 50.0f)] private float highPower = 25f;
+    [SerializeField][Range(0f, 25.0f)] private float lowPower = 8f;
+    [SerializeField][Range(0f, 50.0f)] private float highPower = 20f;
 
-    //randomize this based on current level -> smaller value = bigger difficulty
     [SerializeField][Range(1.0f, 10.0f)] private float delayBeforeShoot = 3f;
+    [SerializeField][Range(1.0f, 10.0f)] private float maxRandomAdjustment = 0.4f;
+    private float realDelay;
 
     //if player closer than this to player, enemy starts chasing, adjustable
     [SerializeField][Range(0f, 15.0f)] private float detectDistance = 10f;
@@ -50,16 +51,16 @@ public class EnemyController : MonoBehaviour
         checkForPlayer = StartCoroutine(CheckForPlayer());
         enemyAnimator.Play(animations[Random.Range(0, animations.Length)].name);
         GetComponent<SpriteRenderer>().color = enemyColor;
+        realDelay = delayBeforeShoot + Random.Range(-maxRandomAdjustment, maxRandomAdjustment);
     }
 
     void FixedUpdate()
     {
         Vector2 speed = rb.velocity;
         enemyAnimator.speed = speed.magnitude;
+        
         if (canMove)
         {
-            
-
             //timer
             if (timing || canWander)
             {
@@ -67,7 +68,7 @@ public class EnemyController : MonoBehaviour
             }
 
             //if timer high enough, shoot
-            if (timer > delayBeforeShoot)
+            if (timer > realDelay)
             {
                 if (seesPlayer)
                 {
@@ -154,6 +155,9 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");ä
         //Debug.Log("Targeting");
 
+        //randomize new delay
+        realDelay = delayBeforeShoot + Random.Range(-maxRandomAdjustment, maxRandomAdjustment);
+
         //reset timer and delay bool
         timer = 0f;
         delayLocationTrack = StartCoroutine(DelayOn());
@@ -171,6 +175,9 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(message: $"enemy shot at: {shootDir} with power: {shootPower}");
         //Debug.Log("Wandering");
         
+        //randomize new delay
+        realDelay = delayBeforeShoot + Random.Range(-maxRandomAdjustment, maxRandomAdjustment);
+
         //reset timer and delay bool
         timer = 0f;
         delayLocationTrack = StartCoroutine(DelayOn());
