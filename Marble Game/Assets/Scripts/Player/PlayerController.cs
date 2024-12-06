@@ -9,7 +9,7 @@ using UnityEditor;
 public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [Header("Constant Variables")]
-    private const float speedHardLimit = 30f;
+    private const float speedHardLimit = 24f;
     private const float powerLimit = 2f;
     private const float lowerLimit = 0.1f;
 

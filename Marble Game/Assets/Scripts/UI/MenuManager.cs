@@ -452,6 +452,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
         int commonCounter = 0;
         int rareCounter = 0;
+        int epicCounter = 0;
         int miscCounter = 0;
 
         for (int i = 0; i < skinsAmount; i++)
@@ -467,6 +468,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             {
                 lockerItem = rareItemsLocker.transform.GetChild(rareCounter).gameObject;
                 rareCounter++;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Epic)
+            {
+                lockerItem = epicItemsLocker.transform.GetChild(epicCounter).gameObject;
+                epicCounter++;
             }
             else
             {
@@ -515,6 +521,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
         int commonCounter = 0;
         int rareCounter = 0;
+        int epicCounter = 0;
         int miscCounter = 0;
 
         for (int i = 0; i < skins.Length; i++)
@@ -531,6 +538,11 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             {
                 shopButton = rareItemsShop.transform.GetChild(rareCounter).GetComponent<Button>();
                 rareCounter++;
+            }
+            else if (skins[i].rarity == Skin.Rarity.Epic)
+            {
+                shopButton = epicItemsShop.transform.GetChild(epicCounter).GetComponent<Button>();
+                epicCounter++;
             }
             else
             {
