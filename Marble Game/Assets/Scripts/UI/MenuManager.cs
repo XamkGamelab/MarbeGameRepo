@@ -400,7 +400,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
             yield return null;
         }
-        tutSeen = true;
         tutFadeRunning = false;
     }
 
@@ -622,15 +621,13 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
         //load tutorial seen variables, but reset them if game was last opened less than tutSeenExpiry days ago
         this.enemyTutSeen = false;
-        if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays > tutSeenExpiry)
-        {
-            this.tutSeen = false;
-        }
-        else
+        this.tutSeen = false;
+        if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays < tutSeenExpiry)
         {
             this.tutSeen = data.tutSeen;
             this.enemyTutSeen = data.enemyTutSeen;
         }
+        Debug.Log(this.tutSeen);
     }
 
     public void SaveData(ref GameData data)
