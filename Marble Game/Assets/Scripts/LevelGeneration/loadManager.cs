@@ -141,6 +141,11 @@ public class loadManager : MonoBehaviour
                 enemy.GetComponent<EnemyController>().canMove = false;
                 enemy.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
+
+            if (enemy.GetComponent<StableRotation>())
+            {
+                enemy.GetComponent<StableRotation>().StopRotation();
+            }
         }
     }
     

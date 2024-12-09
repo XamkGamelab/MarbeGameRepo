@@ -31,4 +31,9 @@ public class StableRotation : MonoBehaviour
             anim.SetFloat("SpeedMultiplier", (direction == 0 ? -1 : 1) * (8f / rotationTime));
         }
     }
+
+    public void StopRotation()
+    {
+        anim.SetFloat("SpeedMultiplier", 0);
+    }
 }
