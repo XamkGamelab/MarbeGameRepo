@@ -17,31 +17,16 @@ public class walker : MonoBehaviour
     private int bounds;
     
     private Vector3Int intPos;
-    [SerializeField] private float moveDelay;
-    private float curDelay;
 
-    private void Start()
+    private void Awake()
     {
         bounds = startFiller.filler.walkerBounds;
+        StartCoroutine(Movement());
     }
 
-    void Update()
+    private IEnumerator Movement()
     {
         intPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
-        
-        if (moveDelay > curDelay)
-        {
-            curDelay += Time.deltaTime;
-        }
-        else
-        {
-            curDelay = 0;
-            Move();
-        }
-    }
-
-    private void Move()
-    {
         startFiller.filler.eraseTile(transform.position);
         
         int rng = Random.Range(0, 4); //0 up 1 left 2 right 3 down
@@ -101,5 +86,7 @@ public class walker : MonoBehaviour
             startFiller.filler.remainingWalkers--;
             Destroy(gameObject);
         }
+        yield return null;
+        StartCoroutine(Movement());
     }
 }
