@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TMP_Text modifierText;
     [SerializeField] private TMP_Text xpModLossText;
     [SerializeField] private Animator xpModLossAnim;
+
+    [SerializeField] private ParticleSystem levelUpVfx;
     
     [Header("Funky Titles")]
     [SerializeField] private string[] titles;
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             curXp -= nextLevelXp;
             level++;
             shards++;
+            levelUpVfx.Play();
         }
 
         xpBar.fillAmount  = curXp/nextLevelXp;
