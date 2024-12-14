@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
             titleText.text = titles[level];
         }
 
-        nextLevelXp = (level*(level/2) + 1) * 100;
+        float clampedLvl = Mathf.Min(level, 20);
+        
+        nextLevelXp = (clampedLvl*(clampedLvl/2) + 1) * 100;
         xpText.text = Mathf.FloorToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
         lvlText.text = (level+1).ToString();
         shardText.text = shards.ToString();
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             xpModifier += xpModBonus;
         }
 
-        float addedXP = (100 + (level * 50)) * xpModifier;
+        float addedXP = (100 + (Mathf.Min(level, 20) * 50)) * xpModifier;
         curXp += addedXP;
         
         if (xpModifier < 1)
