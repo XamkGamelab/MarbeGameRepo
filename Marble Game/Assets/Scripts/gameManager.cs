@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             curXp -= nextLevelXp;
             level++;
             shards++;
-            if ((level % shardBonusFrequency) - 1 == 0)
+            if ((level + 1) % shardBonusFrequency == 0)
             {
                 shards += shardBonusAmount;
             }
