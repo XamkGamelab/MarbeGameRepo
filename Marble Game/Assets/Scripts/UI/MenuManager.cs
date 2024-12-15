@@ -80,10 +80,6 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     void Start()
     {
         SetVolume(PlayerPrefs.GetFloat("SavedVolume", 100));
-        tutTextColor = tutorialText.color;
-        tutPanelColor = tutorialObject.GetComponent<Image>().color;
-        tutorialText.color = new Color(tutTextColor.r, tutTextColor.g, tutTextColor.b, 0);
-        tutorialObject.GetComponent<Image>().color = new Color(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, 0);
     }
 
     private void InitSkinValues()
@@ -385,20 +381,19 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         tutorialObject.SetActive(true);
 
         float takenTime = 0;
-        float tutTextAlpha = 0;
-        float tutPanelAlpha = 0;
+        Image tutImg = tutorialObject.GetComponent<Image>();
+        Color newTextColor = tutorialText.color;
+        Color newPanelColor = tutImg.color;
+        float newAlpha = tutImg.color.a;
 
         while (takenTime < tutFadeInTime)
         {
             takenTime += Time.deltaTime;
 
-            tutTextAlpha = Mathf.Lerp(0, tutTextColor.a, takenTime / tutFadeInTime);
-            tutPanelAlpha = Mathf.Lerp(0, tutPanelColor.a, takenTime / tutFadeInTime);
+            newTextColor.a = Mathf.Lerp(0, 1, takenTime / tutFadeInTime);
+            newPanelColor.a = Mathf.Lerp(0, newAlpha, takenTime / tutFadeInTime);
 
-            Color newTextColor = new(tutTextColor.r , tutTextColor.g, tutTextColor.b, tutTextAlpha);
-            Color newPanelColor = new(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, tutPanelAlpha);
-
-            tutorialObject.GetComponent<Image>().color = newPanelColor;
+            tutImg.color = newPanelColor;
             tutorialText.color = newTextColor;
 
             yield return null;
@@ -413,25 +408,21 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         enemyTutorialObject.SetActive(true);
 
         float takenTime = 0;
-        float tutTextAlpha = 0;
-        float tutPanelAlpha = 0;
+        Image tutImg = enemyTutorialObject.GetComponent<Image>();
+        Color newTextColor = enemyTutorialText.color;
+        Color newPanelColor = tutImg.color;
+        float newAlpha = tutImg.color.a;
 
         while (takenTime < tutFadeInTime)
         {
             takenTime += Time.deltaTime;
-
-            tutTextAlpha = Mathf.Lerp(0, tutTextColor.a, takenTime / tutFadeInTime);
-            tutPanelAlpha = Mathf.Lerp(0, tutPanelColor.a, takenTime / tutFadeInTime);
-
-            Color newTextColor = new(tutTextColor.r, tutTextColor.g, tutTextColor.b, tutTextAlpha);
-            Color newPanelColor = new(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, tutPanelAlpha);
-
-            enemyTutorialObject.GetComponent<Image>().color = newPanelColor;
+            newTextColor.a = Mathf.Lerp(0, 1, takenTime / tutFadeInTime);
+            newPanelColor.a = Mathf.Lerp(0, newAlpha, takenTime / tutFadeInTime);
+            tutImg.color = newPanelColor;
             enemyTutorialText.color = newTextColor;
 
             yield return null;
         }
-        tutSeen = true;
         tutFadeRunning = false;
     }
 
