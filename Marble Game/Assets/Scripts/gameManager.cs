@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private const int shardBonusFrequency = 5; //on reaching a level divisible by this number, player gets
                                                //bonus shards equal to below integer
     private const int shardBonusAmount = 0; //this is added on top of the normal +1 shard on levelup
-                                            //after hitting a level divisible by 5. default 4.
+                                            //after hitting a level divisible by above integer. default 4.
     
     [Header("Saved Values")]
     public int level;
