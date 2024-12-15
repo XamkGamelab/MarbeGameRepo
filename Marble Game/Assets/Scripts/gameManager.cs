@@ -9,6 +9,11 @@ using TMPro;
 public class GameManager : MonoBehaviour, IDataPersistence
 {
     public static GameManager Management {get; private set;}
+    private const float xpCurveScaler = 100; //lower to ease requirements, higher to increase. default 100.
+    private const int shardBonusFrequency = 5; //on reaching a level divisible by this number, player gets
+                                               //bonus shards equal to below integer
+    private const int shardBonusAmount = 0; //this is added on top of the normal +1 shard on levelup
+                                            //after hitting a level divisible by 5. default 4.
     
     [Header("Saved Values")]
     public int level;
@@ -56,7 +61,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         float clampedLvl = Mathf.Min(level, 20);
         
-        nextLevelXp = (clampedLvl*(clampedLvl/2) + 1) * 100;
+        nextLevelXp = (clampedLvl*(clampedLvl/2) + 1) * xpCurveScaler;
         xpText.text = Mathf.FloorToInt(curXp) + " / " + Mathf.RoundToInt(nextLevelXp);
         lvlText.text = (level+1).ToString();
         shardText.text = shards.ToString();
@@ -75,6 +80,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
             curXp -= nextLevelXp;
             level++;
             shards++;
+            if (level % shardBonusFrequency == 0)
+            {
+                shards += shardBonusAmount;
+            }
+
             levelUpVfx.Play();
         }
 
