@@ -26,67 +26,69 @@ public class walker : MonoBehaviour
 
     private IEnumerator Movement()
     {
-        intPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
-        startFiller.filler.eraseTile(transform.position);
-        
-        int rng = Random.Range(0, 4); //0 up 1 left 2 right 3 down
-        int actualRng = Random.Range(1, 101);
-
-        if (rng == 0 && actualRng <= upChance)
+        while (true)
         {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, bounds+10, 0)))
+            intPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
+            startFiller.filler.eraseTile(transform.position);
+
+            int rng = Random.Range(0, 4); //0 up 1 left 2 right 3 down
+            int actualRng = Random.Range(1, 101);
+
+            if (rng == 0 && actualRng <= upChance)
             {
-                transform.position += new Vector3(0, 1, 0);
-                minMoves--;
-            }
-            else
-            {
-                if (downChance < upChance)
+                if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, bounds + 10, 0)))
                 {
-                    downChance = upChance;
+                    transform.position += new Vector3(0, 1, 0);
+                    minMoves--;
                 }
-                upChance /= 2;
+                else
+                {
+                    if (downChance < upChance)
+                    {
+                        downChance = upChance;
+                    }
+                    upChance /= 2;
+                }
             }
-        }
-        else if (rng == 1 && actualRng <= sideChance)
-        {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(-bounds, 0, 0)))
+            else if (rng == 1 && actualRng <= sideChance)
             {
-                transform.position += new Vector3(-1, 0, 0);
-                minMoves--;
+                if (startFiller.filler.checkBounds(intPos + new Vector3Int(-bounds, 0, 0)))
+                {
+                    transform.position += new Vector3(-1, 0, 0);
+                    minMoves--;
+                }
             }
-        }
-        else if (rng == 2 && actualRng <= sideChance)
-        {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(bounds, 0, 0)))
+            else if (rng == 2 && actualRng <= sideChance)
             {
-                transform.position += new Vector3(1, 0, 0);
-                minMoves--;
+                if (startFiller.filler.checkBounds(intPos + new Vector3Int(bounds, 0, 0)))
+                {
+                    transform.position += new Vector3(1, 0, 0);
+                    minMoves--;
+                }
             }
-        }
-        else if (rng == 3 && actualRng <= downChance)
-        {
-            if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, -bounds, 0)))
+            else if (rng == 3 && actualRng <= downChance)
             {
-                transform.position += new Vector3(0, -1, 0);
-                minMoves--;
+                if (startFiller.filler.checkBounds(intPos + new Vector3Int(0, -bounds, 0)))
+                {
+                    transform.position += new Vector3(0, -1, 0);
+                    minMoves--;
+                }
             }
-        }
-        float newSpawnRng = Random.Range(0, 101);
-        if (newSpawnRng <= newWalkerSpawn)
-        {
-            newWalkerSpawn *= 0.75f;
-            startFiller.filler.remainingWalkers++;
-            GameObject childWalker = Instantiate(newWalker, transform.position, quaternion.identity);
-        }
+            float newSpawnRng = Random.Range(0, 101);
+            if (newSpawnRng <= newWalkerSpawn)
+            {
+                newWalkerSpawn *= 0.75f;
+                startFiller.filler.remainingWalkers++;
+                GameObject childWalker = Instantiate(newWalker, transform.position, quaternion.identity);
+            }
 
-        float deathRng = Random.Range(0, 101);
-        if (minMoves <= 0 && deathRng <= deathChance)
-        {
-            startFiller.filler.remainingWalkers--;
-            Destroy(gameObject);
+            float deathRng = Random.Range(0, 101);
+            if (minMoves <= 0 && deathRng <= deathChance)
+            {
+                startFiller.filler.remainingWalkers--;
+                Destroy(gameObject);
+            }
+            yield return new WaitForSeconds(0.001f);
         }
-        yield return null;
-        StartCoroutine(Movement());
     }
 }

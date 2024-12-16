@@ -36,10 +36,13 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject miscItemsLocker;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
-    [SerializeField] private GameObject tutorialObject;
-    [SerializeField] private TextMeshProUGUI tutorialText;
-    [SerializeField] private GameObject enemyTutorialObject;
-    [SerializeField] private TextMeshProUGUI enemyTutorialText;
+    [SerializeField] private GameObject lastTutorialObject;
+    [SerializeField] private GameObject firstTutorialObject;
+    [SerializeField] private TextMeshProUGUI firstTutorialText;
+    [SerializeField] private GameObject secondTutorialObject;
+    [SerializeField] private TextMeshProUGUI secondTutorialText;
+    [SerializeField] private GameObject thirdTutorialObject;
+    [SerializeField] private TextMeshProUGUI thirdTutorialText;
     [SerializeField] private Skin[] skins;
     [SerializeField] private TextMeshProUGUI shardsText;
 
@@ -47,8 +50,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private Color equippedColor = new Color(0.5450980392156862f, 0.7529411764705882f, 0.7333333333333333f, 1f);
     private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 1f);
     private int skinsAmount;
-    public bool tutSeen { get; private set; }
-    public bool enemyTutSeen { get; private set; }
+    public int tutsSeen { get; private set; } = 0;
     private bool tutFadeRunning = false;
     [SerializeField] private float tutFadeInTime = 1f;
     private Color tutTextColor;
@@ -363,78 +365,53 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void FadeInTutorial()
     {
-        bool sceneHasEnemies = FindObjectsOfType<EnemyController>().Length > 0;
-
-        if (!tutSeen && !tutFadeRunning)
+        if (tutsSeen == 0 && !tutFadeRunning)
         {
-            StartCoroutine(TutorialFader());
+            StartCoroutine(TutorialFader(firstTutorialObject, firstTutorialText));
         }
-        else if (tutSeen && !enemyTutSeen && sceneHasEnemies)
+        else if (tutsSeen == 1 && !tutFadeRunning)
         {
-            StartCoroutine(EnemyTutorialFader());
+            StartCoroutine(TutorialFader(secondTutorialObject, secondTutorialText));
+        }
+        else if (tutsSeen == 2 && !tutFadeRunning)
+        {
+            if (FindObjectsOfType<EnemyController>().Length > 0)
+            StartCoroutine(TutorialFader(thirdTutorialObject, thirdTutorialText));
         }
     }
 
-    private IEnumerator TutorialFader()
+    private IEnumerator TutorialFader(GameObject _tutorialObject, TextMeshProUGUI _tutorialText)
     {
         tutFadeRunning = true;
-        tutorialObject.SetActive(true);
-
-        float takenTime = 0;
-        Image tutImg = tutorialObject.GetComponent<Image>();
-        Color newTextColor = tutorialText.color;
-        Color newPanelColor = tutImg.color;
-        float newAlpha = tutImg.color.a;
-
-        while (takenTime < tutFadeInTime)
-        {
-            takenTime += Time.deltaTime;
-
-            newTextColor.a = Mathf.Lerp(0, 1, takenTime / tutFadeInTime);
-            newPanelColor.a = Mathf.Lerp(0, newAlpha, takenTime / tutFadeInTime);
-
-            tutImg.color = newPanelColor;
-            tutorialText.color = newTextColor;
-
-            yield return null;
-        }
-        tutFadeRunning = false;
-    }
-
-    private IEnumerator EnemyTutorialFader()
-    {
+        _tutorialObject.SetActive(true);
         playerController.trackMoves = true;
-        tutFadeRunning = true;
-        enemyTutorialObject.SetActive(true);
 
         float takenTime = 0;
-        Image tutImg = enemyTutorialObject.GetComponent<Image>();
-        Color newTextColor = enemyTutorialText.color;
+        Image tutImg = _tutorialObject.GetComponent<Image>();
+        Color newTextColor = _tutorialText.color;
         Color newPanelColor = tutImg.color;
         float newAlpha = tutImg.color.a;
 
         while (takenTime < tutFadeInTime)
         {
             takenTime += Time.deltaTime;
+
             newTextColor.a = Mathf.Lerp(0, 1, takenTime / tutFadeInTime);
             newPanelColor.a = Mathf.Lerp(0, newAlpha, takenTime / tutFadeInTime);
+
             tutImg.color = newPanelColor;
-            enemyTutorialText.color = newTextColor;
+            _tutorialText.color = newTextColor;
 
             yield return null;
         }
         tutFadeRunning = false;
+        lastTutorialObject = _tutorialObject;
     }
-
     public void CloseTutorial()
     {
-        tutorialObject.SetActive(false);
-        tutSeen = true;
-    }
-    public void CloseEnemyTutorial()
-    {
-        enemyTutorialObject.SetActive(false);
-        enemyTutSeen = true;
+        lastTutorialObject.SetActive(false);
+        tutsSeen++;
+        Debug.Log(tutsSeen);
     }
 
     private void EquippedItem(int _equippedIndex)
@@ -617,16 +594,13 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         }
 
         //load tutorial seen variables, but reset them if game was last opened less than tutSeenExpiry days ago
-        this.enemyTutSeen = false;
-        this.tutSeen = false;
+        this.tutsSeen = 0;
         DateTime lastOpenedTime = JsonUtility.FromJson<GameData.JsonDateTime>(data.jsonLastOpened);
-        Debug.Log($"loaded time {lastOpenedTime}");
-        if (data.tutSeen && (DateTime.Now - lastOpenedTime).TotalDays < tutSeenExpiry)
+
+        if (data.tutsSeen > 0 && (DateTime.Now - lastOpenedTime).TotalDays < tutSeenExpiry)
         {
-            this.tutSeen = data.tutSeen;
-            this.enemyTutSeen = data.enemyTutSeen;
+            this.tutsSeen = data.tutsSeen;
         }
-        Debug.Log(this.tutSeen);
     }
 
     public void SaveData(ref GameData data)
@@ -638,10 +612,8 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         }
         data.skinsAmount = this.skinsAmount;
 
-        data.tutSeen = this.tutSeen;
-        data.enemyTutSeen = this.enemyTutSeen;
+        data.tutsSeen = this.tutsSeen;
 
         data.jsonLastOpened = JsonUtility.ToJson((GameData.JsonDateTime)DateTime.Now);
-        Debug.Log($"saved time {data.jsonLastOpened}");
     }
 }
