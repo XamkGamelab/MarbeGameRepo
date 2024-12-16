@@ -27,6 +27,10 @@ public class startFiller : MonoBehaviour
     [SerializeField] private Tilemap floorMap;
     [SerializeField] private Tilemap slowMap;
     
+    [Header("ObstacleCurve")]
+    [SerializeField] private AnimationCurve obstacleMinCurve;
+    [SerializeField] private AnimationCurve obstacleMaxCurve;
+    
     [Header("Tiles")]
 
     public RuleTile wallTile, floorTile, slowTile;
@@ -170,18 +174,20 @@ public class startFiller : MonoBehaviour
         walkerDownChance = 5 + Mathf.Clamp(Mathf.FloorToInt(playerLevel/4)+5, 0, 35);
         walkerSpawnChance = Mathf.Clamp(playerLevel * 0.3f+5, 0, 40);
         
-        obstacleChance = Mathf.Clamp(GameManager.Management.level+50, 0, 80);
-        minObstacles = Mathf.CeilToInt(playerLevel/6);
-        if (playerLevel > 2)
-        {
-            minObstacles += 2;
-        }
+        obstacleChance = 30;
+        obstacleChanceMultiplier = 0.90f;
 
-        if (playerLevel > 20)
+        if (playerLevel > 3)
         {
-            minObstacles += 4;
+            minObstacles = Mathf.CeilToInt(Mathf.Floor(obstacleMinCurve.Evaluate(playerLevel)));
+            maxObstacles = Mathf.CeilToInt(Mathf.Floor(obstacleMaxCurve.Evaluate(playerLevel)));
         }
-        maxObstacles = Mathf.CeilToInt(playerLevel * 1.5f);
+        else
+        {
+            minObstacles = 0;
+            maxObstacles = 0;
+        }
+        
         easyChance = 100;
         moderateChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/3), 0, 75);
         hardChance = Mathf.Clamp(Mathf.FloorToInt(playerLevel/6), 0, 50);

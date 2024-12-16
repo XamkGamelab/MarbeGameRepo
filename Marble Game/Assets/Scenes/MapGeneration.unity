@@ -9055,6 +9055,54 @@ MonoBehaviour:
   wallMap: {fileID: 1016651486}
   floorMap: {fileID: 990365928}
   slowMap: {fileID: 951994689}
+  obstacleMinCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.4665047
+      outSlope: 0.4665047
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16887589
+    - serializedVersion: 3
+      time: 100.028885
+      value: 19.965958
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  obstacleMaxCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.4665047
+      outSlope: 0.4665047
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16887589
+    - serializedVersion: 3
+      time: 99.98243
+      value: 35.113255
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   wallTile: {fileID: 11400000, guid: c5cea304a656d5c4cb9690d06ab5bee9, type: 2}
   floorTile: {fileID: 11400000, guid: 7bbdaf4105f115045b40ad4a38a506aa, type: 2}
   slowTile: {fileID: 11400000, guid: cb4a1dc2da480ac47b7f4fd88cc4da56, type: 2}
