@@ -5,6 +5,22 @@ using UnityEngine;
 
 public class GameData
 {
+    [Serializable]
+    public struct JsonDateTime
+    {
+        public long value;
+        public static implicit operator DateTime(JsonDateTime jdt)
+        {
+            return DateTime.FromFileTimeUtc(jdt.value);
+        }
+        public static implicit operator JsonDateTime(DateTime dt)
+        {
+            JsonDateTime jdt = new JsonDateTime();
+            jdt.value = dt.ToFileTimeUtc();
+            return jdt;
+        }
+    }
+
     [Header("Progression Variables")]
     public int level;
     public float xp;
@@ -15,7 +31,7 @@ public class GameData
     public int activeSkin;
     public bool tutSeen;
     public bool enemyTutSeen;
-    public DateTime lastOpenedTime;
+    public string jsonLastOpened;
 
     //constructor, ran on starting new game
     public GameData()
@@ -28,6 +44,6 @@ public class GameData
         this.activeSkin = 2;
         this.tutSeen = false;
         this.enemyTutSeen = false;
-        lastOpenedTime = DateTime.Now;
+        jsonLastOpened = JsonUtility.ToJson((JsonDateTime)DateTime.Now);
     }
 }

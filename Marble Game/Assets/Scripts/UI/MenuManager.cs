@@ -619,7 +619,9 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         //load tutorial seen variables, but reset them if game was last opened less than tutSeenExpiry days ago
         this.enemyTutSeen = false;
         this.tutSeen = false;
-        if (data.tutSeen && (DateTime.Now - data.lastOpenedTime).TotalDays < tutSeenExpiry)
+        DateTime lastOpenedTime = JsonUtility.FromJson<GameData.JsonDateTime>(data.jsonLastOpened);
+        Debug.Log($"loaded time {lastOpenedTime}");
+        if (data.tutSeen && (DateTime.Now - lastOpenedTime).TotalDays < tutSeenExpiry)
         {
             this.tutSeen = data.tutSeen;
             this.enemyTutSeen = data.enemyTutSeen;
@@ -639,6 +641,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         data.tutSeen = this.tutSeen;
         data.enemyTutSeen = this.enemyTutSeen;
 
-        data.lastOpenedTime = DateTime.Now;
+        data.jsonLastOpened = JsonUtility.ToJson((GameData.JsonDateTime)DateTime.Now);
+        Debug.Log($"saved time {data.jsonLastOpened}");
     }
 }
