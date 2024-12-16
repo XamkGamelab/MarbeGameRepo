@@ -11,12 +11,12 @@ public class GameData
         public long value;
         public static implicit operator DateTime(JsonDateTime jdt)
         {
-            return DateTime.FromFileTimeUtc(jdt.value);
+            return DateTime.FromFileTime(jdt.value);
         }
         public static implicit operator JsonDateTime(DateTime dt)
         {
             JsonDateTime jdt = new JsonDateTime();
-            jdt.value = dt.ToFileTimeUtc();
+            jdt.value = dt.ToFileTime();
             return jdt;
         }
     }
