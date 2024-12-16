@@ -29,8 +29,7 @@ public class GameData
     public List<bool> skinOwned;
     public int skinsAmount;
     public int activeSkin;
-    public bool tutSeen;
-    public bool enemyTutSeen;
+    public int tutsSeen;
     public string jsonLastOpened;
 
     //constructor, ran on starting new game
@@ -42,8 +41,7 @@ public class GameData
         this.xpModifier = 1;
         this.skinsAmount = 0;
         this.activeSkin = 2;
-        this.tutSeen = false;
-        this.enemyTutSeen = false;
+        this.tutsSeen = 0;
         jsonLastOpened = JsonUtility.ToJson((JsonDateTime)DateTime.Now);
     }
 }

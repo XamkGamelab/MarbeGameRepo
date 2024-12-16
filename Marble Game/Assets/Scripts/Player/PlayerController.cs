@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        if (!MenuManager.instance.tutSeen) trackMoves = true;
+        if (MenuManager.instance.tutsSeen == 0) trackMoves = true;
     }
 
     // Update is called once per frame
@@ -225,8 +225,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if (trackMoves) movesMade++;
         if (movesMade >= 5 && trackMoves)
         {
+            movesMade = 0;
             MenuManager.instance.CloseTutorial();
-            MenuManager.instance.CloseEnemyTutorial();
             trackMoves = false;
         }
     }
