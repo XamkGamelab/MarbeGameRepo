@@ -9,11 +9,11 @@ using TMPro;
 public class GameManager : MonoBehaviour, IDataPersistence
 {
     public static GameManager Management {get; private set;}
-    private const float xpCurveScaler = 100; //lower to ease requirements, higher to increase. default 100.
+    private const float xpCurveScaler = 80; //lower to ease requirements, higher to increase. default 100, easier 80
     private const int shardBonusFrequency = 5; //on reaching a level divisible by this number, player gets
                                                //bonus shards equal to below integer
-    private const int shardBonusAmount = 0; //this is added on top of the normal +1 shard on levelup
-                                            //after hitting a level divisible by above integer. default 4.
+    private const int shardBonusAmount = 4; //this is added on top of the normal +1 shard on levelup
+                                            //after hitting a level divisible by above integer. default 4, disabled 0
     
     [Header("Saved Values")]
     public int level;
