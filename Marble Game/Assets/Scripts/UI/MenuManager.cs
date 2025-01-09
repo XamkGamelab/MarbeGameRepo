@@ -347,6 +347,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
 
     public void DeleteData()
     {
+        int oldTutsSeen = tutsSeen;
         audioManager.Management.PlaySimpleClip("Click");
         loadingManager.dataDeletion();
         DataPersistenceManager.instance.dataHandler.DeleteData();
@@ -355,12 +356,23 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         deletedPopup.SetActive(true);
         deleteConfirm.SetActive(false);
         startFiller.filler.mapGeneration();
+        tutsSeen = oldTutsSeen;
     }
 
     public void CloseDeletePopup()
     {
         audioManager.Management.PlaySimpleClip("Click");
         deletedPopup.SetActive(false);
+        DataPersistenceManager.instance.SaveGame();
+    }
+
+    public void EnableTut()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        deletedPopup.SetActive(false);
+        tutsSeen = 0;
+        tutFadeRunning = false;
+        DataPersistenceManager.instance.SaveGame();
     }
 
     public void FadeInTutorial()
