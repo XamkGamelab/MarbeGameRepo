@@ -231,6 +231,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void ResetMoveTracking()
+    {
+        trackMoves = false;
+        movesMade = 0;
+    }
+
     public void stunPlayer(float duration, bool canOverwrite)
     {
         if (canOverwrite && curStun < duration)

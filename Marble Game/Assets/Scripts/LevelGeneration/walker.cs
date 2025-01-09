@@ -88,7 +88,7 @@ public class walker : MonoBehaviour
                 startFiller.filler.remainingWalkers--;
                 Destroy(gameObject);
             }
-            yield return new WaitForSeconds(0.001f);
+            yield return null;
         }
     }
 }
