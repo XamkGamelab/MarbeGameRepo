@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [Header("Const Values")]
     private const float widthForItem = 240;
     private const int tutSeenExpiry = 30;    //this is days
+    private const int tutCount = 3;
 
     [Header("UI")]
     [SerializeField] private loadManager loadingManager;
@@ -36,7 +37,8 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject miscItemsLocker;
     [SerializeField] private GameObject lockerObject;
     [SerializeField] private GameObject shopObject;
-    [SerializeField] private GameObject lastTutorialObject;
+    [SerializeField] private GameObject equipSkinPrompt;
+    private GameObject lastTutorialObject;
     [SerializeField] private GameObject firstTutorialObject;
     [SerializeField] private TextMeshProUGUI firstTutorialText;
     [SerializeField] private GameObject secondTutorialObject;
@@ -50,6 +52,7 @@ public class MenuManager : MonoBehaviour, IDataPersistence
     private Color equippedColor = new Color(0.5450980392156862f, 0.7529411764705882f, 0.7333333333333333f, 1f);
     private Color disabledColor = new Color(0.78431372549f, 0.78431372549f, 0.78431372549f, 1f);
     private int skinsAmount;
+    private int lastBoughtSkin = 0;
     public int tutsSeen { get; private set; } = 0;
     private bool tutFadeRunning = false;
     [SerializeField] private float tutFadeInTime = 1f;
@@ -419,9 +422,12 @@ public class MenuManager : MonoBehaviour, IDataPersistence
         tutFadeRunning = false;
         lastTutorialObject = _tutorialObject;
     }
+
     public void CloseTutorial()
     {
+        if (lastTutorialObject == null || tutsSeen >= tutCount) return;
         lastTutorialObject.SetActive(false);
+        playerController.ResetMoveTracking();
         tutsSeen++;
         Debug.Log(tutsSeen);
     }
@@ -503,6 +509,8 @@ public class MenuManager : MonoBehaviour, IDataPersistence
             UpdateShards();
         }
 
+        lastBoughtSkin = _buttonNumber;
+
         int commonCounter = 0;
         int rareCounter = 0;
         int epicCounter = 0;
@@ -560,6 +568,20 @@ public class MenuManager : MonoBehaviour, IDataPersistence
                 buttonTxt.text = skins[saveIndex].price.ToString();
             }
         }
+        equipSkinPrompt.SetActive(true);
+    }
+
+    public void EquipNewSkin()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        playerController.ChangeSkin(lastBoughtSkin);
+        equipSkinPrompt.SetActive(false);
+    }
+
+    public void CloseSkinPrompt()
+    {
+        audioManager.Management.PlaySimpleClip("Click");
+        equipSkinPrompt.SetActive(false);
     }
 
     private void UpdateShards()
