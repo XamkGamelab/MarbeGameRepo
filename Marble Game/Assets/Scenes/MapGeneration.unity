@@ -1262,7 +1262,6 @@ MonoBehaviour:
   lockerObject: {fileID: 7233142850844989008, guid: 9e3486abb6d9fad42bec43cf4a600248, type: 3}
   shopObject: {fileID: 7233142850844989008, guid: b5c2244236aa9c64f965cc6143f8e007, type: 3}
   equipSkinPrompt: {fileID: 9675161}
-  lastTutorialObject: {fileID: 0}
   firstTutorialObject: {fileID: 1932092723}
   firstTutorialText: {fileID: 1327796859}
   secondTutorialObject: {fileID: 954330142}
@@ -22107,8 +22106,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f47c714c57fa0f94d9ada6a93e1b16bd, type: 3}
   - {fileID: 21300000, guid: e04eeb99eb1820d45b7bf5021caca778, type: 3}
   - {fileID: 21300000, guid: 301d12dab45e8274d8a9bbc6f9d40f0e, type: 3}
-  - {fileID: 21300000, guid: d174121a5a43b40429285cf814ca6374, type: 3}
-  - {fileID: 21300000, guid: b2c2ad3def971a849ad07e680433e51c, type: 3}
+  - {fileID: 21300000, guid: 1ac3928f5692786429c05e6376dab1a9, type: 3}
+  - {fileID: 21300000, guid: 8fecc7a75040ce24883840421380c60b, type: 3}
   - {fileID: 21300000, guid: 08cd679ae60bae34395167a92055241d, type: 3}
   links:
   - https://portfolio.gamelab.fi/mikko.anttila/Website/index.html
